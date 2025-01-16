@@ -7,11 +7,16 @@ planets = pd.read_csv("./data/gasGiantDataRaw.csv", skiprows=101)
 columns = ["pl_name", "hostname","pl_type", "sy_snum", "sy_pnum", "pl_orbper", "pl_orbsmax","pl_rade","pl_radj", "pl_bmasse", "pl_bmassj", "pl_orbeccen","st_spectype", "st_teff", "st_rad", "st_mass", "st_met"]
 planetTypes = np.empty_like(planets["pl_name"])
 companionType = np.ones_like(planets["pl_bmasse"])
+suspiciousData = np.zeros_like(planets["pl_bmasse"])
 
 for i in range(len(planets)):
     if pd.isnull(planets.iloc[i]["pl_orbsmax"]):
         smax = (planets.iloc[i]["st_mass"]/(planets.iloc[i]["pl_orbper"]/365)**2)**(1/3)
         planets.at[i, "pl_orbsmax"] = smax
+
+    limitFlag = planets.iloc[i]["pl_orbperlim"] + planets.iloc[i]["pl_orbsmaxlim"] + planets.iloc[i]["pl_bmasselim"] + planets.iloc[i]["pl_orbeccenlim"]
+    if pd.isnull(planets.iloc[i]["pl_bmasse"]) or pd.isnull(planets.iloc[i]["pl_orbsmax"]) or limitFlag > 0:
+        suspiciousData[i] = 1
 
     if not pd.isnull(planets.iloc[i]["pl_bmasse"]):  
         if not pd.isnull(planets.iloc[i]["pl_orbsmax"]):  
@@ -106,8 +111,11 @@ Companion Type is a product of primes so that I can identify the categories a co
 """
 
 planets = planets[columns]
-planets.insert(16, "companion_type", companionType)
+planets.insert(17, "companion_type", companionType)
+planets.insert(18, "pl_sus_data", suspiciousData)
 
 
 planets.to_csv("./data/gasGiantData.csv")
+
+print(np.sum(suspiciousData)/len(suspiciousData))
     
