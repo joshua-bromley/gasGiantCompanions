@@ -18,7 +18,7 @@ from PyAstronomy.pyTiming import pyPeriod
  
 def complete_maps():
  
-    sys = np.array(['Teegarden'])#(['LSPMJ21160234'])#(['HD285968'])#(['GJ3293'])#(['GJ251'])#(['GJ229A'])#(['Wolf1061','Wolf1069','YZCet'])#(['TOI1266','TOI1452','TOI1468','TOI1695','TOI2018'])#(['proxima_cen','Ross128','Ross508','TOI244','TOI663'])#(['L9859','L36338','LHS1140','LHS1815','LTT1445A'])#(['K2-25','K2-415','Kapteyn','K2-18','Kepler138'])#(['HIP22627','HIP54373','HIP83043','HNLib','K2-3'])#(['GJ4276','GJ9689','GJ9827','HD180617','HD238090'])#(['GJ3634','GJ3779','GJ3929','GJ3988','GJ3998'])#(['GJ3082','GJ3138','GJ3323','GJ3341','GJ3470'])#(['GJ1002','GJ1132','GJ1151','GJ1214','GJ1265'])#(['GJ724','GJ740','GJ806','GJ876','GJ887'])#(['GJ674','GJ685','GJ686','GJ687','GJ720A'])#(['GJ514','GJ536','GJ581','GJ625','GJ667C'])#(['GJ411','GJ422','GJ433','GJ480','GJ486'])#(['GJ338B','GJ357','GJ367','GJ378','GJ393'])#(['GJ15A','GJ27','GJ49','GJ163','GJ273'])#(['AUMic','BD-082823','CD_Cet','G264-012','GJ12'])
+    sys = np.array(['55cnc'])#(['LSPMJ21160234'])#(['HD285968'])#(['GJ3293'])#(['GJ251'])#(['GJ229A'])#(['Wolf1061','Wolf1069','YZCet'])#(['TOI1266','TOI1452','TOI1468','TOI1695','TOI2018'])#(['proxima_cen','Ross128','Ross508','TOI244','TOI663'])#(['L9859','L36338','LHS1140','LHS1815','LTT1445A'])#(['K2-25','K2-415','Kapteyn','K2-18','Kepler138'])#(['HIP22627','HIP54373','HIP83043','HNLib','K2-3'])#(['GJ4276','GJ9689','GJ9827','HD180617','HD238090'])#(['GJ3634','GJ3779','GJ3929','GJ3988','GJ3998'])#(['GJ3082','GJ3138','GJ3323','GJ3341','GJ3470'])#(['GJ1002','GJ1132','GJ1151','GJ1214','GJ1265'])#(['GJ724','GJ740','GJ806','GJ876','GJ887'])#(['GJ674','GJ685','GJ686','GJ687','GJ720A'])#(['GJ514','GJ536','GJ581','GJ625','GJ667C'])#(['GJ411','GJ422','GJ433','GJ480','GJ486'])#(['GJ338B','GJ357','GJ367','GJ378','GJ393'])#(['GJ15A','GJ27','GJ49','GJ163','GJ273'])#(['AUMic','BD-082823','CD_Cet','G264-012','GJ12'])
    
     mass_star = np.array([0.097])#([0.43])#([0.5])#([0.42])#([0.36])#([0.509])#([0.294,0.167,0.142])#([0.431,0.249,0.339,0.54,0.57])#([0.1221,0.168,0.1774,0.428,0.514])#([0.273,0.21,0.179,0.502,0.257])#([0.2634,0.1635,0.281,0.359,0.535])#([0.393,0.57,0.52,0.291,0.549])#([0.406,0.59,0.62,0.484,0.578])#([0.45,0.27,0.313,0.184,0.50])#([0.47,0.68,0.164,0.47,0.539])#([0.12,0.181,0.164,0.182,0.178])#([0.527,0.58,0.413,0.370,0.489])#([0.35,0.55,0.426,0.40,0.57])#([0.51,0.52,0.311,0.3,0.33])#([0.39,0.35,0.48,0.45,0.323])#([0.64,0.342,0.455,0.56,0.426])#([0.38,0.53,0.515,0.38,0.29])#([0.51,0.50,0.161,0.297,0.241])
    
@@ -76,7 +76,10 @@ def complete_maps():
         if plname == 'GJ49' or plname == 'GJ338B' or plname == 'GJ422' or plname == 'GJ433' or plname == 'GJ514' or plname == 'GJ536' or plname == 'GJ625' or plname == 'GJ1002' or plname == 'GJ1214' or plname == 'GJ3082' or plname == 'GJ3998' or plname == 'K2-3' or plname == 'K2-18' or plname == 'L36338' or plname == 'Ross508' or plname == 'TOI1266' or plname == 'GJ229A':
             time,rv,err = np.loadtxt('RV_datasets_mstar/RVs_standard/'+plname+'_rvs_std.csv',delimiter=',',unpack=True)
  
-       
+        if plname == "55cnc":
+            time, rv, err = np.loadtxt("./RVData/rv55cnc.txt", delimiter=",", usecols = (0,1,2)).T
+            time = time - 50000
+
  
         #------------------------------------
         jitter = 0.
@@ -221,7 +224,7 @@ def complete_maps():
  
         import pickle
         comp_prob = {'prob':prob_s}
-        pickle.dump(comp_prob,open('complete_maps_mstar_paper/'+plname+'_complete_map.p','wb'))
+        pickle.dump(comp_prob,open(f'{plname}.p','wb'))
        
                 
 def find_nearest(array,value):
@@ -302,3 +305,5 @@ def plot_results(like,time,ti):
     pl.xlabel('Time')
     pl.ylabel('RV')
     pl.draw()
+
+complete_maps()
