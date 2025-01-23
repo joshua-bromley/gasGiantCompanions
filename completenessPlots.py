@@ -22,14 +22,14 @@ def complete_plots():
     semacomp = np.array([2.52,0.22,0.14])
  
     if average == 'yes':
-        plname = np.array(['Teegarden','LSPMJ21160234','HD285968','GJ3293','GJ251','GJ229A','Wolf1061','Wolf1069','YZCet','TOI1266','TOI1452','TOI1468','TOI1695','TOI2018','proxima_cen','Ross128','Ross508','TOI244','TOI663','L9859','L36338','LHS1140','LHS1815','LTT1445A','K2-25','K2-415','Kapteyn','K2-18','Kepler138','HIP22627','HIP54373','HIP83043','HNLib','K2-3','GJ4276','GJ9689','HD180617','HD238090','GJ3634','GJ3779','GJ3929','GJ3988','GJ3998','GJ3082','GJ3323','GJ3341','GJ3470','GJ1002','GJ1132','GJ1151','GJ1214','GJ1265','GJ724','GJ740','GJ806','GJ876','GJ887','GJ674','GJ685','GJ686','GJ687','GJ720A','GJ514','GJ536','GJ581','GJ625','GJ667C','GJ411','GJ422','GJ433','GJ480','GJ486','GJ357','GJ367','GJ378','GJ393','GJ15A','GJ27','GJ49','GJ163','GJ273','AUMic','CD_Cet','G264-012','GJ12'])
- 
+        #plname = np.array(['Teegarden','LSPMJ21160234','HD285968','GJ3293','GJ251','GJ229A','Wolf1061','Wolf1069','YZCet','TOI1266','TOI1452','TOI1468','TOI1695','TOI2018','proxima_cen','Ross128','Ross508','TOI244','TOI663','L9859','L36338','LHS1140','LHS1815','LTT1445A','K2-25','K2-415','Kapteyn','K2-18','Kepler138','HIP22627','HIP54373','HIP83043','HNLib','K2-3','GJ4276','GJ9689','HD180617','HD238090','GJ3634','GJ3779','GJ3929','GJ3988','GJ3998','GJ3082','GJ3323','GJ3341','GJ3470','GJ1002','GJ1132','GJ1151','GJ1214','GJ1265','GJ724','GJ740','GJ806','GJ876','GJ887','GJ674','GJ685','GJ686','GJ687','GJ720A','GJ514','GJ536','GJ581','GJ625','GJ667C','GJ411','GJ422','GJ433','GJ480','GJ486','GJ357','GJ367','GJ378','GJ393','GJ15A','GJ27','GJ49','GJ163','GJ273','AUMic','CD_Cet','G264-012','GJ12'])
+        plname = np.array(["55cnc"])
         import pickle
         print(len(plname))
         prob = np.zeros((len(plname),49,49))
         for i in range(len(plname)):
             #print(i)
-            comp_prob = pickle.load(open('complete_maps_mstar_paper/'+plname[i]+'_complete_map.p','rb'))
+            comp_prob = pickle.load(open(f'{plname[i]}.p','rb'))
             prob[i,:,:] = comp_prob['prob']
             #print(prob[i,10,10])
  
@@ -136,4 +136,7 @@ def complete_plots():
     # plt.set_label('Detection Probability',rotation=270,fontsize=20)
     plt.plot(semacomp,mcomp,linestyle='none',marker='o',markersize=10,color='teal')
     #plt.savefig('complete_maps_rvsys_paper/'+sys+'_complete_maps.png')
+    plt.savefig("./plots/55cncCompletenessMap.png")
     plt.show()
+
+complete_plots()
