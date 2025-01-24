@@ -18,7 +18,7 @@ from PyAstronomy.pyTiming import pyPeriod
  
 def complete_maps():
  
-    sys = np.array(['55cnc'])#(['LSPMJ21160234'])#(['HD285968'])#(['GJ3293'])#(['GJ251'])#(['GJ229A'])#(['Wolf1061','Wolf1069','YZCet'])#(['TOI1266','TOI1452','TOI1468','TOI1695','TOI2018'])#(['proxima_cen','Ross128','Ross508','TOI244','TOI663'])#(['L9859','L36338','LHS1140','LHS1815','LTT1445A'])#(['K2-25','K2-415','Kapteyn','K2-18','Kepler138'])#(['HIP22627','HIP54373','HIP83043','HNLib','K2-3'])#(['GJ4276','GJ9689','GJ9827','HD180617','HD238090'])#(['GJ3634','GJ3779','GJ3929','GJ3988','GJ3998'])#(['GJ3082','GJ3138','GJ3323','GJ3341','GJ3470'])#(['GJ1002','GJ1132','GJ1151','GJ1214','GJ1265'])#(['GJ724','GJ740','GJ806','GJ876','GJ887'])#(['GJ674','GJ685','GJ686','GJ687','GJ720A'])#(['GJ514','GJ536','GJ581','GJ625','GJ667C'])#(['GJ411','GJ422','GJ433','GJ480','GJ486'])#(['GJ338B','GJ357','GJ367','GJ378','GJ393'])#(['GJ15A','GJ27','GJ49','GJ163','GJ273'])#(['AUMic','BD-082823','CD_Cet','G264-012','GJ12'])
+    sys = np.array(["55cnc",'upsAnd', "gamLib", "XO2S", "WASP8", "WASP53", "WASP47", "WASP-41", "TYC14226141", "TOI969"])#(['LSPMJ21160234'])#(['HD285968'])#(['GJ3293'])#(['GJ251'])#(['GJ229A'])#(['Wolf1061','Wolf1069','YZCet'])#(['TOI1266','TOI1452','TOI1468','TOI1695','TOI2018'])#(['proxima_cen','Ross128','Ross508','TOI244','TOI663'])#(['L9859','L36338','LHS1140','LHS1815','LTT1445A'])#(['K2-25','K2-415','Kapteyn','K2-18','Kepler138'])#(['HIP22627','HIP54373','HIP83043','HNLib','K2-3'])#(['GJ4276','GJ9689','GJ9827','HD180617','HD238090'])#(['GJ3634','GJ3779','GJ3929','GJ3988','GJ3998'])#(['GJ3082','GJ3138','GJ3323','GJ3341','GJ3470'])#(['GJ1002','GJ1132','GJ1151','GJ1214','GJ1265'])#(['GJ724','GJ740','GJ806','GJ876','GJ887'])#(['GJ674','GJ685','GJ686','GJ687','GJ720A'])#(['GJ514','GJ536','GJ581','GJ625','GJ667C'])#(['GJ411','GJ422','GJ433','GJ480','GJ486'])#(['GJ338B','GJ357','GJ367','GJ378','GJ393'])#(['GJ15A','GJ27','GJ49','GJ163','GJ273'])#(['AUMic','BD-082823','CD_Cet','G264-012','GJ12'])
    
     mass_star = np.array([0.097])#([0.43])#([0.5])#([0.42])#([0.36])#([0.509])#([0.294,0.167,0.142])#([0.431,0.249,0.339,0.54,0.57])#([0.1221,0.168,0.1774,0.428,0.514])#([0.273,0.21,0.179,0.502,0.257])#([0.2634,0.1635,0.281,0.359,0.535])#([0.393,0.57,0.52,0.291,0.549])#([0.406,0.59,0.62,0.484,0.578])#([0.45,0.27,0.313,0.184,0.50])#([0.47,0.68,0.164,0.47,0.539])#([0.12,0.181,0.164,0.182,0.178])#([0.527,0.58,0.413,0.370,0.489])#([0.35,0.55,0.426,0.40,0.57])#([0.51,0.52,0.311,0.3,0.33])#([0.39,0.35,0.48,0.45,0.323])#([0.64,0.342,0.455,0.56,0.426])#([0.38,0.53,0.515,0.38,0.29])#([0.51,0.50,0.161,0.297,0.241])
    
@@ -39,6 +39,10 @@ def complete_maps():
         val_m = 10.**exp_m
         mass = val_m
  
+        '''
+        RV, err units m/s
+        Time is JD - 2450000
+        '''
        
         #For BD-08 2823, GJ 367, GJ 674, GJ 1132, GJ 3634, GJ 9827, LHS1140, Ross 128
         if plname == 'BD-082823' or plname == 'GJ367' or plname == 'GJ674' or plname == 'GJ1132' or plname == 'GJ3634' or plname == 'GJ9827' or plname == 'LHS1140' or plname == 'Ross128':
@@ -75,11 +79,54 @@ def complete_maps():
         #For GJ 49, GJ 338B, GJ 422, GJ 433, GJ 514, GJ 536, GJ 625, GJ 1002, GJ 1214, GJ 3082, GJ 3998, K2-3, K2-18, L363-38, Ross 508, TOI-1266, GJ 229A
         if plname == 'GJ49' or plname == 'GJ338B' or plname == 'GJ422' or plname == 'GJ433' or plname == 'GJ514' or plname == 'GJ536' or plname == 'GJ625' or plname == 'GJ1002' or plname == 'GJ1214' or plname == 'GJ3082' or plname == 'GJ3998' or plname == 'K2-3' or plname == 'K2-18' or plname == 'L36338' or plname == 'Ross508' or plname == 'TOI1266' or plname == 'GJ229A':
             time,rv,err = np.loadtxt('RV_datasets_mstar/RVs_standard/'+plname+'_rvs_std.csv',delimiter=',',unpack=True)
- 
-        if plname == "55cnc":
-            time, rv, err = np.loadtxt("./RVData/rv55cnc.txt", delimiter=",", usecols = (0,1,2)).T
+        
+        
+        #csv, Time in JD - 2400000, rv, err in m/s
+        # 55 Cnc, TYC 1422-614-1
+        if plname == "55cnc" or plname == "TYC14226141":
+            time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
             time = time - 50000
 
+        #csv, Time in JD, rv, err in m/s
+        #ups And
+        if plname == "upsAnd" or plname == "WASP47":
+            time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
+            time = time - 2450000
+
+        #csv, Time in JD, rv, err in km/s
+        #WASP-8, TOI-969
+        if plname == "WASP8" or plname == "TOI969":
+            time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
+            time = time - 2450000
+            rv = rv*1000
+            err = err*1000
+        
+        #csv, Time in JD-2450000, rv,err in km/s
+        #WASP-41
+        if plname == "WASP-41":
+            time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
+            rv = rv*1000
+            err = err*1000
+
+        #tsv, time in JD -2450000, rv,err in m/s
+        #gam Lib
+        if plname == "gamLib":
+            time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter="\t", usecols = (0,1,2)).T
+        
+        #tsv, time in JD-2450000, rv err in km/s
+        #XO-2 S
+        if plname == "XO2S":
+            time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter="\t", usecols = (0,1,2)).T
+            rv = rv*1000
+            err = err*1000
+
+        #tsv, time in JD-2400000, rv, err in km/s
+        #WASP 53
+        if plname == "WASP53":
+            time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter="\t", usecols = (0,1,2)).T
+            time = time - 50000
+            rv = rv*1000
+            err = err*1000
  
         #------------------------------------
         jitter = 0.
@@ -224,7 +271,7 @@ def complete_maps():
  
         import pickle
         comp_prob = {'prob':prob_s}
-        pickle.dump(comp_prob,open(f'{plname}.p','wb'))
+        pickle.dump(comp_prob,open(f'./completenessMaps/{plname}.p','wb'))
        
                 
 def find_nearest(array,value):
