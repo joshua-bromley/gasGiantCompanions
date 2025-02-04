@@ -32,16 +32,24 @@ for i in range(len(metallicityCutoffs)):
     nMetalPoorSECompanions = len(np.unique(seCompanions.loc[seCompanions["st_met"] <= cutoff]["hostname"]))
 
     occurRateCLSMetalRich = stats.beta.median(nclsMetalRichPlanets + 1, nclsMetalRichStars - nclsMetalRichPlanets + 1)
-    sigmaCLSMetalRich = stats.beta.interval(0.68,nclsMetalRichPlanets + 1, nclsMetalRichStars - nclsMetalRichPlanets + 1)[1]
-
     occurRateCLSMetalPoor = stats.beta.median(nclsMetalPoorPlanets + 1, nclsMetalPoorStars - nclsMetalPoorPlanets + 1)
-    sigmaCLSMetalPoor = stats.beta.interval(0.68,nclsMetalPoorPlanets + 1, nclsMetalPoorPlanets - nclsMetalPoorPlanets + 1)[1]
-
     occurRateSEMetalRich = stats.beta.median(nMetalRichSECompanions, nMetalRichSE - nMetalRichSECompanions + 1)
-    sigmaSEMetalRich = stats.beta.interval(0.68, nMetalRichSECompanions, nMetalRichSE - nMetalRichSECompanions + 1)[0]
-    
     occurRateSEMetalPoor = stats.beta.median(nMetalPoorSECompanions, nMetalPoorSE - nMetalPoorSECompanions + 1)
-    sigmaSEMetalPoor= stats.beta.interval(0.68, nMetalPoorSECompanions, nMetalPoorSE - nMetalPoorSECompanions + 1)[0]
+
+    if occurRateSEMetalRich > occurRateCLSMetalRich:
+        sigmaCLSMetalRich = stats.beta.interval(0.68,nclsMetalRichPlanets + 1, nclsMetalRichStars - nclsMetalRichPlanets + 1)[1] - occurRateCLSMetalRich
+        sigmaSEMetalRich = occurRateSEMetalRich - stats.beta.interval(0.68, nMetalRichSECompanions, nMetalRichSE - nMetalRichSECompanions + 1)[0]
+    else:
+        sigmaCLSMetalRich = occurRateCLSMetalRich - stats.beta.interval(0.68,nclsMetalRichPlanets + 1, nclsMetalRichStars - nclsMetalRichPlanets + 1)[0]
+        sigmaSEMetalRich = stats.beta.interval(0.68, nMetalRichSECompanions, nMetalRichSE - nMetalRichSECompanions + 1)[1] - occurRateSEMetalRich
+    
+    if occurRateSEMetalPoor > occurRateCLSMetalPoor:
+        sigmaCLSMetalPoor = stats.beta.interval(0.68,nclsMetalPoorPlanets + 1, nclsMetalPoorPlanets - nclsMetalPoorPlanets + 1)[1] - occurRateCLSMetalPoor
+        sigmaSEMetalPoor= occurRateSEMetalPoor - stats.beta.interval(0.68, nMetalPoorSECompanions, nMetalPoorSE - nMetalPoorSECompanions + 1)[0]
+    else:
+        sigmaCLSMetalPoor = occurRateCLSMetalPoor -  stats.beta.interval(0.68,nclsMetalPoorPlanets + 1, nclsMetalPoorPlanets - nclsMetalPoorPlanets + 1)[0]
+        sigmaSEMetalPoor= stats.beta.interval(0.68, nMetalPoorSECompanions, nMetalPoorSE - nMetalPoorSECompanions + 1)[1] - occurRateSEMetalPoor
+
     metalRichEnhancement[i] = (occurRateSEMetalRich - occurRateCLSMetalRich)/np.sqrt(sigmaSEMetalRich*sigmaSEMetalRich + sigmaCLSMetalRich*sigmaCLSMetalRich)
     metalPoorEnhancement[i] = (occurRateSEMetalPoor - occurRateCLSMetalPoor)/np.sqrt(sigmaSEMetalPoor*sigmaSEMetalPoor + sigmaCLSMetalPoor*sigmaCLSMetalPoor)
 
