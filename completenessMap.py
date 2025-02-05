@@ -87,7 +87,7 @@ def complete_maps():
         
         #csv, Time in JD - 2400000, rv, err in m/s
         # 55 Cnc, TYC 1422-614-1
-        if plname == "55cnc" or plname == "TYC14226141" or plname == "Kepler56" or plname == "HIP67851":
+        if plname == "55cnc" or plname == "TYC14226141" or plname == "Kepler56" or plname == "HIP67851" or plname == "HD9278":
             time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
             time = time - 50000
 
@@ -99,7 +99,7 @@ def complete_maps():
 
         #csv, Time in JD, rv, err in km/s
         #WASP-8, TOI-969
-        if plname == "WASP8" or plname == "TOI969":
+        if plname == "WASP8" or plname == "TOI969" or plname == "HD9446":
             time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
             time = time - 2450000
             rv = rv*1000
@@ -107,7 +107,7 @@ def complete_maps():
 
         #Time in JD-2400000, rv, err in km/s
         #CoRoT24
-        if plname == "CoRoT24" or plname == "Kepler539":
+        if plname == "CoRoT24" or plname == "Kepler539" or plname == "HIP65407":
             time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
             time = time-50000
             rv = rv*1000
@@ -134,6 +134,11 @@ def complete_maps():
             time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
             time = time + 5000
         
+        #time in JD-2440000, rv, err in m/s
+        if plname == "HIP14810" or plname == "HD99706":
+            time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
+            time = time - 10000
+
         #tsv, time in JD-2450000, rv err in km/s
         #XO-2 S
         if plname == "XO2S":
