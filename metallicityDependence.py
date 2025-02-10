@@ -2,15 +2,23 @@ import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 from scipy import stats as stats
+from scipy import special as sp
+
+def occurrence(x, a, b):
+    return (1/sp.beta(a,b))*x**(a-1) * (1-x)**(b-1)
 
 clsStars = pd.read_csv("./data/clsStars.csv")
+clsStars = clsStars.loc[clsStars["mass"] >= 0.6]
 clsPlanets = pd.read_csv("./data/clsPlanets2.csv", skiprows = 101)
-clsPlanets = clsPlanets.loc[(clsPlanets["pl_bmasse"] > 0.5*317) & (clsPlanets["pl_orbsmax"] > 1)]
+clsPlanets = clsPlanets.loc[(clsPlanets["pl_bmasse"] > 0.5*317) & (clsPlanets["pl_orbsmax"] > 1) & (clsPlanets["st_mass"] >= 0.6)]
+
+
 
 planets = pd.read_csv("./data/gasGiantData.csv")
+planets = planets.loc[(planets["st_mass"] > 0.6)]
 
 superEarths = planets.loc[planets["pl_type"] == "SE"]
-seCompanions = planets.loc[(planets["companion_type"] % 2 == 0) & (planets["pl_orbsmax"] > 1)]
+seCompanions = planets.loc[(planets["companion_type"] % 2 == 0) & (planets["pl_orbsmax"] > 1) & (planets["pl_bmasse"] > 0.5*317)]
 
 outerCompanions = planets.loc[planets["companion_type"] > 1] 
 
@@ -18,7 +26,8 @@ gasGiants = planets.loc[(planets["pl_type"] == "WJ") | (planets["pl_type"] == "C
 ggCompanions = planets.loc[(planets["companion_type"] % 11 == 0) | (planets["companion_type"] % 13 == 0)]
 
 
-metallicityCutoffs = np.linspace(-0.2,0.3)
+metallicityCutoffs = np.arange(-0.2,0.31, 0.01)
+spotlightPoints = [20,22,24]
 
 
 SEmetalRichEnhancement = np.zeros_like(metallicityCutoffs)
@@ -33,7 +42,9 @@ GGmetalPoorEnhancement = np.zeros_like(metallicityCutoffs)
 
 clsMetMedian = np.median(clsStars["[Fe/H]"].dropna())
 
-print(np.min(clsStars["[Fe/H]"]), np.max(clsStars["[Fe/H]"]))
+print(f"CLS Median: {clsMetMedian}")
+planetsMetMedian = np.median(superEarths.drop_duplicates(subset="hostname")["st_met"].dropna())
+print(f"B&B Median: {planetsMetMedian}")
 
 
 for i in range(len(metallicityCutoffs)):
@@ -43,7 +54,7 @@ for i in range(len(metallicityCutoffs)):
 
     nclsMetalRichPlanets = len(np.unique(clsPlanets.loc[clsPlanets["st_met"] > cutoff]["hostname"]))
     nclsMetalPoorPlanets = len(np.unique(clsPlanets.loc[clsPlanets["st_met"] <= cutoff]["hostname"]))
-
+ 
     nMetalRichSE = len(np.unique(superEarths.loc[superEarths["st_met"] > cutoff]["hostname"]))
     nMetalPoorSE = len(np.unique(superEarths.loc[superEarths["st_met"] <= cutoff]["hostname"]))
 
@@ -62,14 +73,13 @@ for i in range(len(metallicityCutoffs)):
 
     occurRateCLSMetalRich = stats.beta.median(nclsMetalRichPlanets + 1, nclsMetalRichStars - nclsMetalRichPlanets + 1)
     occurRateCLSMetalPoor = stats.beta.median(nclsMetalPoorPlanets + 1, nclsMetalPoorStars - nclsMetalPoorPlanets + 1)
-    occurRateSEMetalRich = stats.beta.median(nMetalRichSECompanions, nMetalRichSE - nMetalRichSECompanions + 1)
-    occurRateSEMetalPoor = stats.beta.median(nMetalPoorSECompanions, nMetalPoorSE - nMetalPoorSECompanions + 1)
+    occurRateSEMetalRich = stats.beta.median(nMetalRichSECompanions + 1, nMetalRichSE - nMetalRichSECompanions + 1)
+    occurRateSEMetalPoor = stats.beta.median(nMetalPoorSECompanions + 1, nMetalPoorSE - nMetalPoorSECompanions + 1)
     occurRateCompMetalRich = stats.beta.median(nMetalRichCompanions + 1, nMetalRichInner - nMetalRichCompanions + 1)
     occurRateCompMetalPoor = stats.beta.median(nMetalPoorCompanions + 1, nMetalPoorInner - nMetalPoorCompanions +1)
-    occurRateGGMetalRich = stats.beta.median(nMetalRichGGCompanions, nMetalRichGG - nMetalRichGGCompanions + 1)
-    occurRateGGMetalPoor = stats.beta.median(nMetalPoorGGCompanions, nMetalPoorGG - nMetalPoorGGCompanions + 1)
+    occurRateGGMetalRich = stats.beta.median(nMetalRichGGCompanions + 1, nMetalRichGG - nMetalRichGGCompanions + 1)
+    occurRateGGMetalPoor = stats.beta.median(nMetalPoorGGCompanions + 1, nMetalPoorGG - nMetalPoorGGCompanions + 1)
     
-
     if occurRateSEMetalRich > occurRateCLSMetalRich:
         sigmaCLSMetalRich = stats.beta.interval(0.68,nclsMetalRichPlanets + 1, nclsMetalRichStars - nclsMetalRichPlanets + 1)[1] - occurRateCLSMetalRich
         sigmaSEMetalRich = occurRateSEMetalRich - stats.beta.interval(0.68, nMetalRichSECompanions, nMetalRichSE - nMetalRichSECompanions + 1)[0]
@@ -78,10 +88,10 @@ for i in range(len(metallicityCutoffs)):
         sigmaSEMetalRich = stats.beta.interval(0.68, nMetalRichSECompanions, nMetalRichSE - nMetalRichSECompanions + 1)[1] - occurRateSEMetalRich
     
     if occurRateSEMetalPoor > occurRateCLSMetalPoor:
-        sigmaCLSMetalPoor = stats.beta.interval(0.68,nclsMetalPoorPlanets + 1, nclsMetalPoorPlanets - nclsMetalPoorPlanets + 1)[1] - occurRateCLSMetalPoor
+        sigmaCLSMetalPoor = stats.beta.interval(0.68,nclsMetalPoorPlanets + 1, nclsMetalPoorStars - nclsMetalPoorPlanets + 1)[1] - occurRateCLSMetalPoor
         sigmaSEMetalPoor= occurRateSEMetalPoor - stats.beta.interval(0.68, nMetalPoorSECompanions, nMetalPoorSE - nMetalPoorSECompanions + 1)[0]
     else:
-        sigmaCLSMetalPoor = occurRateCLSMetalPoor -  stats.beta.interval(0.68,nclsMetalPoorPlanets + 1, nclsMetalPoorPlanets - nclsMetalPoorPlanets + 1)[0]
+        sigmaCLSMetalPoor = occurRateCLSMetalPoor -  stats.beta.interval(0.68,nclsMetalPoorStars + 1, nclsMetalPoorPlanets - nclsMetalPoorPlanets + 1)[0]
         sigmaSEMetalPoor= stats.beta.interval(0.68, nMetalPoorSECompanions, nMetalPoorSE - nMetalPoorSECompanions + 1)[1] - occurRateSEMetalPoor
 
     if occurRateCompMetalRich > occurRateCLSMetalRich:
@@ -92,10 +102,10 @@ for i in range(len(metallicityCutoffs)):
         sigmaCompMetalRich = stats.beta.interval(0.68, nMetalRichCompanions, nMetalRichInner - nMetalRichCompanions + 1)[1] - occurRateCompMetalRich
     
     if occurRateCompMetalPoor > occurRateCLSMetalPoor:
-        sigmaCLSMetalPoor = stats.beta.interval(0.68,nclsMetalPoorPlanets + 1, nclsMetalPoorPlanets - nclsMetalPoorPlanets + 1)[1] - occurRateCLSMetalPoor
+        sigmaCLSMetalPoor = stats.beta.interval(0.68,nclsMetalPoorPlanets + 1, nclsMetalPoorStars - nclsMetalPoorPlanets + 1)[1] - occurRateCLSMetalPoor
         sigmaCompMetalPoor= occurRateCompMetalPoor - stats.beta.interval(0.68, nMetalPoorCompanions, nMetalPoorInner - nMetalPoorCompanions + 1)[0]
     else:
-        sigmaCLSMetalPoor = occurRateCLSMetalPoor -  stats.beta.interval(0.68,nclsMetalPoorPlanets + 1, nclsMetalPoorPlanets - nclsMetalPoorPlanets + 1)[0]
+        sigmaCLSMetalPoor = occurRateCLSMetalPoor -  stats.beta.interval(0.68,nclsMetalPoorPlanets + 1, nclsMetalPoorStars - nclsMetalPoorPlanets + 1)[0]
         sigmaCompMetalPoor= stats.beta.interval(0.68, nMetalPoorCompanions, nMetalPoorInner - nMetalPoorCompanions + 1)[1] - occurRateCompMetalPoor
 
 
@@ -105,6 +115,33 @@ for i in range(len(metallicityCutoffs)):
 
     CompMetalRichEnhancement[i] = (occurRateCompMetalRich - occurRateCLSMetalRich)/np.sqrt(sigmaCompMetalRich*sigmaCompMetalRich + sigmaCLSMetalRich*sigmaCLSMetalRich)
     CompMetalPoorEnhancement[i] = (occurRateCompMetalPoor - occurRateCLSMetalPoor)/np.sqrt(sigmaCompMetalPoor*sigmaCompMetalPoor + sigmaCLSMetalPoor*sigmaCLSMetalPoor)
+
+   
+
+    if i in spotlightPoints:
+        if i == 22:
+            cutoff = 0.023
+        elif i == 24:
+            cutoff = 0.041
+        x = np.linspace(0,0.5,1000)
+        fig1, ax1 = plt.subplots(1,1)
+        ax1.plot(x, occurrence(x, nclsMetalRichPlanets + 1, nclsMetalRichStars - nclsMetalRichPlanets + 1), ls = "-", color = "tab:blue", label = f"P(GG|[Fe/H] > {np.round(cutoff, decimals=1)})")
+        ax1.plot(x, occurrence(x, nclsMetalPoorPlanets + 1, nclsMetalPoorStars - nclsMetalPoorPlanets + 1), ls = "-", color = "tab:orange", label = f"P(GG|[Fe/H] <= {np.round(cutoff, decimals=1)})")
+        ax1.plot(x, occurrence(x, nMetalRichSECompanions + 1, nMetalRichSE - nMetalRichSECompanions + 1), ls = "--", color = "tab:blue", label = f"P(GG|SE,[Fe/H] > {np.round(cutoff, decimals=1)})")
+        ax1.plot(x, occurrence(x, nMetalPoorSECompanions + 1, nMetalPoorSE - nMetalPoorSECompanions + 1), ls = "--", color = "tab:orange", label = f"P(GG|SE,[Fe/H] <= {np.round(cutoff, decimals=1)})")
+        ax1.legend(frameon = False)
+        plt.tight_layout()
+        fig1.savefig(f"./plots/occurRateMetCutoff{np.round(cutoff, decimals=2)}.png")
+        print(f"Cutoff: {np.round(cutoff, decimals=5)}")
+        print(f"Metal Rich Field: {nclsMetalRichPlanets}/{nclsMetalRichStars}, {occurRateCLSMetalRich} +/- {sigmaCLSMetalRich}")
+        print(f"Metal Rich SE: {nMetalRichSECompanions}/{nMetalRichSE}, {occurRateSEMetalRich} +/- {sigmaSEMetalRich}")
+        print(f"Metal Poor Field: {nclsMetalPoorPlanets}/{nclsMetalPoorStars}, {occurRateCLSMetalPoor} +/- {sigmaCLSMetalPoor}")
+        print(f"Metal Poor SE: {nMetalPoorSECompanions}/{nMetalPoorSE}, {occurRateSEMetalPoor} +/- {sigmaSEMetalPoor}")
+        print(f"Metal Rich Enhancement: {SEmetalRichEnhancement[i]}")
+        print(f"Metal Poor Enhancement: {SEmetalPoorEnhancement[i]}")
+
+
+
  
 
 
@@ -119,6 +156,8 @@ ax.set_ylabel("Enhancement ($\sigma$)")
 ax.set_xlabel('Metallicity Cutoff ([Fe/H])')
 
 fig.savefig("./plots/metallicityEnhancement.png")
+
+#print(metallicityCutoffs)
 
     
 
