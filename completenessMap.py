@@ -26,7 +26,7 @@ def complete_maps():
     sys = systemData["hostname"].values
     mass_star = systemData["st_mass"].values
     
-    for x in range(9,len(sys)):
+    for x in range(26,len(sys)):
         print(sys[x])
         plname = sys[x]
         n_inject = 50
