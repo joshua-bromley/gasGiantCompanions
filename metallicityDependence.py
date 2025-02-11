@@ -131,7 +131,7 @@ for i in range(len(metallicityCutoffs)):
         ax1.plot(x, occurrence(x, nMetalPoorSECompanions + 1, nMetalPoorSE - nMetalPoorSECompanions + 1), ls = "--", color = "tab:orange", label = f"P(GG|SE,[Fe/H] <= {np.round(cutoff, decimals=1)})")
         ax1.legend(frameon = False)
         plt.tight_layout()
-        fig1.savefig(f"./plots/occurRateMetCutoff{np.round(cutoff, decimals=2)}.png")
+        #fig1.savefig(f"./plots/occurRateMetCutoff{np.round(cutoff, decimals=2)}.png")
         print(f"Cutoff: {np.round(cutoff, decimals=5)}")
         print(f"Metal Rich Field: {nclsMetalRichPlanets}/{nclsMetalRichStars}, {occurRateCLSMetalRich} +/- {sigmaCLSMetalRich}")
         print(f"Metal Rich SE: {nMetalRichSECompanions}/{nMetalRichSE}, {occurRateSEMetalRich} +/- {sigmaSEMetalRich}")
@@ -148,14 +148,15 @@ for i in range(len(metallicityCutoffs)):
 fig, ax = plt.subplots(1,1)
 ax.plot(metallicityCutoffs, SEmetalRichEnhancement, ls = "", marker = "o", label = "[Fe/H] > x, SE Inner")
 ax.plot(metallicityCutoffs, SEmetalPoorEnhancement, ls = "", marker = "o", label = "[Fe/H] <= x, SE Inner")
-#ax.plot(metallicityCutoffs, CompMetalRichEnhancement, ls = "", marker = "o", label = "[Fe/H] > x, Any Inner")
-#ax.plot(metallicityCutoffs, CompMetalPoorEnhancement, ls = "", marker = "o", label = "[Fe/H] <= x, Any Inner")
-ax.vlines(clsMetMedian, 0,2.5)
+ax.plot(metallicityCutoffs, CompMetalRichEnhancement, ls = "", marker = "o", label = "[Fe/H] > x, Any Inner")
+ax.plot(metallicityCutoffs, CompMetalPoorEnhancement, ls = "", marker = "o", label = "[Fe/H] <= x, Any Inner")
+ax.vlines([clsMetMedian, planetsMetMedian], 0,2.5)
 ax.legend(frameon = False)
 ax.set_ylabel("Enhancement ($\sigma$)")
 ax.set_xlabel('Metallicity Cutoff ([Fe/H])')
+plt.show()
 
-fig.savefig("./plots/metallicityEnhancement.png")
+#fig.savefig("./plots/metallicityEnhancement.png")
 
 #print(metallicityCutoffs)
 
