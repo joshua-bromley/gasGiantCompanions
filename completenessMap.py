@@ -93,7 +93,7 @@ def complete_maps():
 
         #csv, Time in JD, rv, err in m/s
         #ups And
-        if plname == "upsAnd" or plname == "WASP47" or plname == "Pr0211" or plname == "TOI2202" or plname == 'TIC279401253' or plname == "TIC139270665" or plname == "Kepler424" or plname == "HD83443" or plname == "HD39091" or plname == "HD33142" or plname == "HD27894":
+        if plname == "upsAnd" or plname == "WASP47" or plname == "Pr0211" or plname == "TOI2202" or plname == 'TIC279401253' or plname == "TIC139270665" or plname == "Kepler424" or plname == "HD83443" or plname == "HD39091" or plname == "HD33142" or plname == "HD27894" or plname == "HD190360" or plname == "HD191939":
             time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
             time = time - 2450000
 
@@ -107,7 +107,7 @@ def complete_maps():
 
         #Time in JD-2400000, rv, err in km/s
         #CoRoT24
-        if plname == "CoRoT24" or plname == "Kepler539" or plname == "HIP65407":
+        if plname == "CoRoT24" or plname == "Kepler539" or plname == "HIP65407" or plname == "HD219828":
             time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
             time = time-50000
             rv = rv*1000
@@ -115,7 +115,7 @@ def complete_maps():
         
         #csv, Time in JD-2450000, rv,err in km/s
         #WASP-41, gam Lib
-        if plname == "WASP41" or plname == "gamLib":
+        if plname == "WASP41" or plname == "gamLib" or plname == "HD204313":
             time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
             rv = rv*1000
             err = err*1000
@@ -129,18 +129,18 @@ def complete_maps():
         if plname == "Kepler93" or plname == "Kepler94" or plname == "Kepler68" or plname == "Kepler48" or plname == "Kepler454" or plname == "Kepler407" or plname == "KELT6" or plname == "HIP8541" or plname == "HD80653" or plname == "HD67087" or plname == "HD47366":
             time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
             
-        #time in BJD-2455000, rv,err in m.s
+        #time in BJD-2455000, rv,err in m/s
         if plname == "Kepler432":
             time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
             time = time + 5000
         
         #time in JD-2440000, rv, err in m/s
-        if plname == "HIP14810" or plname == "HD99706" or plname == "HD75784" or plname == "HD74156" or plname == "HD5319" or plname == "HD4203" or plname == "HD37605" or plname == "HD37124" or plname == "HD30177":
+        if plname == "HIP14810" or plname == "HD99706" or plname == "HD75784" or plname == "HD74156" or plname == "HD5319" or plname == "HD4203" or plname == "HD37605" or plname == "HD37124" or plname == "HD30177" or plname == "HD207832" or plname == "HD200964":
             time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
             time = time - 10000
 
         #time in JD, rv,err in m/s, CLS tables
-        if plname == "HD72659" or plname == "HD68988" or plname == "HD38529" or plname == "HD28185":
+        if plname == "HD72659" or plname == "HD68988" or plname == "HD38529" or plname == "HD28185" or plname == "HD24040":
             time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (5,6,7)).T
             time = time - 2450000
         
