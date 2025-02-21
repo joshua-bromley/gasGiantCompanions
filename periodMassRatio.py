@@ -31,14 +31,14 @@ for i in range(len(hostnames)):
 
 highMassPairs = planetPairs.loc[planetPairs["pla_mass"] > 0.5*317]
 
-periodRatios = highMassPairs["per_ratio"].values
+periodRatios = planetPairs["per_ratio"].values
 massRatios = planetPairs["mass_ratio"].values
 outerEccen = planetPairs["pla_eccen"].values
 
 fig, ax = plt.subplots(1,1)
-ax.plot(massRatios, outerEccen, ls = "", marker = "o")
+ax.plot(periodRatios, massRatios, ls = "", marker = "o")
 ax.set_xscale("log")
-#ax.set_yscale("log")
+ax.set_yscale("log")
 
 
 plt.show()
