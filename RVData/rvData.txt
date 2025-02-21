@@ -1,4 +1,4 @@
-hostname,st_mass,
+hostname,st_mass,mass_reference
 55cnc,0.91,
 upsAnd,1.3,
 gamLib,1.78,
@@ -94,7 +94,25 @@ HD113337,1.41,
 HD111232,0.96,
 HD108874,1.1,
 HD102329,1.30,
-
+HATS59,1.04,
+HATP44,0.94,
+HATP2,1.33,
+HATP17,0.99,
+HATP13,1.32,Knutson+14
+HATP11,0.86,
+GJ876,0.32,
+GJ849,0.49,
+GJ676,0.63,
+GJ328,0.65,
+GJ317,0.42,
+CoRoT20,1.14,
+BD114672,0.65,
+BD202457,2.8,
+75Cet,1.92,
+7CMa,1.34,
+47UMa,1.06,
+24Sex,1.24,
+14Her,0.91,
 
 
 
