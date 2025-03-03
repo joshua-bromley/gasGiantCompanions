@@ -67,7 +67,7 @@ for i in tqdm(range(len(betaResults))):
     hjFitResults = stats.fit(stats.beta, hjCompanionEccenRedraw, bounds = ((0,100),(0,100)))
     betaResults[i,4] = hjFitResults.params[0]
     betaResults[i,5] = hjFitResults.params[1]
-    #rayleighResults[i,4], rayleighResults[i,5] = stats.rayleigh.fit(hjCompanionEccenRedraw)
+    rayleighResults[i,4], rayleighResults[i,5] = stats.rayleigh.fit(hjCompanionEccenRedraw)
     wcjFitResults = stats.fit(stats.beta, wcjCompanionEccenRedraw, bounds = ((0,100),(0,100)))
     betaResults[i,6] = wcjFitResults.params[0]
     betaResults[i,7] = wcjFitResults.params[1]
@@ -95,6 +95,7 @@ print(f"Hot Jupiters a = {np.mean(betaResults[:,2])}+/-{np.std(betaResults[:,2])
 print(f"HJ Companions a = {np.mean(betaResults[:,4])}+/-{np.std(betaResults[:,4])}, b = {np.mean(betaResults[:,5])}+/-{np.std(betaResults[:,5])}")
 print(f"WCJ Companions a = {np.mean(betaResults[:,6])}+/-{np.std(betaResults[:,6])}, b = {np.mean(betaResults[:,7])}+/-{np.std(betaResults[:,7])}")
 
+print(f"HJ Companions a = {np.mean(rayleighResults[:,4])}+/-{np.std(rayleighResults[:,4])}, b = {np.mean(rayleighResults[:,5])}+/-{np.std(rayleighResults[:,5])}")
 '''
 fig, ax = plt.subplots(1,1)
 sb.kdeplot(x = rayleighResults[:,0], y = rayleighResults[:,1], ax = ax, levels=[0.01,0.05,0.32])
