@@ -26,7 +26,7 @@ def complete_maps():
     sys = systemData["hostname"].values
     mass_star = systemData["st_mass"].values
     
-    for x in range(64,len(sys)):
+    for x in range(108,len(sys)):
         print(sys[x])
         plname = sys[x]
         n_inject = 50
@@ -47,7 +47,7 @@ def complete_maps():
         RV, err units m/s
         Time is JD - 2450000
         '''
-       
+        '''
         #For BD-08 2823, GJ 367, GJ 674, GJ 1132, GJ 3634, GJ 9827, LHS1140, Ross 128
         if plname == 'BD-082823' or plname == 'GJ367' or plname == 'GJ674' or plname == 'GJ1132' or plname == 'GJ3634' or plname == 'GJ9827' or plname == 'LHS1140' or plname == 'Ross128':
             time,rv,err = np.loadtxt('RV_datasets_mstar/RVs_standard/'+plname+'_rvs_std.csv',delimiter=',',unpack=True)
@@ -83,7 +83,7 @@ def complete_maps():
         #For GJ 49, GJ 338B, GJ 422, GJ 433, GJ 514, GJ 536, GJ 625, GJ 1002, GJ 1214, GJ 3082, GJ 3998, K2-3, K2-18, L363-38, Ross 508, TOI-1266, GJ 229A
         if plname == 'GJ49' or plname == 'GJ338B' or plname == 'GJ422' or plname == 'GJ433' or plname == 'GJ514' or plname == 'GJ536' or plname == 'GJ625' or plname == 'GJ1002' or plname == 'GJ1214' or plname == 'GJ3082' or plname == 'GJ3998' or plname == 'K2-3' or plname == 'K2-18' or plname == 'L36338' or plname == 'Ross508' or plname == 'TOI1266' or plname == 'GJ229A':
             time,rv,err = np.loadtxt('RV_datasets_mstar/RVs_standard/'+plname+'_rvs_std.csv',delimiter=',',unpack=True)
-        
+        '''
         
         #csv, Time in JD - 2400000, rv, err in m/s
         # 55 Cnc, TYC 1422-614-1
