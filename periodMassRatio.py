@@ -30,9 +30,9 @@ for i in range(len(hostnames)):
         massRatio = planetAMass/planetBMass
         perRatio = planetAPer/planetBPer
         planetPairs.loc[len(planetPairs)] = [hostname, planetAName, planetBName, planetAPer, planetBPer, perRatio, planetAMass, planetBMass, massRatio, planetAeccen, planetBeccen, stellarMass, stellarMet]
-        if planetB["pl_type"] == "HJ" and (planetA["pl_type"] == "WJ" or planetA["pl_type"] == 'CJ'):
+        if planetB["pl_type"] == "HJ" or planetA["pl_type"] == "HJ":
             hjPairs.loc[len(hjPairs)] = [hostname, planetAName, planetBName, planetAPer, planetBPer, perRatio, planetAMass, planetBMass, massRatio, planetAeccen, planetBeccen, stellarMass, stellarMet]
-        if (planetB["pl_type"] == "WJ" or planetB["pl_type"] == "CJ") and (planetA["pl_type"] == "WJ" or planetA["pl_type"] == "CJ"):
+        elif (planetB["pl_type"] == "WJ" or planetB["pl_type"] == "CJ") or (planetA["pl_type"] == "WJ" or planetA["pl_type"] == "CJ"):
             wcjPairs.loc[len(wcjPairs)] = [hostname, planetAName, planetBName, planetAPer, planetBPer, perRatio, planetAMass, planetBMass, massRatio, planetAeccen, planetBeccen, stellarMass, stellarMet]
  
 
@@ -55,8 +55,8 @@ for i in range(len(hjPairs)):
     ax.text(hjPairs["plb_mass"].values[i], hjPairs["pla_mass"].values[i], hjPairs.iloc[i]["hostname"])
 ax.set_xscale("log")
 ax.set_yscale("log")
-ax.set_xlabel("Inner Planet Period (d)")
-ax.set_ylabel('Outer Planet Period (d)')
+ax.set_xlabel("Inner Planet Mass (M_E)")
+ax.set_ylabel('Outer Planet Mass (M_E)')
 #fig.savefig("./plots/perMassRatio.png")
 
 

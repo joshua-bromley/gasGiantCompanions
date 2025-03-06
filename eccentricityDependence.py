@@ -8,14 +8,14 @@ def occurrence(x, a, b):
     return (1/sp.beta(a,b))*x**(a-1) * (1-x)**(b-1)
 
 clsStars = pd.read_csv("./data/clsStars.csv")
-clsStars = clsStars.loc[clsStars["mass"] >= 0.6]
+clsStars = clsStars.loc[(clsStars["mass"] >= 0.6) & (clsStars["[Fe/H]"] > 0)]
 clsPlanets = pd.read_csv("./data/clsPlanets2.csv", skiprows = 101)
-clsPlanets = clsPlanets.loc[(clsPlanets["pl_bmasse"] > 0.5*317) & (clsPlanets["pl_orbsmax"] > 1) & (clsPlanets["st_mass"] >= 0.6)]
+clsPlanets = clsPlanets.loc[(clsPlanets["pl_bmasse"] > 0.5*317) & (clsPlanets["pl_orbsmax"] > 1) & (clsPlanets["st_mass"] >= 0.6)  & (clsPlanets["st_met"] > 0)]
 
 
 
 planets = pd.read_csv("./data/gasGiantData.csv")
-planets = planets.loc[(planets["st_mass"] > 0.6)]
+planets = planets.loc[(planets["st_mass"] > 0.6) & (planets["st_met"] > 0)]
 
 superEarths = planets.loc[planets["pl_type"] == "SE"]
 seCompanions = planets.loc[(planets["companion_type"] % 2 == 0) & (planets["pl_orbsmax"] > 1) & (planets["pl_bmasse"] > 0.5*317)]
@@ -123,8 +123,8 @@ for i in range(len(eccentricityCutoffs)):
         sigmaGGDynCold= stats.beta.interval(0.68, nDynColdGGCompanions, nDynColdGG - nDynColdGGCompanions + 1)[1] - occurRateGGDynCold
     
 
-
-        
+    print(occurRateSEDynHot, occurRateCLSDynHot)
+    
     SEDynHotEnhancement[i] = (occurRateSEDynHot - occurRateCLSDynHot)/np.sqrt(sigmaSEDynHot*sigmaSEDynHot + sigmaCLSDynHot*sigmaCLSDynHot)
     SEDynColdEnhancement[i] = (occurRateSEDynCold - occurRateCLSDynCold)/np.sqrt(sigmaSEDynCold*sigmaSEDynCold + sigmaCLSDynCold*sigmaCLSDynCold)
 
@@ -158,6 +158,8 @@ for i in range(len(eccentricityCutoffs)):
         print(f"Metal Rich Enhancement: {GGDynHotEnhancement[i]}")
         print(f"Metal Poor Enhancement: {GGDynColdEnhancement[i]}")
 
+
+print(SEDynHotEnhancement)
 
 
  

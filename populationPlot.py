@@ -35,28 +35,28 @@ rcParams["xtick.minor.width"] = 1
 planets  = pd.read_csv("./data/gasGiantData.csv")
 hosts = np.unique(planets["hostname"])
 
-ssMass = [0.815, 1, 318, 95, 14.5, 17]
+ssMass = [0.815/318, 1/318, 318/318, 95/318, 14.5/318, 17/318]
 ssSmax = [ 0.723, 1, 5.203, 9.537, 19.191, 30.069]
 ssPer = [ 224.701, 365.26, 4332.59, 10759.22, 30688.5, 60182]
 
 fig, ax = plt.subplots(1,1, figsize = (6,4))
 for hostname in hosts:
     system = planets.loc[planets["hostname"] == hostname].sort_values("pl_orbsmax")
-    mass = system["pl_bmasse"].values
+    mass = system["pl_bmassj"].values
     smax = system["pl_orbsmax"].values
     period = system["pl_orbper"].values
     ax.plot(np.log10(period), np.log10(mass), marker = ".", ls = " ", color = "tab:blue")
     #ax.plot(period, mass, marker = ".", color = "tab:blue", alpha = 0.3)
 
-ax.plot(np.log10(ssPer), np.log10(ssMass), marker = "o", ls = "", color = "tab:pink")
+ax.plot(np.log10(ssPer), np.log10(ssMass), marker = ".", ls = "", color = "tab:pink")
 
 xTicks = [-1,0,1,2,3,4,5]
 xMinorTicks = [-0.5,0.5,1.5,2.5,3.5,4.5]
-yTicks = [-1,0,1,2,3,4]
-yMinorTicks = [-0.5,0.5,1.5,2.5,3.5]
+yTicks = [-3,-2,-1,0,1,2]
+yMinorTicks = [-2.5,-1.5,-0.5,0.5,1.5]
 
 xTickLabels = ["$10^{-1}$", "1", "10", "$10^2$", "$10^3$", "$10^4$", "$10^5$"]
-yTickLabels = ["$10^{-1}$", "1", "10", "$10^2$", "$10^3$", "$10^4$"]
+yTickLabels = ["$10^{-3}$","$10^{-2}$","$10^{-1}$", "1", "10", "$10^2$"]
 
 ax.set_xticks(xTicks)
 ax.set_xticks(xMinorTicks, minor=True)
@@ -65,10 +65,10 @@ ax.set_yticks(yMinorTicks, minor=True)
 ax.set_xticklabels(xTickLabels)
 ax.set_yticklabels(yTickLabels)
 ax.set_xlim(-1,5)
-ax.set_ylim(-1,4)
+ax.set_ylim(-3,2)
 
 ax.set_xlabel("Period (Days)", fontsize = 16)
-ax.set_ylabel("Mass (Earth Masses)", fontsize = 16)
+ax.set_ylabel("Mass (Jupiter Masses)", fontsize = 16)
 
 tickLabelSize = 12
 ax.tick_params(axis = 'x', bottom = True, top = True, which = "major", direction = "in", labelsize = tickLabelSize, pad = 10)
