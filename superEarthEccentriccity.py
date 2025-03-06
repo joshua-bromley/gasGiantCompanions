@@ -33,10 +33,11 @@ seCompanionsEccenErr = (np.array(seCompanions["pl_orbeccenerr1"]) - np.array(seC
 
 seCompanionsRedraw = eccenRedraw(seCompanionsEccen, seCompanionsEccenErr)
 
-fig, ax = plt.subplots(1,1)
-ax.ecdf(seCompanionsEccen)
+fig, ax = plt.subplots(1,1) 
+ax.ecdf(seCompanionsEccen, label  = "SE Companions")
 ax.ecdf(seCompanionsRedraw)
-ax.ecdf(clsPlanets["pl_orbeccen"].dropna())
+ax.ecdf(clsPlanets["pl_orbeccen"].dropna(), label = "CLS")
+ax.legend(frameon = False)
 #plt.show()
 
 nDynHotSECompanions = len(np.unique(seCompanions.loc[seCompanions["pl_orbeccen"] > 0.3]["hostname"]))
@@ -65,4 +66,5 @@ ax.plot(x, occurrence(x, nDynHotSECompanionsRD + 1, nSESystems - nDynHotSECompan
 ax.plot(x, occurrence(x, nDynColdSECompanions + 1, nSESystems - nDynColdSECompanions + 1), color = "tab:blue", ls = "--", label = "P(GG,e<=0.3|SE,[Fe/H]>0)")
 ax.plot(x, occurrence(x, nDynColdClS + 1, nCLSStars - nDynColdClS + 1), color = "tab:blue", label = "P(GG,e<=0.3|[Fe/H] > 0)")
 ax.plot(x, occurrence(x, nDynColdSECompanionsRD + 1, nSESystems - nDynColdSECompanionsRD + 1), color = "tab:blue", ls = "-.")
+ax.legend(frameon = False)
 plt.show()

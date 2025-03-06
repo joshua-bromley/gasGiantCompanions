@@ -1,4 +1,4 @@
-hostname,st_mass,mass_reference
+hostname,st_mass,mass_reference,data_ref
 55cnc,0.91,
 upsAnd,1.3,
 gamLib,1.78,
@@ -113,6 +113,22 @@ BD202457,2.8,
 47UMa,1.06,
 24Sex,1.24,
 14Her,0.91,
+xiAql,1.74,
+upsLeo,1.48,
+tauBoo,1.32,
+omeSer,1.01,
+muLeo,1.5,
+gam1Leo,1.23,
+gamPsc,0.99,
+gamCep,1.47,
+epsEri,0.82,
+epsCrB,1.7,
+betUMi,1.4,
+betCnc,1.7,
+alfTau,1.13,
+alfAri,1.5,
+XO7,1.41,
+XO5,1.04,,Knutson+14
 
 
 
