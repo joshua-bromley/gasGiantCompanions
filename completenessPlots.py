@@ -18,12 +18,12 @@ def complete_plots():
     average = 'yes'#'minmax'#'minmax_total'#'nogg_median'#'no' #'gg'#'nogg'
     #average_trend = 'no'
  
-    mcomp = np.array([0.752,2.108,0.698])
-    semacomp = np.array([2.52,0.22,0.14])
+    mcomp = np.array([0.709])
+    semacomp = np.array([0.044])
  
     if average == 'yes':
         #plname = np.array(['Teegarden','LSPMJ21160234','HD285968','GJ3293','GJ251','GJ229A','Wolf1061','Wolf1069','YZCet','TOI1266','TOI1452','TOI1468','TOI1695','TOI2018','proxima_cen','Ross128','Ross508','TOI244','TOI663','L9859','L36338','LHS1140','LHS1815','LTT1445A','K2-25','K2-415','Kapteyn','K2-18','Kepler138','HIP22627','HIP54373','HIP83043','HNLib','K2-3','GJ4276','GJ9689','HD180617','HD238090','GJ3634','GJ3779','GJ3929','GJ3988','GJ3998','GJ3082','GJ3323','GJ3341','GJ3470','GJ1002','GJ1132','GJ1151','GJ1214','GJ1265','GJ724','GJ740','GJ806','GJ876','GJ887','GJ674','GJ685','GJ686','GJ687','GJ720A','GJ514','GJ536','GJ581','GJ625','GJ667C','GJ411','GJ422','GJ433','GJ480','GJ486','GJ357','GJ367','GJ378','GJ393','GJ15A','GJ27','GJ49','GJ163','GJ273','AUMic','CD_Cet','G264-012','GJ12'])
-        plname = np.array(["GJ876"])
+        plname = np.array(["XO7"])
         import pickle
         print(len(plname))
         prob = np.zeros((len(plname),49,49))
@@ -134,7 +134,7 @@ def complete_plots():
     cbar.set_label('Detection Probability',rotation=270,fontsize=25,labelpad=25)
     #plt.tick_params(labelsize=15)
     # plt.set_label('Detection Probability',rotation=270,fontsize=20)
-    #plt.plot(semacomp,mcomp,linestyle='none',marker='o',markersize=10,color='teal')
+    plt.plot(semacomp,mcomp,linestyle='none',marker='o',markersize=10,color='teal')
     #plt.savefig('complete_maps_rvsys_paper/'+sys+'_complete_maps.png')
     plt.savefig(f"./plots/{plname[i]}CompletenessMap.png")
     plt.show()
