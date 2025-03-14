@@ -129,6 +129,34 @@ alfTau,1.13,
 alfAri,1.5,
 XO7,1.41,
 XO5,1.04,,Knutson+14
+WASP89,0.92,
+WASP81,1.08,
+WASP80,0.58,
+WASP76,1.46,
+WASP74,0.98,,Hellier+15
+WASP73,2.52,,Delrez+14
+WASP70,1.11,
+WASP7,1.28,,Hellier+08Knutson+14
+WASP68,1.49,,Delrez+14
+WASP66,1.33,,Hellier+12
+WASP62,1.11,,Hellier+12
+WASP60,1.19,,Hebard+13
+WASP54,1.08,,Faedi+13
+WASP5,0.96,,Husnoo+12Anderson+08
+WASP48,0.88,,Bonomo+17Enoch+11
+WASP50,0.89,,Bonomo+17Gillon+11
+WASP42,0.95,,Lendl+12
+WASP4,0.86,,Wilson+08Husnoo+12Knutson+14
+WASP38,1.76,,Brown+12Simpson+11Knutson+14
+WASP34,0.96,,Smailey+12Knutson+14
+WASP32,0.72,,Maxted+10Brown+12
+WASP3,1.62,,Pollacco+08Knutson+14
+WASP26,0.86,,Smalley+10Anderson+11
+WASP24,1.43,,Street+10Simpson+11Knutson+14Bonomo+17
+
+
+
+
 
 
 
