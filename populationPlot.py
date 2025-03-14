@@ -45,7 +45,7 @@ for hostname in hosts:
     mass = system["pl_bmassj"].values
     smax = system["pl_orbsmax"].values
     period = system["pl_orbper"].values
-    ax.plot(np.log10(period), np.log10(mass), marker = ".", ls = " ", color = "tab:blue")
+    ax.plot(np.log10(period), np.log10(mass), marker = ".", ls = " ", color = "k")
     #ax.plot(period, mass, marker = ".", color = "tab:blue", alpha = 0.3)
 
 ax.plot(np.log10(ssPer), np.log10(ssMass), marker = ".", ls = "", color = "tab:pink")
