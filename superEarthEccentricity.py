@@ -31,7 +31,12 @@ superEarths = planets.loc[(planets["pl_type"] == "SE") & (planets["st_met"] > 0)
 seCompanionsEccen = seCompanions["pl_orbeccen"].dropna().values
 seCompanionsEccenErr = (np.array(seCompanions["pl_orbeccenerr1"]) - np.array(seCompanions["pl_orbeccenerr2"]))/2
 
-seCompanionsRedraw = eccenRedraw(seCompanionsEccen, seCompanionsEccenErr)
+a = 0.8313
+b = 2.202
+
+seCompanionsRedraw = stats.beta.rvs(a,b, size = len(seCompanionsEccen))
+
+proportionDynCold = stats.beta.cdf(0.2,a,b)
 
 fig, ax = plt.subplots(1,1) 
 ax.ecdf(seCompanionsEccen, label  = "SE Companions")
@@ -40,10 +45,10 @@ ax.ecdf(clsPlanets["pl_orbeccen"].dropna(), label = "CLS")
 ax.legend(frameon = False)
 #plt.show()
 
-nDynHotSECompanions = len(np.unique(seCompanions.loc[seCompanions["pl_orbeccen"] > 0.3]["hostname"]))
-nDynColdSECompanions = len(np.unique(seCompanions.loc[seCompanions["pl_orbeccen"] <= 0.3]["hostname"]))
-nDynHotCLS = np.count_nonzero(clsPlanets["pl_orbeccen"].values > 0.3)
-nDynColdClS = np.count_nonzero(clsPlanets["pl_orbeccen"].values <= 0.3)
+nDynHotSECompanions = len(np.unique(seCompanions.loc[seCompanions["pl_orbeccen"] > 0.2]["hostname"]))
+nDynColdSECompanions = len(np.unique(seCompanions.loc[seCompanions["pl_orbeccen"] <= 0.2]["hostname"]))
+nDynHotCLS = np.count_nonzero(clsPlanets["pl_orbeccen"].values > 0.2)
+nDynColdClS = np.count_nonzero(clsPlanets["pl_orbeccen"].values <= 0.2)
 
 nCLSStars = len(clsStars)
 nSESystems = len(np.unique(superEarths["hostname"]))
@@ -53,18 +58,23 @@ nSESystems = len(np.unique(superEarths["hostname"]))
 redrawDict = {"hostname": seCompanions.loc[seCompanions["pl_orbeccen"] > -0.00001]["hostname"].values, "pl_orbeccen":seCompanionsRedraw}
 seCompanionsRD = pd.DataFrame(redrawDict)
 
-nDynHotSECompanionsRD = len(np.unique(seCompanionsRD.loc[seCompanionsRD["pl_orbeccen"] > 0.3]["hostname"]))
-nDynColdSECompanionsRD = len(np.unique(seCompanionsRD.loc[seCompanionsRD["pl_orbeccen"] <= 0.3]["hostname"]))
+nDynHotSECompanionsRD = len(np.unique(seCompanionsRD.loc[seCompanionsRD["pl_orbeccen"] > 0.2]["hostname"]))
+nDynColdSECompanionsRD = len(np.unique(seCompanionsRD.loc[seCompanionsRD["pl_orbeccen"] <= 0.2]["hostname"]))
+
+pDynHotSECompanionsTheory = (len(seCompanionsEccen)*(1-proportionDynCold))/nSESystems
+pDynColdSECompanionsTheory = (len(seCompanionsEccen)*(proportionDynCold))/nSESystems
 
 #a = n_det + 1
 #b = n_tot - n_det + 1
 x = np.linspace(0,0.5,1000)
 fig, ax = plt.subplots(1,1)
-ax.plot(x, occurrence(x, nDynHotSECompanions + 1, nSESystems - nDynHotSECompanions + 1), color = "tab:red", ls = "--", label = "P(GG, e>0.3|SE, [Fe/H] > 0)")
-ax.plot(x, occurrence(x, nDynHotCLS + 1, nCLSStars - nDynHotCLS + 1), color = "tab:red", label = "P(GG,e>0.3|[Fe/H] > 0)")
+ax.plot(x, occurrence(x, nDynHotSECompanions + 1, nSESystems - nDynHotSECompanions + 1), color = "tab:red", ls = "--", label = "P(GG, e>0.2|SE, [Fe/H] > 0)")
+ax.plot(x, occurrence(x, nDynHotCLS + 1, nCLSStars - nDynHotCLS + 1), color = "tab:red", label = "P(GG,e>0.2|[Fe/H] > 0)")
 ax.plot(x, occurrence(x, nDynHotSECompanionsRD + 1, nSESystems - nDynHotSECompanionsRD + 1), color = "tab:red", ls = "-.")
-ax.plot(x, occurrence(x, nDynColdSECompanions + 1, nSESystems - nDynColdSECompanions + 1), color = "tab:blue", ls = "--", label = "P(GG,e<=0.3|SE,[Fe/H]>0)")
-ax.plot(x, occurrence(x, nDynColdClS + 1, nCLSStars - nDynColdClS + 1), color = "tab:blue", label = "P(GG,e<=0.3|[Fe/H] > 0)")
+ax.plot(x, occurrence(x, nDynColdSECompanions + 1, nSESystems - nDynColdSECompanions + 1), color = "tab:blue", ls = "--", label = "P(GG,e<=0.2|SE,[Fe/H]>0)")
+ax.plot(x, occurrence(x, nDynColdClS + 1, nCLSStars - nDynColdClS + 1), color = "tab:blue", label = "P(GG,e<=0.2|[Fe/H] > 0)")
 ax.plot(x, occurrence(x, nDynColdSECompanionsRD + 1, nSESystems - nDynColdSECompanionsRD + 1), color = "tab:blue", ls = "-.")
+ax.vlines(pDynHotSECompanionsTheory, ymin = 0, ymax = 30, label = "e > 0.2", color = "tab:red")
+ax.vlines(pDynColdSECompanionsTheory, ymin = 0, ymax = 30, label = "e < 0.2", color = "tab:blue")
 ax.legend(frameon = False)
 plt.show()

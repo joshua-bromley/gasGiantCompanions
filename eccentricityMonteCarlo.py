@@ -49,18 +49,18 @@ wcjCompanionEccenErr = (np.array(wcjCompanions["pl_orbeccenerr1"]) - np.array(wc
 betaResults = np.zeros((2000,8))
 rayleighResults = np.zeros((2000,8))
 
-print(len(gasGiantEccen), len(hotJupiterEccen), len(hjCompanionEccen), len(wcjCompanionEccen))
+print(len(gasGiantEccen), len(seCompanionEccen), len(hjCompanionEccen), len(wcjCompanionEccen))
 
 for i in tqdm(range(len(betaResults))):
-    gasGiantEccenRedraw = eccenRedraw(loneGasGiantEccen, loneGasGiantEccenErr)
-    hotJupiterEccenRedraw = eccenRedraw(hotJupiterEccen, hotJupiterEccenErr)
+    gasGiantEccenRedraw = eccenRedraw(gasGiantEccen, gasGiantEccenErr)
+    seCompanionEccenRedraw = eccenRedraw(seCompanionEccen, seCompanionEccenErr)
     hjCompanionEccenRedraw = eccenRedraw(hjCompanionEccen, hjCompanionEccenErr)
     wcjCompanionEccenRedraw = eccenRedraw(wcjCompanionEccen, wcjCompanionEccenErr)
     ggFitResults = stats.fit(stats.beta, gasGiantEccenRedraw, bounds = ((0,100),(0,100)))
     betaResults[i,0] = ggFitResults.params[0]
     betaResults[i,1] = ggFitResults.params[1]
     #rayleighResults[i,0],rayleighResults[i,1] = stats.rayleigh.fit(gasGiantEccenRedraw)
-    seFitResults = stats.fit(stats.beta, hotJupiterEccenRedraw, bounds = ((0,100),(0,100)))
+    seFitResults = stats.fit(stats.beta, seCompanionEccenRedraw, bounds = ((0,100),(0,100)))
     betaResults[i,2] = seFitResults.params[0]
     betaResults[i,3] = seFitResults.params[1]
     #rayleighResults[i,2],rayleighResults[i,3] = stats.rayleigh.fit(seCompanionEccenRedraw)
@@ -74,24 +74,32 @@ for i in tqdm(range(len(betaResults))):
     #rayleighResults[i,6],rayleighResults[i,7] = stats.rayleigh.fit(wcjCompanionEccenRedraw)
 
 
-fig, ax = plt.subplots(1,1)
-sb.kdeplot(x = betaResults[:,0], y = betaResults[:,1], ax = ax, levels=[0.01,0.05,0.32])
-sb.kdeplot(x = betaResults[:,2], y = betaResults[:,3], ax = ax, levels=[0.01,0.05,0.32])
-sb.kdeplot(x = betaResults[:,4], y = betaResults[:,5], ax = ax, levels=[0.01,0.05,0.32])
-sb.kdeplot(x = betaResults[:,6], y = betaResults[:,7], ax = ax, levels=[0.01,0.05,0.32])
-ax.set_xlabel("$\\alpha$")
-ax.set_ylabel("$\\beta$")
-ax.plot(-10,-10, ls = "", marker = ".", color = "tab:blue", label = "Lone Gas Giants")
-ax.plot(-10,-10, ls = "", marker = ".", color = "tab:orange", label = "Hot Jupiters")
-ax.plot(-10,-10, ls = "", marker = ".", color = "tab:green", label = "HJ Companions")
-ax.plot(-10,-10, ls = "", marker = ".", color = "tab:red", label = "WCJ Companions")
-ax.set_xlim(0.5,3)
-ax.set_ylim(1,7)
-ax.legend(frameon = False)
+fig, ax = plt.subplots(1,2, figsize = (10,4))
+sb.kdeplot(x = betaResults[:,0], y = betaResults[:,1], ax = ax[0], levels=[0.01,0.05,0.32])
+sb.kdeplot(x = betaResults[:,2], y = betaResults[:,3], ax = ax[0], levels=[0.01,0.05,0.32])
+sb.kdeplot(x = betaResults[:,4], y = betaResults[:,5], ax = ax[0], levels=[0.01,0.05,0.32])
+sb.kdeplot(x = betaResults[:,6], y = betaResults[:,7], ax = ax[0], levels=[0.01,0.05,0.32])
+ax[0].set_xlabel("$\\alpha$")
+ax[0].set_ylabel("$\\beta$")
+ax[0].plot(-10,-10, ls = "", marker = ".", color = "tab:blue", label = "Cold Jupiters")
+ax[0].plot(-10,-10, ls = "", marker = ".", color = "tab:orange", label = "SE Companions")
+ax[0].plot(-10,-10, ls = "", marker = ".", color = "tab:green", label = "HJ Companions")
+ax[0].plot(-10,-10, ls = "", marker = ".", color = "tab:red", label = "CJ Companions")
+ax[0].set_xlim(0.5,3)
+ax[0].set_ylim(1,7)
+ax[0].legend(frameon = False)
+x = np.linspace(0,1,100)
+ax[1].plot(x, stats.beta.pdf(x,np.mean(betaResults[:,0]),np.mean(betaResults[:,1])), color = "tab:blue")
+ax[1].plot(x, stats.beta.pdf(x,np.mean(betaResults[:,2]),np.mean(betaResults[:,3])), color = "tab:orange")
+ax[1].plot(x, stats.beta.pdf(x,np.mean(betaResults[:,4]),np.mean(betaResults[:,5])), color = "tab:green")
+ax[1].plot(x, stats.beta.pdf(x,np.mean(betaResults[:,6]),np.mean(betaResults[:,7])), color = "tab:red")
+ax[1].set_xlabel("Eccentricity")
+ax[1].set_ylabel("Probability Density")
+
 fig.savefig("./plots/betaFits3KDE.png")
 
 print(f"Lone Gas Giants a = {np.mean(betaResults[:,0])}+/-{np.std(betaResults[:,0])}, b = {np.mean(betaResults[:,1])}+/-{np.std(betaResults[:,1])}")
-print(f"Hot Jupiters a = {np.mean(betaResults[:,2])}+/-{np.std(betaResults[:,2])}, b = {np.mean(betaResults[:,3])}+/-{np.std(betaResults[:,3])}")
+print(f"SE Companions a = {np.mean(betaResults[:,2])}+/-{np.std(betaResults[:,2])}, b = {np.mean(betaResults[:,3])}+/-{np.std(betaResults[:,3])}")
 print(f"HJ Companions a = {np.mean(betaResults[:,4])}+/-{np.std(betaResults[:,4])}, b = {np.mean(betaResults[:,5])}+/-{np.std(betaResults[:,5])}")
 print(f"WCJ Companions a = {np.mean(betaResults[:,6])}+/-{np.std(betaResults[:,6])}, b = {np.mean(betaResults[:,7])}+/-{np.std(betaResults[:,7])}")
 
