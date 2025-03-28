@@ -30,9 +30,9 @@ for i in range(len(hostnames)):
         massRatio = planetAMass/planetBMass
         perRatio = planetAPer/planetBPer
         planetPairs.loc[len(planetPairs)] = [hostname, planetAName, planetBName, planetAPer, planetBPer, perRatio, planetAMass, planetBMass, massRatio, planetAeccen, planetBeccen, stellarMass, stellarMet]
-        if planetB["pl_type"] == "HJ" or planetA["pl_type"] == "HJ":
+        if planetB["pl_type"] == "HJ" and (planetA["pl_type"] == "WJ" or planetA["pl_type"] == "CJ"):
             hjPairs.loc[len(hjPairs)] = [hostname, planetAName, planetBName, planetAPer, planetBPer, perRatio, planetAMass, planetBMass, massRatio, planetAeccen, planetBeccen, stellarMass, stellarMet]
-        elif (planetB["pl_type"] == "WJ" or planetB["pl_type"] == "CJ") or (planetA["pl_type"] == "WJ" or planetA["pl_type"] == "CJ"):
+        elif (planetB["pl_type"] == "WJ" or planetB["pl_type"] == "CJ") and (planetA["pl_type"] == "WJ" or planetA["pl_type"] == "CJ"):
             wcjPairs.loc[len(wcjPairs)] = [hostname, planetAName, planetBName, planetAPer, planetBPer, perRatio, planetAMass, planetBMass, massRatio, planetAeccen, planetBeccen, stellarMass, stellarMet]
  
 
@@ -49,20 +49,24 @@ wcjPerRatios = wcjPairs["per_ratio"].values
 wcjMassRatios = wcjPairs["mass_ratio"].values
 
 fig, ax = plt.subplots(1,1)
-ax.plot(hjPairs["plb_mass"].values, hjPairs["pla_mass"].values, ls = "", marker = "o")
-ax.plot(wcjPairs["plb_mass"].values, wcjPairs["pla_mass"].values, ls = "", marker = "o")
-for i in range(len(hjPairs)):
-    ax.text(hjPairs["plb_mass"].values[i], hjPairs["pla_mass"].values[i], hjPairs.iloc[i]["hostname"])
+ax.plot(hjPairs["per_ratio"].values, hjPairs["mass_ratio"].values, ls = "", marker = "o", label = "Hot Jupiter Pairs")
+ax.plot(wcjPairs["per_ratio"].values, wcjPairs["mass_ratio"].values, ls = "", marker = "o", label = "Cold Jupiter Pairs")
+#for i in range(len(hjPairs)):
+    #ax.text(hjPairs["per_ratio"].values[i], hjPairs["mass_ratio"].values[i], hjPairs.iloc[i]["hostname"])
 ax.set_xscale("log")
 ax.set_yscale("log")
-ax.set_xlabel("Inner Planet Mass (M_E)")
-ax.set_ylabel('Outer Planet Mass (M_E)')
-#fig.savefig("./plots/perMassRatio.png")
+ax.set_xlabel("Period Ratio")
+ax.set_ylabel('Mass Ratio')
+ax.legend(frameon = False)
+fig.savefig("./plots/perMassRatio.png")
 
 
 
-print(np.mean(hjMassRatios))
-print(np.mean(wcjMassRatios))
+print(np.mean(hjMassRatios), np.std(hjMassRatios)/np.sqrt(len(hjMassRatios)))
+print(np.mean(wcjMassRatios), np.std(wcjMassRatios)/np.sqrt(len(wcjMassRatios)))
+
+print(np.mean(hjPerRatios), np.std(hjPerRatios)/np.sqrt(len(hjPerRatios)))
+print(np.mean(wcjPerRatios), np.std(wcjPerRatios)/np.sqrt(len(wcjPerRatios)))
 
         
 
