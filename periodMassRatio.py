@@ -1,12 +1,17 @@
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
+from scipy import stats as stats
 
-planets = pd.read_csv("./data/gasGiantData.csv").drop_duplicates(subset = ["pl_name"])
+planets = pd.read_csv("./data/gasGiantDataComplete.csv").drop_duplicates(subset = ["pl_name"])
+planets = planets.loc[(pd.isna(planets["pl_bmassj"]) == False) & (pd.isna(planets["pl_orbsmax"]) == False) & (planets["pl_orbeccen"] > 0)]
+
 
 planetPairs = pd.DataFrame(columns=["hostname","planet_a_name", "planet_b_name", "pla_per", "plb_per","per_ratio", "pla_mass", "plb_mass", "mass_ratio", "pla_eccen", "plb_eccen","st_mass","st_met"])
 hjPairs = pd.DataFrame(columns=["hostname","planet_a_name", "planet_b_name", "pla_per", "plb_per","per_ratio", "pla_mass", "plb_mass", "mass_ratio", "pla_eccen", "plb_eccen","st_mass","st_met"])
 wcjPairs = pd.DataFrame(columns=["hostname","planet_a_name", "planet_b_name", "pla_per", "plb_per","per_ratio", "pla_mass", "plb_mass", "mass_ratio", "pla_eccen", "plb_eccen","st_mass","st_met"])
+sePairs = pd.DataFrame(columns=["hostname","planet_a_name", "planet_b_name", "pla_per", "plb_per","per_ratio", "pla_mass", "plb_mass", "mass_ratio", "pla_eccen", "plb_eccen","st_mass","st_met"])
+ssPairs = pd.DataFrame(columns=["hostname","planet_a_name", "planet_b_name", "pla_per", "plb_per","per_ratio", "pla_mass", "plb_mass", "mass_ratio", "pla_eccen", "plb_eccen","st_mass","st_met"])
 
 
 hostnames = np.unique(planets["hostname"])
@@ -34,6 +39,12 @@ for i in range(len(hostnames)):
             hjPairs.loc[len(hjPairs)] = [hostname, planetAName, planetBName, planetAPer, planetBPer, perRatio, planetAMass, planetBMass, massRatio, planetAeccen, planetBeccen, stellarMass, stellarMet]
         elif (planetB["pl_type"] == "WJ" or planetB["pl_type"] == "CJ") and (planetA["pl_type"] == "WJ" or planetA["pl_type"] == "CJ"):
             wcjPairs.loc[len(wcjPairs)] = [hostname, planetAName, planetBName, planetAPer, planetBPer, perRatio, planetAMass, planetBMass, massRatio, planetAeccen, planetBeccen, stellarMass, stellarMet]
+        elif (planetB["pl_type"] == "SE") and (planetA["pl_type"] == "CJ" or planetA["pl_type"] == "WJ"):
+            sePairs.loc[len(sePairs)] = [hostname, planetAName, planetBName, planetAPer, planetBPer, perRatio, planetAMass, planetBMass, massRatio, planetAeccen, planetBeccen, stellarMass, stellarMet]
+        elif (planetB["pl_type"] == "HS" or planetB["pl_type"] == "CS") and (planetA["pl_type"] == "WJ" or planetA["pl_type"] == 'CJ'):
+            ssPairs.loc[len(ssPairs)] = [hostname, planetAName, planetBName, planetAPer, planetBPer, perRatio, planetAMass, planetBMass, massRatio, planetAeccen, planetBeccen, stellarMass, stellarMet]
+
+
  
 
 highMassPairs = planetPairs.loc[planetPairs["pla_mass"] > 0.5*317]
@@ -48,17 +59,82 @@ hjMassRatios = hjPairs["mass_ratio"].values
 wcjPerRatios = wcjPairs["per_ratio"].values
 wcjMassRatios = wcjPairs["mass_ratio"].values
 
-fig, ax = plt.subplots(1,1)
-ax.plot(hjPairs["per_ratio"].values, hjPairs["mass_ratio"].values, ls = "", marker = "o", label = "Hot Jupiter Pairs")
-ax.plot(wcjPairs["per_ratio"].values, wcjPairs["mass_ratio"].values, ls = "", marker = "o", label = "Cold Jupiter Pairs")
+perBins = [1, 3, 10, 30, 100, 300, 1000, 3000]
+perBinCentres = np.sqrt(np.multiply(perBins[:-1], perBins[1:]))
+massBins = [0.1, 0.3, 1, 3, 10, 30]
+massBinCentres = np.sqrt(np.multiply(massBins[:-1], massBins[1:]))
+
+perRatioDist = np.zeros((4, len(perBinCentres), 3))
+massRatioDist = np.zeros((2,len(massBinCentres), 3))
+
+planetPairsList = [sePairs, ssPairs, hjPairs, wcjPairs]
+planetPairLabels= ['SE Inner', "SS Inner",  "HJ Inner", "CJ Inner"]
+colours = ["tab:orange", "tab:green", "tab:red", "tab:purple"]
+symbols = [ "s", 'h', '*', "P"]
+
+for i in range(len(planetPairsList)):
+    pairsList = planetPairsList[i]
+    nPairs = len(pairsList)
+    perRatioCounts = np.zeros(len(perBinCentres))
+    for j in range(len(pairsList)):
+        perRatio = pairsList.iloc[j]["per_ratio"]
+        for k in range(len(perBinCentres)):
+            if perRatio > perBins[k] and perRatio < perBins[k+1]:
+                perRatioCounts[k] += 1
+    
+    for j in range(len(perRatioCounts)):
+        a = perRatioCounts[j] + 1
+        b = nPairs - perRatioCounts[j] + 1
+        perRatioDist[i][j][0] = stats.beta.median(a,b)
+        errorBars = stats.beta.interval(0.68, a, b)
+        perRatioDist[i][j][1] = perRatioDist[i][j][0] - errorBars[0]
+        perRatioDist[i][j][2] = errorBars[1] - perRatioDist[i][j][0]
+
+    if i > 1:
+        pairsList = planetPairsList[i]
+        nPairs = len(pairsList)
+        massRatioCounts = np.zeros(len(massBinCentres))
+        for j in range(len(pairsList)):
+            massRatio = pairsList.iloc[j]["mass_ratio"]
+            for k in range(len(massBinCentres)):
+                if massRatio > massBins[k] and massRatio < massBins[k+1]:
+                    massRatioCounts[k] += 1
+        
+        for j in range(len(massRatioCounts)):
+            a = massRatioCounts[j] + 1
+            b = nPairs - massRatioCounts[j] + 1
+            massRatioDist[i-2][j][0] = stats.beta.median(a,b)
+            errorBars = stats.beta.interval(0.68, a, b)
+            massRatioDist[i-2][j][1] = massRatioDist[i-2][j][0] - errorBars[0]
+            massRatioDist[i-2][j][2] = errorBars[1] - massRatioDist[i-2][j][0]
+
+
+fig, ax = plt.subplots(1,2, figsize = (12, 4))
+#ax[0].hist(hjPairs["mass_ratio"], histtype ="step", color = "tab:red", bins = massBins)
+#ax[0].hist(wcjPairs["mass_ratio"], histtype = "step", color = "tab:purple", bins = massBins)
+
+#ax[1].hist(hjPairs["per_ratio"], histtype = "step", color = "tab:red", bins = perBins, label = "HJ Inner")
+#ax[1].hist(wcjPairs["per_ratio"], histtype = "step", color = "tab:purple", bins = perBins, label = "CJ Inner")
+#ax[1].hist(sePairs["per_ratio"], histtype = "step", color = "tab:orange", bins = perBins, label = "SE Inner")
+#ax[1].hist(ssPairs["per_ratio"], histtype = "step", color = "tab:green", bins = perBins, label = "SS Inner")
+
+for i in range(len(perRatioDist)):
+    ax[1].errorbar(perBinCentres, perRatioDist[i][:,0], yerr = perRatioDist[i][:,1:].T, ls = "", marker = symbols[i], label = planetPairLabels[i], color = colours[i], alpha = 0.8, capsize = 5)
+
+for i in [2,3]:
+    ax[0].errorbar(massBinCentres,massRatioDist[i-2][:,0], yerr = massRatioDist[i-2][:,1:].T, ls = "", marker = symbols[i], label = planetPairLabels[i], color = colours[i], alpha = 0.8, capsize = 5)
+
+
 #for i in range(len(hjPairs)):
     #ax.text(hjPairs["per_ratio"].values[i], hjPairs["mass_ratio"].values[i], hjPairs.iloc[i]["hostname"])
-ax.set_xscale("log")
-ax.set_yscale("log")
-ax.set_xlabel("Period Ratio")
-ax.set_ylabel('Mass Ratio')
-ax.legend(frameon = False)
-fig.savefig("./plots/perMassRatio.png")
+ax[0].set_xscale("log")
+#ax.set_yscale("log")
+ax[1].set_xscale("log")
+ax[1].set_xlabel("Period Ratio")
+ax[0].set_ylabel("Occurrence")
+ax[0].set_xlabel('Mass Ratio')
+ax[1].legend(frameon = False)
+#fig.savefig("./plots/perMassRatio.png")
 
 
 

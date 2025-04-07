@@ -25,8 +25,11 @@ def complete_maps():
     systemData = pd.read_csv("./RVData/rvData.txt")
     sys = systemData["hostname"].values
     mass_star = systemData["st_mass"].values
+
+    sys = ["BD114672"]
+    mass_star = [0.65]
     
-    for x in range(130,len(sys)):
+    for x in range(len(sys)):#range(130,len(sys)):
         print(sys[x])
         plname = sys[x]
         n_inject = 50
@@ -169,6 +172,10 @@ def complete_maps():
         if plname == "HATP44":
             time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
             time = time + 4000
+        #time in JD-2454900, rv,err in m/s
+        if plname == "KOI142":
+            time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
+            time = time + 4900
 
         #tsv, time in JD-2450000, rv err in km/s
         #XO-2 S
@@ -309,7 +316,6 @@ def complete_maps():
                     #No planets, no trend
                     ones = np.ones(len(time))
                     start_par = (np.max(rv_p)+np.min(rv_p))/2.
- 
                     parm = optimize.curve_fit(nopl_mod,time,rv_p,p0=start_par,sigma=sig,method='lm')
                     model_n = parm[0]*ones
                    
