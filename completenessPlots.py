@@ -142,7 +142,8 @@ def complete_plots(plname, masses, smaxes):
     # plt.set_label('Detection Probability',rotation=270,fontsize=20)
     plt.plot(semacomp,mcomp,linestyle='none',marker='o',markersize=10,color='teal')
     #plt.savefig('complete_maps_rvsys_paper/'+sys+'_complete_maps.png')
-    plt.savefig(f"./plots/hjCompanionsCompletenessMap.png")
+    plt.savefig(f"./plots/coldJupiterCompletenessMap.png")
+    plt.savefig(f"./plots/coldJupiterCompletenessMap.pdf")
     plt.show()
 
 
@@ -155,7 +156,7 @@ hjCompanions = planets.loc[planets["companion_type"] % 7 == 0]
 cjCompanions = planets.loc[(planets["companion_type"] % 11 == 0) | (planets["companion_type"] % 13 == 0)]
 
 
-hostnames = np.array(hjCompanions["hostname"])
-masses = np.array(hjCompanions["pl_bmassj"])
-smaxes = np.array(hjCompanions["pl_orbsmax"])
+hostnames = np.array(coldJupiters["hostname"])
+masses = np.array(coldJupiters["pl_bmassj"])
+smaxes = np.array(coldJupiters["pl_orbsmax"])
 complete_plots(hostnames, masses, smaxes)
