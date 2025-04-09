@@ -1,7 +1,35 @@
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
+from matplotlib import rcParams
 from scipy import stats as stats
+##Adjust plotting defaults
+rcParams["axes.linewidth"] = 2
+
+rcParams["ytick.right"] = True
+rcParams["ytick.direction"] = "in"
+rcParams["ytick.minor.visible"] = True
+rcParams["ytick.major.left"] = True
+rcParams["ytick.major.right"] = True
+rcParams["ytick.minor.left"] = True
+rcParams["ytick.minor.right"] = True
+rcParams["ytick.major.size"] = 10
+rcParams["ytick.minor.size"] = 5
+rcParams["ytick.major.width"] = 1
+rcParams["ytick.minor.width"] = 1
+
+
+rcParams["xtick.top"] = True
+rcParams["xtick.direction"] = "in"
+rcParams["xtick.minor.visible"] = True
+rcParams["xtick.major.top"] = True
+rcParams["xtick.major.bottom"] = True
+rcParams["xtick.minor.top"] = True
+rcParams["xtick.minor.bottom"] = True
+rcParams["xtick.major.size"] = 10
+rcParams["xtick.minor.size"] = 5
+rcParams["xtick.major.width"] = 1
+rcParams["xtick.minor.width"] = 1
 
 planets = pd.read_csv("./data/gasGiantDataComplete.csv")
 planets = planets.loc[(pd.isna(planets["pl_bmassj"]) == False) & (pd.isna(planets["pl_orbsmax"]) == False) & (planets["pl_orbeccen"] > 0)]
@@ -46,8 +74,25 @@ fig, ax = plt.subplots(1,1)
 for i in range(len(eccenDist)):
     ax.errorbar(binCenters, eccenDist[i][:,0], yerr = eccenDist[i][:,1:].T, ls = "", marker = symbols[i], label = gasGiantLabels[i], alpha = 0.8, capsize = 5)
 
+xTicks = np.arange(0.0,1.01,0.2)
+yTicks = np.arange(0.0,0.61,0.1)
+
+ax.set_xticks(xTicks)
+ax.set_yticks(yTicks)
+ax.set_xlim(0,1)
+ax.set_ylim(-0.02,0.62)
+
 ax.legend(frameon = False)
-ax.set_ylabel("Occurrence")
-ax.set_xlabel("Eccentricity")
+ax.set_ylabel("Occurrence", fontsize = 16)
+ax.set_xlabel("Eccentricity", fontsize = 16)
+
+tickLabelSize = 12
+ax.tick_params(axis = 'x', bottom = True, top = True, which = "major", direction = "in", labelsize = tickLabelSize, pad = 10)
+ax.tick_params(axis = 'x', bottom = True, top = True, which = "minor", direction = "in", labelsize = tickLabelSize, pad = 10)
+ax.tick_params(axis = 'y', bottom = True, top = True, which = "major", direction = "in", labelsize = tickLabelSize, pad = 10)
+ax.tick_params(axis = 'y', bottom = True, top = True, which = "minor", direction = "in", labelsize = tickLabelSize, pad = 10)
+plt.tight_layout()
+fig.savefig("./plots/compltCorrEccenDist.png")
+fig.savefig("./plots/compltCorrEccenDist.pdf")
 plt.show()
 

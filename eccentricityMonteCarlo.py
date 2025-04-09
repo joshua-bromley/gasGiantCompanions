@@ -1,11 +1,40 @@
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
+from matplotlib  import rcParams
 from scipy import special as sp
 from scipy import stats as stats
 import corner
 from tqdm import tqdm
 import seaborn as sb
+
+##Adjust plotting defaults
+rcParams["axes.linewidth"] = 2
+
+rcParams["ytick.right"] = True
+rcParams["ytick.direction"] = "in"
+rcParams["ytick.minor.visible"] = True
+rcParams["ytick.major.left"] = True
+rcParams["ytick.major.right"] = True
+rcParams["ytick.minor.left"] = True
+rcParams["ytick.minor.right"] = True
+rcParams["ytick.major.size"] = 10
+rcParams["ytick.minor.size"] = 5
+rcParams["ytick.major.width"] = 1
+rcParams["ytick.minor.width"] = 1
+
+
+rcParams["xtick.top"] = True
+rcParams["xtick.direction"] = "in"
+rcParams["xtick.minor.visible"] = True
+rcParams["xtick.major.top"] = True
+rcParams["xtick.major.bottom"] = True
+rcParams["xtick.minor.top"] = True
+rcParams["xtick.minor.bottom"] = True
+rcParams["xtick.major.size"] = 10
+rcParams["xtick.minor.size"] = 5
+rcParams["xtick.major.width"] = 1
+rcParams["xtick.minor.width"] = 1
 
 def eccenRedraw(eccens, errors):
     newEccens = np.zeros_like(eccens)
@@ -90,16 +119,29 @@ sb.kdeplot(x = betaResults[:,8], y = betaResults[:,9], ax = ax[0], levels=[0.01,
 sb.kdeplot(x = betaResults[:,4], y = betaResults[:,5], ax = ax[0], levels=[0.01,0.05,0.32])
 sb.kdeplot(x = betaResults[:,6], y = betaResults[:,7], ax = ax[0], levels=[0.01,0.05,0.32])
 
-ax[0].set_xlabel("$\\alpha$")
-ax[0].set_ylabel("$\\beta$")
+ax[0].set_xlabel("$\\alpha$", fontsize = 16)
+ax[0].set_ylabel("$\\beta$", fontsize = 16)
 ax[0].plot(-10,-10, ls = "", marker = ".", color = "tab:blue", label = "Cold Jupiters")
 ax[0].plot(-10,-10, ls = "", marker = ".", color = "tab:orange", label = "SE Companions")
 ax[0].plot(-10,-10, ls = "", marker = ".", color = "tab:green", label = "SS Companions")
 ax[0].plot(-10,-10, ls = "", marker = ".", color = "tab:red", label = "HJ Companions")
 ax[0].plot(-10,-10, ls = "", marker = ".", color = "tab:purple", label = "CJ Companions")
+
+xTicks = np.arange(0.5,3.1,0.5)
+yTicks = np.arange(1,7.1,1)
+ax[0].set_xticks(xTicks)
+ax[0].set_yticks(yTicks)
 ax[0].set_xlim(0.5,3)
 ax[0].set_ylim(1,7)
 ax[0].legend(frameon = False)
+
+tickLabelSize = 12
+ax[0].tick_params(axis = 'x', bottom = True, top = True, which = "major", direction = "in", labelsize = tickLabelSize, pad = 10)
+ax[0].tick_params(axis = 'x', bottom = True, top = True, which = "minor", direction = "in", labelsize = tickLabelSize, pad = 10)
+ax[0].tick_params(axis = 'y', bottom = True, top = True, which = "major", direction = "in", labelsize = tickLabelSize, pad = 10)
+ax[0].tick_params(axis = 'y', bottom = True, top = True, which = "minor", direction = "in", labelsize = tickLabelSize, pad = 10)
+
+
 x = np.linspace(0,1,100)
 ax[1].plot(x, stats.beta.pdf(x,np.mean(betaResults[:,0]),np.mean(betaResults[:,1])), color = "tab:blue")
 ax[1].plot(x, stats.beta.pdf(x,np.mean(betaResults[:,2]),np.mean(betaResults[:,3])), color = "tab:orange")
@@ -107,15 +149,32 @@ ax[1].plot(x, stats.beta.pdf(x,np.mean(betaResults[:,4]),np.mean(betaResults[:,5
 ax[1].plot(x, stats.beta.pdf(x,np.mean(betaResults[:,6]),np.mean(betaResults[:,7])), color = "tab:purple")
 ax[1].plot(x, stats.beta.pdf(x,np.mean(betaResults[:,8]),np.mean(betaResults[:,9])), color = "tab:green")
 
-ax[1].set_xlabel("Eccentricity")
-ax[1].set_ylabel("Probability Density")
+ax[1].set_xlabel("Eccentricity", fontsize = 16)
+ax[1].set_ylabel("Probability Density", fontsize = 16)
+
+xTicks = np.arange(0,1.01,0.2)
+yTicks = np.arange(0,4.1,0.5)
+ax[1].set_xticks(xTicks)
+ax[1].set_yticks(yTicks)
+ax[1].set_xlim(-0.05,1.05)
+ax[1].set_ylim(0.0,4.0)
+
+ax[1].tick_params(axis = 'x', bottom = True, top = True, which = "major", direction = "in", labelsize = tickLabelSize, pad = 10)
+ax[1].tick_params(axis = 'x', bottom = True, top = True, which = "minor", direction = "in", labelsize = tickLabelSize, pad = 10)
+ax[1].tick_params(axis = 'y', bottom = True, top = True, which = "major", direction = "in", labelsize = tickLabelSize, pad = 10)
+ax[1].tick_params(axis = 'y', bottom = True, top = True, which = "minor", direction = "in", labelsize = tickLabelSize, pad = 10)
+plt.tight_layout()
+
 
 fig.savefig("./plots/betaFits4KDE.png")
+fig.savefig("./plots/betaFits4KDE.pdf")
 
-print(f"Lone Gas Giants a = {np.mean(betaResults[:,0])}+/-{np.std(betaResults[:,0])}, b = {np.mean(betaResults[:,1])}+/-{np.std(betaResults[:,1])}")
+print(f"Gas Giants a = {np.mean(betaResults[:,0])}+/-{np.std(betaResults[:,0])}, b = {np.mean(betaResults[:,1])}+/-{np.std(betaResults[:,1])}")
 print(f"SE Companions a = {np.mean(betaResults[:,2])}+/-{np.std(betaResults[:,2])}, b = {np.mean(betaResults[:,3])}+/-{np.std(betaResults[:,3])}")
 print(f"HJ Companions a = {np.mean(betaResults[:,4])}+/-{np.std(betaResults[:,4])}, b = {np.mean(betaResults[:,5])}+/-{np.std(betaResults[:,5])}")
 print(f"WCJ Companions a = {np.mean(betaResults[:,6])}+/-{np.std(betaResults[:,6])}, b = {np.mean(betaResults[:,7])}+/-{np.std(betaResults[:,7])}")
+print(f"SS Companions a = {np.mean(betaResults[:,8])}+/-{np.std(betaResults[:,8])}, b = {np.mean(betaResults[:,9])}+/-{np.std(betaResults[:,9])}")
+
 
 print(f"HJ Companions a = {np.mean(rayleighResults[:,4])}+/-{np.std(rayleighResults[:,4])}, b = {np.mean(rayleighResults[:,5])}+/-{np.std(rayleighResults[:,5])}")
 '''

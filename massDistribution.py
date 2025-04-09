@@ -1,8 +1,37 @@
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
+from matplotlib import rcParams
 from scipy import stats as stats
 import pickle
+
+##Adjust plotting defaults
+rcParams["axes.linewidth"] = 2
+
+rcParams["ytick.right"] = True
+rcParams["ytick.direction"] = "in"
+rcParams["ytick.minor.visible"] = True
+rcParams["ytick.major.left"] = True
+rcParams["ytick.major.right"] = True
+rcParams["ytick.minor.left"] = True
+rcParams["ytick.minor.right"] = True
+rcParams["ytick.major.size"] = 10
+rcParams["ytick.minor.size"] = 5
+rcParams["ytick.major.width"] = 1
+rcParams["ytick.minor.width"] = 1
+
+
+rcParams["xtick.top"] = True
+rcParams["xtick.direction"] = "in"
+rcParams["xtick.minor.visible"] = True
+rcParams["xtick.major.top"] = True
+rcParams["xtick.major.bottom"] = True
+rcParams["xtick.minor.top"] = True
+rcParams["xtick.minor.bottom"] = True
+rcParams["xtick.major.size"] = 10
+rcParams["xtick.minor.size"] = 5
+rcParams["xtick.major.width"] = 1
+rcParams["xtick.minor.width"] = 1
 
 planets = pd.read_csv("./data/gasGiantDataComplete.csv")
 planets = planets.loc[(pd.isna(planets["pl_bmassj"]) == False) & (pd.isna(planets["pl_orbsmax"]) == False) & (planets["pl_orbeccen"] > 0)]
@@ -124,29 +153,61 @@ for k in range(len(gasGiantsList)):
         unCorrSmaxDist[k][i][2] = errorBars[1] - unCorrSmaxDist[k][i][0]
 
 
-fig, ax = plt.subplots(1,1)
+fig, ax = plt.subplots(1,1, figsize = (6,5))
 
 for i in range(len(gasGiantsList)):
     ax.errorbar(massBinCentres, massDist[i][:,0], yerr = massDist[i][:,1:].T, ls = "", marker = symbols[i], label = gasGiantLabels[i], alpha = 0.8, capsize = 5)
     #ax.errorbar(massBinCentres, unCorrMassDist[i][:,0], yerr = unCorrMassDist[i][:,1:].T, ls = "", marker = "o")
 
+
+yTicks = [0,0.1,0.2,0.3,0.4,0.5]
+
+ax.set_yticks(yTicks)
+ax.set_xlim(0.6,20)
+ax.set_ylim(0.0,0.5)
+
 ax.set_xscale("log")
-ax.set_yscale("log")
-ax.set_xlabel("Mass (MJ)")
-ax.set_ylabel("Occurrence")
+#ax.set_yscale("log")
+ax.set_xlabel("Mass (MJ)", fontsize = 16)
+ax.set_ylabel("Occurrence", fontsize = 16)
 ax.legend(frameon = False)
+
+tickLabelSize = 12
+ax.tick_params(axis = 'x', bottom = True, top = True, which = "major", direction = "in", labelsize = tickLabelSize, pad = 10)
+ax.tick_params(axis = 'x', bottom = True, top = True, which = "minor", direction = "in", labelsize = tickLabelSize, pad = 10)
+ax.tick_params(axis = 'y', bottom = True, top = True, which = "major", direction = "in", labelsize = tickLabelSize, pad = 10)
+ax.tick_params(axis = 'y', bottom = True, top = True, which = "minor", direction = "in", labelsize = tickLabelSize, pad = 10)
+plt.tight_layout()
+fig.savefig("./plots/compltCorrMassDist.png")
+fig.savefig("./plots/compltCorrMassDist.pdf")
 plt.show()
 
-fig1, ax1 = plt.subplots(1,1)
+fig1, ax1 = plt.subplots(1,1, figsize = (6,5))
 for i in range(len(gasGiantsList)):
     ax1.errorbar(smaxBinCentres, smaxDist[i][:,0], yerr = smaxDist[i][:,1:].T, ls = "", marker = symbols[i], label = gasGiantLabels[i], alpha = 0.8, capsize = 5)
     #ax1.errorbar(smaxBinCentres, unCorrSmaxDist[i][:,0], yerr = unCorrSmaxDist[i][:,1:].T, ls = "", marker = "o")
 
-ax1.set_xlabel('Semi Major Axis (AU)')
-ax1.set_ylabel("Occurrence")
+
+yTicks = [0,0.1,0.2,0.3,0.4,0.5,0.6]
+
+ax1.set_yticks(yTicks)
+ax1.set_xlim(0.6,20)
+ax1.set_ylim(0.0,0.6)
+
 ax1.set_xscale("log")
-ax1.set_yscale("log")
+#ax.set_yscale("log")
+ax1.set_xlabel("Semi Major Axis (AU)", fontsize = 16)
+ax1.set_ylabel("Occurrence", fontsize = 16)
 ax1.legend(frameon = False)
+
+tickLabelSize = 12
+ax1.tick_params(axis = 'x', bottom = True, top = True, which = "major", direction = "in", labelsize = tickLabelSize, pad = 10)
+ax1.tick_params(axis = 'x', bottom = True, top = True, which = "minor", direction = "in", labelsize = tickLabelSize, pad = 10)
+ax1.tick_params(axis = 'y', bottom = True, top = True, which = "major", direction = "in", labelsize = tickLabelSize, pad = 10)
+ax1.tick_params(axis = 'y', bottom = True, top = True, which = "minor", direction = "in", labelsize = tickLabelSize, pad = 10)
+plt.tight_layout()
+fig1.savefig("./plots/compltCorrSmaxDist.png")
+fig1.savefig("./plots/compltCorrSmaxDist.pdf")
 plt.show()
     
 

@@ -1,7 +1,36 @@
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
+from matplotlib import rcParams
 from scipy import stats as stats
+
+##Adjust plotting defaults
+rcParams["axes.linewidth"] = 2
+
+rcParams["ytick.right"] = True
+rcParams["ytick.direction"] = "in"
+rcParams["ytick.minor.visible"] = True
+rcParams["ytick.major.left"] = True
+rcParams["ytick.major.right"] = True
+rcParams["ytick.minor.left"] = True
+rcParams["ytick.minor.right"] = True
+rcParams["ytick.major.size"] = 10
+rcParams["ytick.minor.size"] = 5
+rcParams["ytick.major.width"] = 1
+rcParams["ytick.minor.width"] = 1
+
+
+rcParams["xtick.top"] = True
+rcParams["xtick.direction"] = "in"
+rcParams["xtick.minor.visible"] = True
+rcParams["xtick.major.top"] = True
+rcParams["xtick.major.bottom"] = True
+rcParams["xtick.minor.top"] = True
+rcParams["xtick.minor.bottom"] = True
+rcParams["xtick.major.size"] = 10
+rcParams["xtick.minor.size"] = 5
+rcParams["xtick.major.width"] = 1
+rcParams["xtick.minor.width"] = 1
 
 planets = pd.read_csv("./data/gasGiantDataComplete.csv").drop_duplicates(subset = ["pl_name"])
 planets = planets.loc[(pd.isna(planets["pl_bmassj"]) == False) & (pd.isna(planets["pl_orbsmax"]) == False) & (planets["pl_orbeccen"] > 0)]
@@ -68,7 +97,7 @@ perRatioDist = np.zeros((4, len(perBinCentres), 3))
 massRatioDist = np.zeros((2,len(massBinCentres), 3))
 
 planetPairsList = [sePairs, ssPairs, hjPairs, wcjPairs]
-planetPairLabels= ['SE Inner', "SS Inner",  "HJ Inner", "CJ Inner"]
+planetPairLabels= ['SE-CJ Pair', "SS-CJ Pair",  "HJ-CJ Pair", "CJ-CJ Pair"]
 colours = ["tab:orange", "tab:green", "tab:red", "tab:purple"]
 symbols = [ "s", 'h', '*', "P"]
 
@@ -109,7 +138,7 @@ for i in range(len(planetPairsList)):
             massRatioDist[i-2][j][2] = errorBars[1] - massRatioDist[i-2][j][0]
 
 
-fig, ax = plt.subplots(1,2, figsize = (12, 4))
+fig, ax = plt.subplots(1,2, figsize = (12, 5))
 #ax[0].hist(hjPairs["mass_ratio"], histtype ="step", color = "tab:red", bins = massBins)
 #ax[0].hist(wcjPairs["mass_ratio"], histtype = "step", color = "tab:purple", bins = massBins)
 
@@ -130,11 +159,36 @@ for i in [2,3]:
 ax[0].set_xscale("log")
 #ax.set_yscale("log")
 ax[1].set_xscale("log")
-ax[1].set_xlabel("Period Ratio")
-ax[0].set_ylabel("Occurrence")
-ax[0].set_xlabel('Mass Ratio')
+ax[1].set_xlabel("Period Ratio", fontsize = 16)
+ax[0].set_ylabel("Occurrence", fontsize = 16)
+ax[0].set_xlabel('Mass Ratio', fontsize = 16)
 ax[1].legend(frameon = False)
-#fig.savefig("./plots/perMassRatio.png")
+
+yTicks = np.arange(0.0,0.81,0.2)
+ax[0].set_yticks(yTicks)
+ax[0].set_xlim(0.1,20)
+ax[0].set_ylim(0,0.8)
+
+yTicks = np.arange(0.0,0.61,0.1)
+ax[1].set_yticks(yTicks)
+ax[1].set_xlim(1,3000)
+ax[1].set_ylim(0,0.6)
+
+tickLabelSize = 12
+ax[0].tick_params(axis = 'x', bottom = True, top = True, which = "major", direction = "in", labelsize = tickLabelSize, pad = 10)
+ax[0].tick_params(axis = 'x', bottom = True, top = True, which = "minor", direction = "in", labelsize = tickLabelSize, pad = 10)
+ax[0].tick_params(axis = 'y', bottom = True, top = True, which = "major", direction = "in", labelsize = tickLabelSize, pad = 10)
+ax[0].tick_params(axis = 'y', bottom = True, top = True, which = "minor", direction = "in", labelsize = tickLabelSize, pad = 10)
+ax[1].tick_params(axis = 'x', bottom = True, top = True, which = "major", direction = "in", labelsize = tickLabelSize, pad = 10)
+ax[1].tick_params(axis = 'x', bottom = True, top = True, which = "minor", direction = "in", labelsize = tickLabelSize, pad = 10)
+ax[1].tick_params(axis = 'y', bottom = True, top = True, which = "major", direction = "in", labelsize = tickLabelSize, pad = 10)
+ax[1].tick_params(axis = 'y', bottom = True, top = True, which = "minor", direction = "in", labelsize = tickLabelSize, pad = 10)
+plt.tight_layout()
+
+
+
+fig.savefig("./plots/compltCorrPerMassRatio.png")
+fig.savefig("./plots/compltCorrPerMassRatio.pdf")
 
 
 
@@ -143,6 +197,8 @@ print(np.mean(wcjMassRatios), np.std(wcjMassRatios)/np.sqrt(len(wcjMassRatios)))
 
 print(np.mean(hjPerRatios), np.std(hjPerRatios)/np.sqrt(len(hjPerRatios)))
 print(np.mean(wcjPerRatios), np.std(wcjPerRatios)/np.sqrt(len(wcjPerRatios)))
+print(np.mean(sePairs["per_ratio"]), np.std(sePairs["per_ratio"])/np.sqrt(len(sePairs["per_ratio"])))
+print(np.mean(ssPairs["per_ratio"]), np.std(ssPairs["per_ratio"])/np.sqrt(len(ssPairs["per_ratio"])))
 
         
 
