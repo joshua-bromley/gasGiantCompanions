@@ -44,10 +44,15 @@ cjCompanions = planets.loc[(planets["companion_type"] % 11 == 0) | (planets["com
 gasGiantsList = [coldJupiters, seCompanions, ssCompanions, hjCompanions, cjCompanions]
 gasGiantLabels= ["Cold Jupiters", 'SE Companions', "SS Companions",  "HJ Companions", "CJ Companions"]
 symbols = ["o", "s", 'h', '*', "P"]
+colours = ["tab:blue", "tab:orange", "tab:green", "tab:red", "tab:purple"]
+
+betaDistParams = [[1.07,0.78,1.18,1.90,1.22],[3.16,2.03,3.97,2.76,4.55]]
+rayleighModes = [0.265,0.306,0.244,0.330,0.229]
 
 
-eccentricityBins = np.arange(0.0,1.01, 0.1)
+eccentricityBins = np.arange(0.0,1.01, 0.2)
 binCenters = 0.5*(np.add(eccentricityBins[:-1], eccentricityBins[1:]))
+eccenBinWidth = np.mean(np.subtract(eccentricityBins[1:],eccentricityBins[:-1] ))
 
 eccenDist = np.zeros((len(gasGiantsList), len(binCenters), 3))
 
@@ -57,30 +62,36 @@ for i in range(len(gasGiantsList)):
     planetCounts = np.zeros(len(binCenters))
     for j in range(len(gasGiants)):
         eccen = gasGiants.iloc[j]["pl_orbeccen"]
-        binIdx = int(eccen*10)
+        binIdx = int(eccen*len(binCenters))
         planetCounts[binIdx] += 1
+    if i == 3:
+        print(planetCounts)
     
     for j in range(len(planetCounts)):
         a = planetCounts[j] + 1
         b = nPlanets - planetCounts[j] + 1
         eccenDist[i][j][0] = stats.beta.median(a,b)
-        errorBars = stats.beta.interval(0.68, a, b)
+        errorBars = stats.beta.interval(0.95, a, b)
         eccenDist[i][j][1] = eccenDist[i][j][0] - errorBars[0]
         eccenDist[i][j][2] = errorBars[1] - eccenDist[i][j][0]
 
 
 fig, ax = plt.subplots(1,1)
+x = np.linspace(0,1,1000)
 
 for i in range(len(eccenDist)):
-    ax.errorbar(binCenters, eccenDist[i][:,0], yerr = eccenDist[i][:,1:].T, ls = "", marker = symbols[i], label = gasGiantLabels[i], alpha = 0.8, capsize = 5)
+    ax.errorbar(binCenters, eccenDist[i][:,0]/eccenBinWidth, yerr = eccenDist[i][:,1:].T/eccenBinWidth, ls = "", marker = symbols[i], label = gasGiantLabels[i], alpha = 0.8, capsize = 5)
+    ax.plot(x, stats.beta.pdf(x, a = betaDistParams[0][i], b = betaDistParams[1][i]), color = colours[i], alpha = 0.5)
+    #ax.plot(x, stats.rayleigh.pdf(x, scale = rayleighModes[i]), color = colours[i], alpha = 0.5)
+
 
 xTicks = np.arange(0.0,1.01,0.2)
-yTicks = np.arange(0.0,0.61,0.1)
+yTicks = np.arange(0.0,4.1,1)
 
 ax.set_xticks(xTicks)
 ax.set_yticks(yTicks)
 ax.set_xlim(0,1)
-ax.set_ylim(-0.02,0.62)
+ax.set_ylim(-0.2,4.2)
 
 ax.legend(frameon = False)
 ax.set_ylabel("Occurrence", fontsize = 16)
@@ -92,7 +103,7 @@ ax.tick_params(axis = 'x', bottom = True, top = True, which = "minor", direction
 ax.tick_params(axis = 'y', bottom = True, top = True, which = "major", direction = "in", labelsize = tickLabelSize, pad = 10)
 ax.tick_params(axis = 'y', bottom = True, top = True, which = "minor", direction = "in", labelsize = tickLabelSize, pad = 10)
 plt.tight_layout()
-fig.savefig("./plots/compltCorrEccenDist.png")
-fig.savefig("./plots/compltCorrEccenDist.pdf")
+#fig.savefig("./plots/compltCorrEccenDist.png")
+#ig.savefig("./plots/compltCorrEccenDist.pdf")
 plt.show()
 

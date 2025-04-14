@@ -3,6 +3,7 @@ import pandas as pd
 from matplotlib import pyplot as plt
 from matplotlib import rcParams
 from scipy import stats as stats
+from scipy import optimize as opt
 import pickle
 
 ##Adjust plotting defaults
@@ -47,6 +48,7 @@ cjCompanions = planets.loc[(planets["companion_type"] % 11 == 0) | (planets["com
 gasGiantsList = [coldJupiters, seCompanions, ssCompanions, hjCompanions, cjCompanions]
 gasGiantLabels= ["Cold Jupiters", 'SE Companions', "SS Companions",  "HJ Companions", "CJ Companions"]
 symbols = ["o", "s", 'h', '*', "P"]
+colours = ["tab:blue", "tab:orange", "tab:green", "tab:red", "tab:purple"]
 #gasGiantsList = [hjCompanions]
 cmpltMapMassBins = np.logspace(np.log10(0.3), np.log10(30), 50)
 cmpltMapSmaxBins = np.logspace(np.log10(0.3), np.log10(30), 50)
@@ -55,9 +57,11 @@ cmpltMapSmaxBins = np.logspace(np.log10(0.3), np.log10(30), 50)
 massBins = np.logspace(np.log10(0.5), np.log10(25), 6)
 massBinsIdx = np.zeros(len(massBins), dtype=np.int32)
 massBinCentres = np.sqrt(np.multiply(massBins[:-1],massBins[1:]))
+logMassBinWidth = np.mean(np.log10(np.divide(massBins[1:],massBins[:-1])))
 smaxBins = np.logspace(np.log10(0.5), np.log10(20), 6)
 smaxBinsIdx = np.zeros(len(smaxBins), dtype=np.int32)
 smaxBinCentres = np.sqrt(np.multiply(smaxBins[:-1],smaxBins[1:]))
+logSmaxBinWidth = np.mean(np.log10(np.divide(smaxBins[1:],smaxBins[:-1])))
 
 for i in range(len(massBins)):
     massBinsIdx[i] = int(np.abs(massBins[i] - cmpltMapMassBins).argmin())
@@ -116,11 +120,6 @@ for k in range(len(gasGiantsList)):
         massPlanetCounts[binIdx] += 1
         smaxPlanetCounts[smaxIdx] += 1
 
-    print(nPlanets)
-    print(massPlanetCounts)
-    print(massMissedPlanetCount)
-    print(smaxPlanetCounts)
-    print(smaxMissedPlanetCount)
 
 
 
@@ -152,19 +151,29 @@ for k in range(len(gasGiantsList)):
         unCorrSmaxDist[k][i][1] = unCorrSmaxDist[k][i][0] - errorBars[0]
         unCorrSmaxDist[k][i][2] = errorBars[1] - unCorrSmaxDist[k][i][0]
 
+def linearModel(x, m, b):
+    return m*x + b
+powerLawParams = np.zeros((len(gasGiantsList),2))
+logMassBinCentres = np.log10(massBinCentres)
+
+for i in range(len(gasGiantsList)):
+    param, cov = opt.curve_fit(linearModel, logMassBinCentres, massDist[i][:,0]/logMassBinWidth, sigma = massDist[i][:,1]/logMassBinWidth)
+    powerLawParams[i] = param
+
+x = np.logspace(np.log10(0.6), np.log10(20), 1000)
 
 fig, ax = plt.subplots(1,1, figsize = (6,5))
 
 for i in range(len(gasGiantsList)):
-    ax.errorbar(massBinCentres, massDist[i][:,0], yerr = massDist[i][:,1:].T, ls = "", marker = symbols[i], label = gasGiantLabels[i], alpha = 0.8, capsize = 5)
+    ax.errorbar(massBinCentres, massDist[i][:,0]/logMassBinWidth, yerr = massDist[i][:,1:].T/logMassBinWidth, ls = "", marker = symbols[i], label = gasGiantLabels[i], alpha = 0.8, capsize = 5)
     #ax.errorbar(massBinCentres, unCorrMassDist[i][:,0], yerr = unCorrMassDist[i][:,1:].T, ls = "", marker = "o")
+    ax.plot(x, linearModel(np.log10(x), *powerLawParams[i]), color = colours[i], alpha = 0.5)
 
-
-yTicks = [0,0.1,0.2,0.3,0.4,0.5]
+yTicks = [0,0.2,0.4,0.6,0.8,1.0,1.2,1.4,1.6]
 
 ax.set_yticks(yTicks)
 ax.set_xlim(0.6,20)
-ax.set_ylim(0.0,0.5)
+ax.set_ylim(0.0,1.6)
 
 ax.set_xscale("log")
 #ax.set_yscale("log")
@@ -178,21 +187,21 @@ ax.tick_params(axis = 'x', bottom = True, top = True, which = "minor", direction
 ax.tick_params(axis = 'y', bottom = True, top = True, which = "major", direction = "in", labelsize = tickLabelSize, pad = 10)
 ax.tick_params(axis = 'y', bottom = True, top = True, which = "minor", direction = "in", labelsize = tickLabelSize, pad = 10)
 plt.tight_layout()
-fig.savefig("./plots/compltCorrMassDist.png")
-fig.savefig("./plots/compltCorrMassDist.pdf")
+#fig.savefig("./plots/compltCorrMassDist.png")
+#fig.savefig("./plots/compltCorrMassDist.pdf")
 plt.show()
 
 fig1, ax1 = plt.subplots(1,1, figsize = (6,5))
 for i in range(len(gasGiantsList)):
-    ax1.errorbar(smaxBinCentres, smaxDist[i][:,0], yerr = smaxDist[i][:,1:].T, ls = "", marker = symbols[i], label = gasGiantLabels[i], alpha = 0.8, capsize = 5)
+    ax1.errorbar(smaxBinCentres, smaxDist[i][:,0]/logSmaxBinWidth, yerr = smaxDist[i][:,1:].T/logSmaxBinWidth, ls = "", marker = symbols[i], label = gasGiantLabels[i], alpha = 0.8, capsize = 5)
     #ax1.errorbar(smaxBinCentres, unCorrSmaxDist[i][:,0], yerr = unCorrSmaxDist[i][:,1:].T, ls = "", marker = "o")
 
 
-yTicks = [0,0.1,0.2,0.3,0.4,0.5,0.6]
+yTicks = [0,0.2,0.4,0.6,0.8,1.0,1.2,1.4,1.6, 1.8]
 
 ax1.set_yticks(yTicks)
 ax1.set_xlim(0.6,20)
-ax1.set_ylim(0.0,0.6)
+ax1.set_ylim(0.0,1.8)
 
 ax1.set_xscale("log")
 #ax.set_yscale("log")
@@ -206,8 +215,8 @@ ax1.tick_params(axis = 'x', bottom = True, top = True, which = "minor", directio
 ax1.tick_params(axis = 'y', bottom = True, top = True, which = "major", direction = "in", labelsize = tickLabelSize, pad = 10)
 ax1.tick_params(axis = 'y', bottom = True, top = True, which = "minor", direction = "in", labelsize = tickLabelSize, pad = 10)
 plt.tight_layout()
-fig1.savefig("./plots/compltCorrSmaxDist.png")
-fig1.savefig("./plots/compltCorrSmaxDist.pdf")
+#fig1.savefig("./plots/compltCorrSmaxDist.png")
+#fig1.savefig("./plots/compltCorrSmaxDist.pdf")
 plt.show()
     
 

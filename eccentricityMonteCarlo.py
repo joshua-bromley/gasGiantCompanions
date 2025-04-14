@@ -48,7 +48,7 @@ def eccenRedraw(eccens, errors):
     return newEccens
 
 planets = pd.read_csv("./data/gasGiantDataComplete.csv")
-planets = planets.loc[(pd.isna(planets["pl_bmassj"]) == False) & (pd.isna(planets["pl_orbsmax"]) == False) & (planets["pl_orbeccen"] > 0)]
+planets = planets.loc[(pd.isna(planets["pl_bmassj"]) == False) & (pd.isna(planets["pl_orbsmax"]) == False) & (planets["pl_orbeccen"] > 0.1)]
 
 
 gasGiants = planets.loc[(planets["pl_type"] == "WJ") | (planets["pl_type"] == "CJ")]
@@ -91,48 +91,56 @@ for i in tqdm(range(len(betaResults))):
     hjCompanionEccenRedraw = eccenRedraw(hjCompanionEccen, hjCompanionEccenErr)
     wcjCompanionEccenRedraw = eccenRedraw(cjCompanionEccen, cjCompanionEccenErr)
     ssCompanionEccenRedraw = eccenRedraw(ssCompanionEccen, ssCompanionEccenErr)
-    ggFitResults = stats.fit(stats.beta, gasGiantEccenRedraw, bounds = ((0,100),(0,100)))
-    betaResults[i,0] = ggFitResults.params[0]
-    betaResults[i,1] = ggFitResults.params[1]
-    #rayleighResults[i,0],rayleighResults[i,1] = stats.rayleigh.fit(gasGiantEccenRedraw)
-    seFitResults = stats.fit(stats.beta, seCompanionEccenRedraw, bounds = ((0,100),(0,100)))
-    betaResults[i,2] = seFitResults.params[0]
-    betaResults[i,3] = seFitResults.params[1]
-    #rayleighResults[i,2],rayleighResults[i,3] = stats.rayleigh.fit(seCompanionEccenRedraw)
-    hjFitResults = stats.fit(stats.beta, hjCompanionEccenRedraw, bounds = ((0,100),(0,100)))
-    betaResults[i,4] = hjFitResults.params[0]
-    betaResults[i,5] = hjFitResults.params[1]
-    rayleighResults[i,4], rayleighResults[i,5] = stats.rayleigh.fit(hjCompanionEccenRedraw)
-    wcjFitResults = stats.fit(stats.beta, wcjCompanionEccenRedraw, bounds = ((0,100),(0,100)))
-    betaResults[i,6] = wcjFitResults.params[0]
-    betaResults[i,7] = wcjFitResults.params[1]
-    ssFitResults = stats.fit(stats.beta, ssCompanionEccenRedraw, bounds = ((0,100),(0,100)))
-    betaResults[i,8] = ssFitResults.params[0]
-    betaResults[i,9] = ssFitResults.params[1]
-    #rayleighResults[i,6],rayleighResults[i,7] = stats.rayleigh.fit(wcjCompanionEccenRedraw)
+    #ggFitResults = stats.fit(stats.beta, gasGiantEccenRedraw, bounds = ((0,100),(0,100)))
+    #betaResults[i,0] = ggFitResults.params[0]
+    #betaResults[i,1] = ggFitResults.params[1]
+    rayleighResults[i,0],rayleighResults[i,1] = stats.rayleigh.fit(gasGiantEccenRedraw, floc = 0)
+    #seFitResults = stats.fit(stats.beta, seCompanionEccenRedraw, bounds = ((0,100),(0,100)))
+    #betaResults[i,2] = seFitResults.params[0]
+    #betaResults[i,3] = seFitResults.params[1]
+    rayleighResults[i,2],rayleighResults[i,3] = stats.rayleigh.fit(seCompanionEccenRedraw, floc = 0)
+    #hjFitResults = stats.fit(stats.beta, hjCompanionEccenRedraw, bounds = ((0,100),(0,100)))
+    #betaResults[i,4] = hjFitResults.params[0]
+    #betaResults[i,5] = hjFitResults.params[1]
+    rayleighResults[i,4], rayleighResults[i,5] = stats.rayleigh.fit(hjCompanionEccenRedraw, floc = 0)
+    #wcjFitResults = stats.fit(stats.beta, wcjCompanionEccenRedraw, bounds = ((0,100),(0,100)))
+    #betaResults[i,6] = wcjFitResults.params[0]
+    #betaResults[i,7] = wcjFitResults.params[1]
+    #ssFitResults = stats.fit(stats.beta, ssCompanionEccenRedraw, bounds = ((0,100),(0,100)))
+    #betaResults[i,8] = ssFitResults.params[0]
+    #betaResults[i,9] = ssFitResults.params[1]
+    rayleighResults[i,6],rayleighResults[i,7] = stats.rayleigh.fit(wcjCompanionEccenRedraw, floc = 0)
+    rayleighResults[i,8],rayleighResults[i,9] = stats.rayleigh.fit(ssCompanionEccenRedraw, floc = 0)
+
 
 
 fig, ax = plt.subplots(1,2, figsize = (10,4))
-sb.kdeplot(x = betaResults[:,0], y = betaResults[:,1], ax = ax[0], levels=[0.01,0.05,0.32])
-sb.kdeplot(x = betaResults[:,2], y = betaResults[:,3], ax = ax[0], levels=[0.01,0.05,0.32])
-sb.kdeplot(x = betaResults[:,8], y = betaResults[:,9], ax = ax[0], levels=[0.01,0.05,0.32])
-sb.kdeplot(x = betaResults[:,4], y = betaResults[:,5], ax = ax[0], levels=[0.01,0.05,0.32])
-sb.kdeplot(x = betaResults[:,6], y = betaResults[:,7], ax = ax[0], levels=[0.01,0.05,0.32])
+#sb.kdeplot(x = betaResults[:,0], y = betaResults[:,1], ax = ax[0], levels=[0.01,0.05,0.32])
+#sb.kdeplot(x = betaResults[:,2], y = betaResults[:,3], ax = ax[0], levels=[0.01,0.05,0.32])
+#sb.kdeplot(x = betaResults[:,8], y = betaResults[:,9], ax = ax[0], levels=[0.01,0.05,0.32])
+#sb.kdeplot(x = betaResults[:,4], y = betaResults[:,5], ax = ax[0], levels=[0.01,0.05,0.32])
+#sb.kdeplot(x = betaResults[:,6], y = betaResults[:,7], ax = ax[0], levels=[0.01,0.05,0.32])
+sb.kdeplot(x = rayleighResults[:,0], y = rayleighResults[:,1], ax = ax[0], levels=[0.01,0.05,0.32])
+sb.kdeplot(x = rayleighResults[:,2], y = rayleighResults[:,3], ax = ax[0], levels=[0.01,0.05,0.32])
+sb.kdeplot(x = rayleighResults[:,8], y = rayleighResults[:,9], ax = ax[0], levels=[0.01,0.05,0.32])
+sb.kdeplot(x = rayleighResults[:,4], y = rayleighResults[:,5], ax = ax[0], levels=[0.01,0.05,0.32])
+sb.kdeplot(x = rayleighResults[:,6], y = rayleighResults[:,7], ax = ax[0], levels=[0.01,0.05,0.32])
 
-ax[0].set_xlabel("$\\alpha$", fontsize = 16)
-ax[0].set_ylabel("$\\beta$", fontsize = 16)
+
+#ax[0].set_xlabel("$\\alpha$", fontsize = 16)
+#ax[0].set_ylabel("$\\beta$", fontsize = 16)
 ax[0].plot(-10,-10, ls = "", marker = ".", color = "tab:blue", label = "Cold Jupiters")
 ax[0].plot(-10,-10, ls = "", marker = ".", color = "tab:orange", label = "SE Companions")
 ax[0].plot(-10,-10, ls = "", marker = ".", color = "tab:green", label = "SS Companions")
 ax[0].plot(-10,-10, ls = "", marker = ".", color = "tab:red", label = "HJ Companions")
 ax[0].plot(-10,-10, ls = "", marker = ".", color = "tab:purple", label = "CJ Companions")
 
-xTicks = np.arange(0.5,3.1,0.5)
-yTicks = np.arange(1,7.1,1)
-ax[0].set_xticks(xTicks)
-ax[0].set_yticks(yTicks)
-ax[0].set_xlim(0.5,3)
-ax[0].set_ylim(1,7)
+#xTicks = np.arange(0.5,3.1,0.5)
+#yTicks = np.arange(1,7.1,1)
+#ax[0].set_xticks(xTicks)
+#ax[0].set_yticks(yTicks)
+ax[0].set_xlim(-0.2,0.2)
+ax[0].set_ylim(0.1,0.5)
 ax[0].legend(frameon = False)
 
 tickLabelSize = 12
@@ -143,11 +151,11 @@ ax[0].tick_params(axis = 'y', bottom = True, top = True, which = "minor", direct
 
 
 x = np.linspace(0,1,100)
-ax[1].plot(x, stats.beta.pdf(x,np.mean(betaResults[:,0]),np.mean(betaResults[:,1])), color = "tab:blue")
-ax[1].plot(x, stats.beta.pdf(x,np.mean(betaResults[:,2]),np.mean(betaResults[:,3])), color = "tab:orange")
-ax[1].plot(x, stats.beta.pdf(x,np.mean(betaResults[:,4]),np.mean(betaResults[:,5])), color = "tab:red")
-ax[1].plot(x, stats.beta.pdf(x,np.mean(betaResults[:,6]),np.mean(betaResults[:,7])), color = "tab:purple")
-ax[1].plot(x, stats.beta.pdf(x,np.mean(betaResults[:,8]),np.mean(betaResults[:,9])), color = "tab:green")
+ax[1].plot(x, stats.rayleigh.pdf(x,np.mean(rayleighResults[:,0]),np.mean(rayleighResults[:,1])), color = "tab:blue")
+ax[1].plot(x, stats.rayleigh.pdf(x,np.mean(rayleighResults[:,2]),np.mean(rayleighResults[:,3])), color = "tab:orange")
+ax[1].plot(x, stats.rayleigh.pdf(x,np.mean(rayleighResults[:,4]),np.mean(rayleighResults[:,5])), color = "tab:red")
+ax[1].plot(x, stats.rayleigh.pdf(x,np.mean(rayleighResults[:,6]),np.mean(rayleighResults[:,7])), color = "tab:purple")
+ax[1].plot(x, stats.rayleigh.pdf(x,np.mean(rayleighResults[:,8]),np.mean(rayleighResults[:,9])), color = "tab:green")
 
 ax[1].set_xlabel("Eccentricity", fontsize = 16)
 ax[1].set_ylabel("Probability Density", fontsize = 16)
@@ -166,17 +174,23 @@ ax[1].tick_params(axis = 'y', bottom = True, top = True, which = "minor", direct
 plt.tight_layout()
 
 
-fig.savefig("./plots/betaFits4KDE.png")
-fig.savefig("./plots/betaFits4KDE.pdf")
+fig.savefig("./plots/betaFits5KDE.png")
+#fig.savefig("./plots/betaFits4KDE.pdf")
 
-print(f"Gas Giants a = {np.mean(betaResults[:,0])}+/-{np.std(betaResults[:,0])}, b = {np.mean(betaResults[:,1])}+/-{np.std(betaResults[:,1])}")
-print(f"SE Companions a = {np.mean(betaResults[:,2])}+/-{np.std(betaResults[:,2])}, b = {np.mean(betaResults[:,3])}+/-{np.std(betaResults[:,3])}")
-print(f"HJ Companions a = {np.mean(betaResults[:,4])}+/-{np.std(betaResults[:,4])}, b = {np.mean(betaResults[:,5])}+/-{np.std(betaResults[:,5])}")
-print(f"WCJ Companions a = {np.mean(betaResults[:,6])}+/-{np.std(betaResults[:,6])}, b = {np.mean(betaResults[:,7])}+/-{np.std(betaResults[:,7])}")
-print(f"SS Companions a = {np.mean(betaResults[:,8])}+/-{np.std(betaResults[:,8])}, b = {np.mean(betaResults[:,9])}+/-{np.std(betaResults[:,9])}")
+#print(f"Gas Giants a = {np.mean(betaResults[:,0])}+/-{np.std(betaResults[:,0])}, b = {np.mean(betaResults[:,1])}+/-{np.std(betaResults[:,1])}")
+#print(f"SE Companions a = {np.mean(betaResults[:,2])}+/-{np.std(betaResults[:,2])}, b = {np.mean(betaResults[:,3])}+/-{np.std(betaResults[:,3])}")
+#print(f"HJ Companions a = {np.mean(betaResults[:,4])}+/-{np.std(betaResults[:,4])}, b = {np.mean(betaResults[:,5])}+/-{np.std(betaResults[:,5])}")
+#print(f"WCJ Companions a = {np.mean(betaResults[:,6])}+/-{np.std(betaResults[:,6])}, b = {np.mean(betaResults[:,7])}+/-{np.std(betaResults[:,7])}")
+#print(f"SS Companions a = {np.mean(betaResults[:,8])}+/-{np.std(betaResults[:,8])}, b = {np.mean(betaResults[:,9])}+/-{np.std(betaResults[:,9])}")
 
-
+print(f"Gas Giants a = {np.mean(rayleighResults[:,0])}+/-{np.std(rayleighResults[:,0])}, b = {np.mean(rayleighResults[:,1])}+/-{np.std(rayleighResults[:,1])}")
+print(f"SE Companions a = {np.mean(rayleighResults[:,2])}+/-{np.std(rayleighResults[:,2])}, b = {np.mean(rayleighResults[:,3])}+/-{np.std(rayleighResults[:,3])}")
 print(f"HJ Companions a = {np.mean(rayleighResults[:,4])}+/-{np.std(rayleighResults[:,4])}, b = {np.mean(rayleighResults[:,5])}+/-{np.std(rayleighResults[:,5])}")
+print(f"WCJ Companions a = {np.mean(rayleighResults[:,6])}+/-{np.std(rayleighResults[:,6])}, b = {np.mean(rayleighResults[:,7])}+/-{np.std(rayleighResults[:,7])}")
+print(f"SS Companions a = {np.mean(rayleighResults[:,8])}+/-{np.std(rayleighResults[:,8])}, b = {np.mean(rayleighResults[:,9])}+/-{np.std(rayleighResults[:,9])}")
+
+
+#print(f"HJ Companions a = {np.mean(rayleighResults[:,4])}+/-{np.std(rayleighResults[:,4])}, b = {np.mean(rayleighResults[:,5])}+/-{np.std(rayleighResults[:,5])}")
 '''
 fig, ax = plt.subplots(1,1)
 sb.kdeplot(x = rayleighResults[:,0], y = rayleighResults[:,1], ax = ax, levels=[0.01,0.05,0.32])
