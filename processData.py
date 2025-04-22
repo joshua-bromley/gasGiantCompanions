@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 mJ = 317.8
 
-planets = pd.read_csv("./data/gasGiantDataRaw.csv", skiprows=101)
+planets = pd.read_csv("./data/gasGiantDataRawComplete.csv", skiprows=100)
 metallicities = pd.read_csv("./data/metallicities.csv")
 
 columns = ["pl_name", "hostname","pl_type", "sy_snum", "sy_pnum", "pl_orbper", "pl_orbsmax","pl_rade","pl_radj", "pl_bmasse", "pl_bmassj", "pl_orbeccen", "pl_orbeccenerr1", "pl_orbeccenerr2", "st_spectype", "st_teff", "st_rad", "st_mass", "st_met"]
@@ -16,9 +16,9 @@ for i in range(len(planets)):
         smax = (planets.iloc[i]["st_mass"]*(planets.iloc[i]["pl_orbper"]/365)**2)**(1/3)
         planets.at[i, "pl_orbsmax"] = smax
     
-    if pd.isnull(planets.iloc[i]["st_met"]):
-        met = np.asarray(metallicities.loc[metallicities["pl_name"] == planetName]["st_met"])[0]
-        planets.at[i, "st_met"] = met
+    #if pd.isnull(planets.iloc[i]["st_met"]):
+    #    met = np.asarray(metallicities.loc[metallicities["pl_name"] == planetName]["st_met"])[0]
+    #    planets.at[i, "st_met"] = met
     
     
 
@@ -127,7 +127,7 @@ planets.insert(19, "companion_type", companionType)
 planets.insert(20, "pl_sus_data", suspiciousData)
 
 
-planets.to_csv("./data/gasGiantData.csv")
+planets.to_csv("./data/gasGiantDataComplete.csv")
 
 print(np.sum(suspiciousData)/len(suspiciousData))
     
