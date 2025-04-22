@@ -26,10 +26,10 @@ def complete_maps():
     sys = systemData["hostname"].values
     mass_star = systemData["st_mass"].values
 
-    #sys = ["BD114672"]
-    #mass_star = [0.65]
+    sys = ["HATP17","XO5"]
+    mass_star = [0.99,1.04]
     
-    for x in range(388,len(sys)):
+    for x in range(0,len(sys)):
         print(sys[x])
         plname = sys[x]
         n_inject = 50
@@ -96,7 +96,7 @@ def complete_maps():
 
         #csv, Time in JD, rv, err in m/s
         #ups And
-        if plname == "upsAnd" or plname == "WASP47" or plname == "Pr0211" or plname == "TOI2202" or plname == 'TIC279401253' or plname == "TIC139270665" or plname == "Kepler424" or plname == "HD83443" or plname == "HD39091" or plname == "HD33142" or plname == "HD27894" or plname == "HD190360" or plname == "HD191939" or plname == "HD187123" or plname == "HD177830" or plname == "HD147873" or plname == "HD128311" or plname == "HD11964" or plname == "HD114783" or plname == "HATP13" or plname == "HATP11" or plname == "GJ317" or plname == "BD114672" or plname == "7CMa" or plname == "upsLeo" or plname == "muLeo" or plname == "gamPsc" or plname == "epsEri" or plname == "epsCrB" or plname == "betUMi" or plname == "alfTau" or plname == "alfAri" or plname == 'XO5' or plname == "WASP7" or plname == "TYC0434045831" or plname == "TOI778" or plname == "TOI6029" or plname == "TOI481" or plname == "TOI4603" or plname == "TOI2589" or plname == "TOI2497" or plname == "TOI2368" or plname== "TOI2338" or plname == "TOI2180" or plname == "TOI2107" or plname == "TOI2010" or plname == "TOI1899" or plname == "TOI1516" or plname == "TOI1181" or plname == "NGTS30" or plname == "xiAql" or plname == "omeSer" or plname == "gamLib" or plname == "HD210702" or plname == "HD208897" or plname == "HD167042" or plname == "HD14067" or plname == "HD104985"  or plname == "6Lyn":
+        if plname == "upsAnd" or plname == "WASP47" or plname == "Pr0211" or plname == "TOI2202" or plname == 'TIC279401253' or plname == "TIC139270665" or plname == "Kepler424" or plname == "HD83443" or plname == "HD39091" or plname == "HD33142" or plname == "HD27894" or plname == "HD190360" or plname == "HD191939" or plname == "HD187123" or plname == "HD177830" or plname == "HD147873" or plname == "HD128311" or plname == "HD11964" or plname == "HD114783" or plname == "HATP13" or plname == "HATP11" or plname == "GJ317" or plname == "BD114672" or plname == "7CMa" or plname == "upsLeo" or plname == "muLeo" or plname == "gamPsc" or plname == "epsEri" or plname == "epsCrB" or plname == "betUMi" or plname == "alfTau" or plname == "alfAri" or  plname == "WASP7" or plname == "TYC0434045831" or plname == "TOI778" or plname == "TOI6029" or plname == "TOI481" or plname == "TOI4603" or plname == "TOI2589" or plname == "TOI2497" or plname == "TOI2368" or plname== "TOI2338" or plname == "TOI2180" or plname == "TOI2107" or plname == "TOI2010" or plname == "TOI1899" or plname == "TOI1516" or plname == "TOI1181" or plname == "NGTS30" or plname == "xiAql" or plname == "omeSer" or plname == "gamLib" or plname == "HD210702" or plname == "HD208897" or plname == "HD167042" or plname == "HD14067" or plname == "HD104985"  or plname == "6Lyn" or plname == "HATP17":
             time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
             time = time - 2450000
         
@@ -167,10 +167,10 @@ def complete_maps():
             err = err*1000
         
         #time in JD-2440000, rv, err in m/s
-        if plname == "HIP14810" or plname == "HD99706" or plname == "HD75784" or plname == "HD74156" or plname == "HD5319" or plname == "HD4203" or plname == "HD37605" or plname == "HD37124" or plname == "HD30177" or plname == "HD207832" or plname == "HD200964" or plname == "HD1605" or plname == "HD159868" or plname == "HD148164" or plname == "HD125612" or plname == "HD116029" or plname == "HD108874" or plname == "HD102329" or plname == "HATP17" or plname == "47UMa" or plname == "24Sex" or plname == "HR5183" or plname == "HD98736" or plname == "HD98219" or plname == "HD96167" or plname == "HD96063" or plname == "HD94834" or plname == "HD86081" or plname == "HD73534" or plname == "HD72490" or plname == "HD55696" or plname == "HD4917":
+        if plname == "HIP14810" or plname == "HD99706" or plname == "HD75784" or plname == "HD74156" or plname == "HD5319" or plname == "HD4203" or plname == "HD37605" or plname == "HD37124" or plname == "HD30177" or plname == "HD207832" or plname == "HD200964" or plname == "HD1605" or plname == "HD159868" or plname == "HD148164" or plname == "HD125612" or plname == "HD116029" or plname == "HD108874" or plname == "HD102329"  or plname == "47UMa" or plname == "24Sex" or plname == "HR5183" or plname == "HD98736" or plname == "HD98219" or plname == "HD96167" or plname == "HD96063" or plname == "HD94834" or plname == "HD86081" or plname == "HD73534" or plname == "HD72490" or plname == "HD55696" or plname == "HD4917":
             time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
             time = time - 10000
-        if plname == "HD43691" or plname == "HD4313" or plname == "HD30856" or plname == "HD28678" or plname == "HD231701" or plname == "HD224693" or plname == "HD212771" or plname == "HD211810" or plname == "HD206610" or plname == "HD196885A" or plname == "HD18742" or plname == "HD185269" or plname == "HD181342" or plname == "HD180902" or plname == "HD18015" or plname == "HD180053" or plname == "HD175541" or plname == "HD17156" or plname == "HD152581" or plname == "HD1502" or plname == "HD149143" or plname == "HD14787" or plname == "HD131496" or plname == "HD130322" or plname == "HD108863" or plname == "HD106270" or plname == "HD10442" or plname == "HD102956" or plname == "GJ179" or plname == "70Vir":
+        if plname == "HD43691" or plname == "HD4313" or plname == "HD30856" or plname == "HD28678" or plname == "HD231701" or plname == "HD224693" or plname == "HD212771" or plname == "HD211810" or plname == "HD206610" or plname == "HD196885A" or plname == "HD18742" or plname == "HD185269" or plname == "HD181342" or plname == "HD180902" or plname == "HD18015" or plname == "HD180053" or plname == "HD175541" or plname == "HD17156" or plname == "HD152581" or plname == "HD1502" or plname == "HD149143" or plname == "HD14787" or plname == "HD131496" or plname == "HD130322" or plname == "HD108863" or plname == "HD106270" or plname == "HD10442" or plname == "HD102956" or plname == "GJ179" or plname == "70Vir" or plname == 'XO5':
             time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
             time = time - 10000
 

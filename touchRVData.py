@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import pickle as pk
 
 systemData = pd.read_csv("./RVData/rvData.txt")
 systems = systemData["hostname"].values
@@ -16,4 +17,8 @@ for sys in systems:
     except ValueError as e:
         print("Bad Data for system " + sys)
         print(e)
+    try:
+        compProb = pk.load(open(f"./completenessMaps/{sys}.p", "rb"))
+    except FileNotFoundError:
+        print("No Completeness Map for " + sys)
     

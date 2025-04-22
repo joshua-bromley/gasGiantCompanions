@@ -40,15 +40,17 @@ planets = planets.loc[(pd.isna(planets["pl_bmassj"]) == False) & (pd.isna(planet
 nPlanets = len(planets)
 
 coldJupiters = planets.loc[(planets["pl_type"] == "WJ") | (planets["pl_type"] == "CJ")]
+hotJupiters = planets.loc[planets["pl_type"] == "HJ"]
 seCompanions = planets.loc[planets["companion_type"] %2 == 0]
 ssCompanions = planets.loc[(planets["companion_type"] % 3 == 0) | (planets["companion_type"] % 5 == 0)]
 hjCompanions = planets.loc[planets["companion_type"] % 7 == 0]
 cjCompanions = planets.loc[(planets["companion_type"] % 11 == 0) | (planets["companion_type"] % 13 == 0)]
 
-gasGiantsList = [coldJupiters, seCompanions, ssCompanions, hjCompanions, cjCompanions]
-gasGiantLabels= ["Cold Jupiters", 'SE Companions', "SS Companions",  "HJ Companions", "CJ Companions"]
-symbols = ["o", "s", 'h', '*', "P"]
-colours = ["tab:blue", "tab:orange", "tab:green", "tab:red", "tab:purple"]
+gasGiantsList = [ hjCompanions, cjCompanions]
+hostSystemsList = [hotJupiters, coldJupiters]
+gasGiantLabels= [ "HJ Companions", "CJ Companions"]
+symbols = [ '*', "P"]
+colours = [ "tab:red", "tab:purple"]
 #gasGiantsList = [hjCompanions]
 cmpltMapMassBins = np.logspace(np.log10(0.3), np.log10(30), 50)
 cmpltMapSmaxBins = np.logspace(np.log10(0.3), np.log10(30), 50)
@@ -81,10 +83,11 @@ unCorrSmaxDist = np.zeros((len(gasGiantsList),len(smaxBins) - 1, 3))
 
 for k in range(len(gasGiantsList)):
     gasGiants = gasGiantsList[k]
-    nPlanets = len(gasGiants)
-    completenessMaps = np.zeros((len(gasGiants),49,49))
-    for i in range(len(gasGiants)):
-        hostname = gasGiants.iloc[i]["hostname"]
+    hosts = hostSystemsList[k]
+    nPlanets = len(hosts)
+    completenessMaps = np.zeros((len(hosts),49,49))
+    for i in range(len(hosts)):
+        hostname = hosts.iloc[i]["hostname"]
         compProb = pickle.load(open("./completenessMaps/"+hostname+".p", "rb"))
         probs = compProb["prob"]
         completenessMaps[i] = probs
@@ -102,23 +105,30 @@ for k in range(len(gasGiantsList)):
     for i in range(len(gasGiants)):
         mass = gasGiants.iloc[i]["pl_bmassj"]
         smax = gasGiants.iloc[i]["pl_orbsmax"]
-        prob = completenessMaps[i]
+        
         binIdx = 0
         smaxIdx = 0
         for j in range(len(massBins) - 1):
-            total = (massBinsIdx[j+1] - massBinsIdx[j])*maxSmaxIdx
-            sumProb = np.sum(prob[0:maxSmaxIdx,massBinsIdx[j]:massBinsIdx[j+1]])
-            massMissedPlanetCount[j] += (total - sumProb)/total
+            
             if mass > massBins[j] and mass < massBins[j+1]:
                 binIdx = j
         for j in range(len(smaxBins) - 1):
-            total = (smaxBinsIdx[j+1] - smaxBinsIdx[j])*(maxMassIdx - minMassIdx)
-            sumProb = np.sum(prob[smaxBinsIdx[j]:smaxBinsIdx[j+1],minMassIdx:maxMassIdx])
-            smaxMissedPlanetCount[j] += (total - sumProb)/total
+            
             if smax > smaxBins[j] and smax < smaxBins[j+1]:
                 smaxIdx = j
         massPlanetCounts[binIdx] += 1
         smaxPlanetCounts[smaxIdx] += 1
+
+    for i in range(len(hosts)):
+        prob = completenessMaps[i]
+        for j in range(len(massBins) - 1):
+            total = (massBinsIdx[j+1] - massBinsIdx[j])*maxSmaxIdx
+            sumProb = np.sum(prob[0:maxSmaxIdx,massBinsIdx[j]:massBinsIdx[j+1]])
+            massMissedPlanetCount[j] += (total - sumProb)/total
+        for j in range(len(smaxBins) -1):
+            total = (smaxBinsIdx[j+1] - smaxBinsIdx[j])*(maxMassIdx - minMassIdx)
+            sumProb = np.sum(prob[smaxBinsIdx[j]:smaxBinsIdx[j+1],minMassIdx:maxMassIdx])
+            smaxMissedPlanetCount[j] += (total - sumProb)/total
 
 
 
@@ -165,15 +175,15 @@ x = np.logspace(np.log10(0.6), np.log10(20), 1000)
 fig, ax = plt.subplots(1,1, figsize = (6,5))
 
 for i in range(len(gasGiantsList)):
-    ax.errorbar(massBinCentres, massDist[i][:,0]/logMassBinWidth, yerr = massDist[i][:,1:].T/logMassBinWidth, ls = "", marker = symbols[i], label = gasGiantLabels[i], alpha = 0.8, capsize = 5)
+    ax.errorbar(massBinCentres, massDist[i][:,0]/logMassBinWidth, yerr = massDist[i][:,1:].T/logMassBinWidth, ls = "", marker = symbols[i], label = gasGiantLabels[i], alpha = 0.8, capsize = 5, color = colours[i])
     #ax.errorbar(massBinCentres, unCorrMassDist[i][:,0], yerr = unCorrMassDist[i][:,1:].T, ls = "", marker = "o")
     ax.plot(x, linearModel(np.log10(x), *powerLawParams[i]), color = colours[i], alpha = 0.5)
 
-yTicks = [0,0.2,0.4,0.6,0.8,1.0,1.2,1.4,1.6]
+#yTicks = [0,0.1,0.2,0.3,0.4]
 
-ax.set_yticks(yTicks)
-ax.set_xlim(0.6,20)
-ax.set_ylim(0.0,1.6)
+#ax.set_yticks(yTicks)
+#ax.set_xlim(0.6,20)
+#ax.set_ylim(0.0,0.4)
 
 ax.set_xscale("log")
 #ax.set_yscale("log")
@@ -193,18 +203,18 @@ plt.show()
 
 fig1, ax1 = plt.subplots(1,1, figsize = (6,5))
 for i in range(len(gasGiantsList)):
-    ax1.errorbar(smaxBinCentres, smaxDist[i][:,0]/logSmaxBinWidth, yerr = smaxDist[i][:,1:].T/logSmaxBinWidth, ls = "", marker = symbols[i], label = gasGiantLabels[i], alpha = 0.8, capsize = 5)
+    ax1.errorbar(smaxBinCentres, smaxDist[i][:,0]/logSmaxBinWidth, yerr = smaxDist[i][:,1:].T/logSmaxBinWidth, ls = "", marker = symbols[i], label = gasGiantLabels[i], alpha = 0.8, capsize = 5, color = colours[i])
     #ax1.errorbar(smaxBinCentres, unCorrSmaxDist[i][:,0], yerr = unCorrSmaxDist[i][:,1:].T, ls = "", marker = "o")
 
 
-yTicks = [0,0.2,0.4,0.6,0.8,1.0,1.2,1.4,1.6, 1.8]
+#yTicks = [0,0.2,0.4,0.6,0.8,1.0,1.2,1.4,1.6, 1.8]
 
-ax1.set_yticks(yTicks)
-ax1.set_xlim(0.6,20)
-ax1.set_ylim(0.0,1.8)
+#ax1.set_yticks(yTicks)
+#ax1.set_xlim(0.6,20)
+#ax1.set_ylim(0.0,1.8)
 
 ax1.set_xscale("log")
-#ax.set_yscale("log")
+#ax1.set_yscale("log")
 ax1.set_xlabel("Semi Major Axis (AU)", fontsize = 16)
 ax1.set_ylabel("Occurrence", fontsize = 16)
 ax1.legend(frameon = False)
