@@ -1,0 +1,15 @@
+XO5 Knutson+14
+WASP74 Hellier+15
+WASP73 Delrez+14
+WASP68 Delrez+14
+WASP66 Hellier+12
+WASP62 Hellier+12
+WASP60 Hebard+13
+WASP54 Faedi+13
+WASP42 Lendl+12
+WASP22 Maxted+10
+WASP106 Smith+14
+HD17156 Ment+18
+HD167042 Sato+08
+HD110014 Soto+15
+HATP3 Bonono+17
