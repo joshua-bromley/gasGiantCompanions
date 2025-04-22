@@ -29,7 +29,7 @@ def complete_maps():
     #sys = ["BD114672"]
     #mass_star = [0.65]
     
-    for x in range(3,len(sys)):
+    for x in range(388,len(sys)):
         print(sys[x])
         plname = sys[x]
         n_inject = 50
