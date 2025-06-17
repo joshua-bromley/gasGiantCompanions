@@ -8,6 +8,7 @@ import pickle as pk
 clsPlanets = pd.read_csv("./data/clsPlanets2.csv", skiprows=101)
 clsStars = pd.read_csv("./data/clsStars.csv")
 planets = pd.read_csv("./data/gasGiantDataComplete.csv")
+planets = planets.loc[planets["baseline"] > 1*365]
 
 clsGasGiants = clsPlanets.loc[(clsPlanets["pl_bmassj"] > 0.5) & (clsPlanets["pl_orbsmax"] > 0.1)]
 #clsStars = clsStars.loc[clsStars["[Fe/H]"] > 0.041]
@@ -62,11 +63,14 @@ for i in range(len(planetPopulations)):
             tot = ((maxSmaxIdx - minSmaxIdx)*(maxMassIdx - minMassIdx))#(30.*40.)#
             sumProb = np.sum(probs[minSmaxIdx:maxSmaxIdx,minMassIdx:maxMassIdx])#[0:30,5:45])#
             n_missed += (tot-sumProb)/tot
+            #if i == 1:
+                #print(hostname, (tot-sumProb)/tot)
     else:
         n_tot = len(np.unique(hostPopulations[i]["CPS identifier"]))
     
     a = n_det -1
     b = n_tot- n_missed - n_det -1 
+    
     occurrenceRates[i][0] = stats.beta.median(a,b)
     errorBars = stats.beta.interval(0.68, a, b)
     occurrenceRates[i][1] = occurrenceRates[i][0] - errorBars[0]
@@ -77,11 +81,12 @@ for i in range(len(planetPopulations)):
 
     print(labels[i])
     print(f"{n_det}/{n_tot-n_missed}, {occurrenceRates[i][0]} (-{occurrenceRates[i][1]} +{occurrenceRates[i][2]}), {enhancement[i]}")
+    print(n_tot, n_missed)
 
 ax.legend(frameon = False)
 ax.set_xlabel("P(GG)")
 ax.set_ylabel("PDF")
-fig.savefig("./plots/outerCompanionOccurrence.png")
+#fig.savefig("./plots/outerCompanionOccurrence.png")
 
 plt.show()
 

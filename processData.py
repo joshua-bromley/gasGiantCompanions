@@ -5,7 +5,7 @@ mJ = 317.8
 planets = pd.read_csv("./data/gasGiantDataRawComplete.csv", skiprows=100)
 metallicities = pd.read_csv("./data/metallicities.csv")
 
-columns = ["pl_name", "hostname","pl_type", "sy_snum", "sy_pnum", "pl_orbper", "pl_orbsmax","pl_rade","pl_radj", "pl_bmasse", "pl_bmassj", "pl_orbeccen", "pl_orbeccenerr1", "pl_orbeccenerr2", "st_spectype", "st_teff", "st_rad", "st_mass", "st_met"]
+columns = ["pl_name", "hostname","pl_type", "sy_snum", "sy_pnum", "pl_orbper", "pl_orbsmax","pl_rade","pl_radj", "pl_bmasse", "pl_bmassj", "pl_orbeccen", "pl_orbeccenerr1", "pl_orbeccenerr2", "st_spectype", "st_teff", "st_rad", "st_mass", "st_met", "discoverymethod", "pl_refname"]
 planetTypes = np.empty_like(planets["pl_name"])
 companionType = np.ones_like(planets["pl_bmasse"])
 suspiciousData = np.zeros_like(planets["pl_bmasse"])
@@ -127,7 +127,7 @@ planets.insert(19, "companion_type", companionType)
 planets.insert(20, "pl_sus_data", suspiciousData)
 
 
-planets.to_csv("./data/gasGiantDataComplete.csv")
+planets.to_csv("./data/gasGiantDataTable.csv")
 
 print(np.sum(suspiciousData)/len(suspiciousData))
     
