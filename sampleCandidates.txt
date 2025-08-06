@@ -1,0 +1,324 @@
+16CygB,Accepted
+8UMi,Rejected, data collected, stellar mass too large in reference
+BD170063,Accepted
+BD210397,Rejected, data not easily available
+BD450564, Rejected, only 16 observations
+BD631405, Rejected, only 18 observations
+CITau, Rejected, T Tauri Star
+CoRoT10, Rejected, only 19 observations
+EPIC211945201, Rejected, only 19 observations
+GJ2030, Rejected, data not easily available
+GJ3138, Accepted
+GJ338B, Accepted
+GJ86, Accepted
+GJ9714, Rejected, data not easily available
+HATS17, Rejected, baseline too short
+HD100777, Accepted
+HD102117, Accepted
+HD102272, Rejected, data not easily available
+HD102843, Accepted
+HD103197, Accepted
+HD103891, Rejected, data not easily available
+HD104067, Accepted
+HD105618, Rejected, data not easily available
+HD105779, Rejected, data not easily available
+HD106252, Accepted
+HD106315, Rejected, baseline too short
+HD10647, Accepted
+HD106515A, Rejected, data not easily available
+HD10697, Accepted
+HD109246, Accepted
+HD109988, Rejected, data not easily available
+HD110537, Rejected, data not easily available
+HD11112, Rejected, data not easily available
+HD111998, Rejected, data not easily available
+HD114729, Accepted
+HD11505, Rejected, data not easily available
+HD115404A, Rejected, data not easily available
+HD117207, Accepted
+HD11755, Accepted
+HD12235, Rejected, data not easily available
+HD122562, Rejected, data not easily available
+HD125271, Rejected, data not easily available
+HD12648, Accepted
+HD126525, Rejected, baseline too short
+HD126614, Accepted
+HD127506, Rejected, data not easily available
+HD129445, Rejected, only 17 observations
+HD13167, Rejected, only 18 observations
+HD132406, Accepted
+HD133131B, Accepted
+HD134060, Rejected, data not easily available
+HD135694, Accepted
+HD136118, Rejected, data not easily available
+HD136418, Accepted
+HD13724, Rejected, data not easily available
+HD137388, Accepted
+HD13931, Accepted
+HD1397, Rejected, baseline too short
+HD140901, Rejected, data not easily available
+HD141937, Accepted
+HD142022A, Accepted
+HD142415, Accepted
+HD143361, Accepted
+HD144899, Rejected, data not easily available
+HD145377, Accepted
+HD147018, Accepted
+HD149806, Rejected, data not easily available
+HD151450, Rejected, data not easily available
+HD152079, Accepted
+HD152843, Rejected, baseline too short
+HD153557, Rejected, data not easily available
+HD153950, Accepted
+HD154345, Accepted
+HD154672, Accepted
+HD155918, Rejected, data not easily available
+HD156098, Rejected, data not easily available
+HD156846, Accepted
+HD158038, Rejected, data collected, stellar mass too large in reference
+HD16141, Accepted
+HD163607, Accepted
+HD164604, Rejected, only 19 observations
+HD166724, Rejected, data not easily available
+HD168863, Rejected, data not easily available
+HD16905, Rejected, data not easily available
+HD170469, Accepted
+HD171028, Accepted
+HD171238, Accepted
+HD175167, Rejected, only 13 observations
+HD178911B, Accepted
+HD181234, Accepted
+HD18143, Accepted
+HD181720, Accepted
+HD187085, Accepted
+HD188015, Accepted
+HD188641, Rejected, data not easily available
+HD190228, Accepted
+HD190647
+HD191806
+HD192263
+HD192699
+HD194490
+HD195019
+HD196050
+HD196067
+HD199509
+HD200964
+HD202206
+HD2039
+HD205158
+HD20782
+HD208487
+HD210277
+HD213240
+HD214823
+HD21520
+HD216435
+HD216437
+HD216536
+HD216770
+HD217107
+HD217786
+HD217958
+HD218566
+HD219077
+HD220689
+HD220842
+HD221416
+HD221420
+HD222155
+HD222582
+HD224538
+HD22532
+HD22946
+HD23079
+HD23127
+HD23596
+HD25015
+HD25171
+HD25912
+HD26161
+HD27442
+HD27631
+HD28185
+HD28192
+HD28254
+HD290327
+HD29399
+HD29985
+HD30562
+HD33564
+HD34445
+HD38283
+HD38801
+HD40979
+HD4113
+HD4208
+HD43197
+HD44219
+HD45350
+HD45364
+HD45652
+HD457
+HD4760
+HD48265
+HD48948
+HD5608
+HD56957
+HD60532
+HD62364
+HD62549
+HD63433
+HD63765
+HD63935
+HD6434
+HD65216
+HD66428
+HD6718
+HD70573
+HD70642
+HD7199
+HD72892
+HD73267
+HD73344
+HD7449
+HD74698
+HD79498
+HD80869
+HD80883
+HD80913
+HD81040
+HD82943
+HD8326
+HD86065
+HD86264
+HD8673
+HD88072
+HD88986
+HD89307
+HD89345
+HD93083
+HD93351
+HD94771
+HD95089
+HD95544
+HD95872
+HD97037
+HD98649
+HD99109
+HIP12961
+HIP19976
+HIP34222
+HIP35965
+HIP5158
+HIP54597
+HIP55507
+HIP57274
+HIP5763
+HIP63242
+HIP66074
+HIP70849
+HIP71135
+HIP8152
+HIP948
+HIP97166
+HR 5183
+HR 810
+HR 858
+K210
+K2115
+K2139
+K2232
+K2233
+K224
+K2261
+K2285
+K2287
+K2290
+K2292
+K299
+KOI12
+KOI2513
+KOI351
+Kepler111
+Kepler117
+Kepler139
+Kepler1513
+Kepler1514
+Kepler16
+Kepler1654
+Kepler167
+Kepler1704
+Kepler39
+Kepler418
+Kepler419
+Kepler434
+Kepler553
+Kepler65
+Kepler849
+Kepler9
+NGTS11
+PH2
+TIC172900988A
+TIC237913194
+TIC241249530
+TIC393818343
+TOI1052
+TOI1136
+TOI1249
+TOI125
+TOI1260
+TOI1288
+TOI1294
+TOI1338A
+TOI1386
+TOI1410
+TOI1437
+TOI1439
+TOI1451
+TOI1669
+TOI1670
+TOI1691
+TOI1710
+TOI1723
+TOI1736
+TOI1742
+TOI1751
+TOI1758
+TOI178
+TOI1823
+TOI1824
+TOI1836
+TOI1898
+TOI2019
+TOI2128
+TOI2295
+TOI2373
+TOI2443
+TOI2447
+TOI2458
+TOI2525
+TOI2537
+TOI4010
+TOI4127
+TOI421
+TOI4504
+TOI4515
+TOI4562
+TOI4633
+TOI5076
+TOI5110
+TOI5542
+TOI558
+TOI5678
+TOI677
+TOI757
+TOI763
+V1298Tau
+WASP130
+epsIndA
+iotDra
+kapCrB
+nuOctA
+omiCrB
+psi1DraB
