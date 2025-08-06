@@ -29,11 +29,7 @@ def complete_maps():
     #sys = ["TIC279401253"]
     #mass_star = [1.13]
     
-<<<<<<< HEAD
-    for x in range(147,len(sys)):
-=======
     for x in range(470,len(sys)):
->>>>>>> 55fd99f4f3deffcc5916a659b0ec851112799abc
         print(sys[x])
         plname = sys[x]
         n_inject = 50
