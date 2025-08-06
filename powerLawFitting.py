@@ -37,13 +37,14 @@ def linearModel(x, m, b):
 params = np.zeros((len(gasGiantsList),2))
 for i in range(len(gasGiantsList)):
     param, cov = opt.curve_fit(linearModel, logBinCentres, binCounts[i], sigma = binErrors[i])
+    print(param)
     params[i] = param
 
 x = np.log10(np.logspace(0,np.log10(20),100))
 fig, ax = plt.subplots(1,1)
 for i in range(len(gasGiantsList)):
     ax.errorbar(logBinCentres, binCounts[i], yerr = binErrors[i], ls = "", marker = "o")
-    #ax.plot(x, linearModel(x, *params[i]))
+    ax.plot(x, linearModel(x, *params[i]))
 
 
 plt.show()
