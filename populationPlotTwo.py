@@ -30,7 +30,7 @@ rcParams["xtick.minor.size"] = 5
 rcParams["xtick.major.width"] = 1
 rcParams["xtick.minor.width"] = 1
 
-planets = pd.read_csv("./data/gasGiantDataComplete.csv")
+planets = pd.read_csv("./data/gasGiantComplete2.csv")
 planets = planets.loc[(pd.isna(planets["pl_bmassj"]) == False) & (pd.isna(planets["pl_orbsmax"]) == False) & (planets["pl_orbeccen"] > 0)]
 
 hosts = np.unique(planets["hostname"])
@@ -39,19 +39,27 @@ fig, ax = plt.subplots(1,1, figsize = (6,4))
 
 for host in hosts:
     system = planets.loc[planets["hostname"] == host].sort_values(by = "pl_orbsmax")
-    ax.plot(system["pl_orbsmax"].values, system["pl_bmassj"].values, color = "tab:blue", alpha = 0.3)
+    if len(system) > 1:
+        ax.plot(system["pl_orbsmax"].values, system["pl_bmassj"].values, color = "tab:blue", alpha = 0.3)
 
 for i in range(len(planets)):
     mass = planets.iloc[i]["pl_bmassj"]
     smax = planets.iloc[i]["pl_orbsmax"]
     colour = "tab:purple"
+    alpha = 0.3
     if planets.iloc[i]["pl_type"] == "HJ":
         colour = "tab:red"
+    if planets.iloc[i]["pl_type"] == "WJ":
+        colour = "tab:pink"
     if planets.iloc[i]["pl_type"] == "SE":
         colour = "tab:orange"
-    if planets.iloc[i]["pl_type"] == "HS" or planets.iloc[i]["pl_type"] == "CS":
+    if planets.iloc[i]["pl_type"] == "HS":
         colour = "tab:green"
-    ax.plot(smax, mass, color = colour, marker = "o")
+    if planets.iloc[i]["pl_type"] == 'CS':
+        colour = "tab:cyan"
+    if planets.iloc[i]["sy_pnum"] > 1:
+        alpha = 0.8
+    ax.plot(smax, mass, color = colour, marker = "o", alpha = alpha)
 
 ax.set_xscale("log")
 ax.set_yscale("log")
@@ -64,6 +72,6 @@ ax.tick_params(axis = 'y', bottom = True, top = True, which = "major", direction
 ax.tick_params(axis = 'y', bottom = True, top = True, which = "minor", direction = "in", labelsize = tickLabelSize, pad = 10)
 plt.tight_layout()
 
-fig.savefig("./plots/cmpltCorrPopulation.pdf")
+#fig.savefig("./plots/cmpltCorrPopulationNoLines.png")
 plt.show()
 

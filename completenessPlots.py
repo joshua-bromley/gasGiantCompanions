@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 import numpy as np
-import radvel
+#import radvel
 import math
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors
@@ -9,7 +9,7 @@ import scipy.special as ss
 import os
 import pylab as pl
 from scipy import optimize
-import corner
+#import corner
 #import mpfit
  
  
@@ -142,25 +142,32 @@ def complete_plots(plname, masses, smaxes):
     # plt.set_label('Detection Probability',rotation=270,fontsize=20)
     plt.plot(semacomp,mcomp,linestyle='none',marker='o',markersize=10,color='teal')
     #plt.savefig('complete_maps_rvsys_paper/'+sys+'_complete_maps.png')
-    plt.savefig(f"./plots/leastCompleteCompletenessMap.png")
+    plt.savefig(f"./plots/CompletenessMap.pdf")
     #plt.savefig(f"./plots/coldJupiterCompletenessMap.pdf")
     plt.show()
 
 
-planets = pd.read_csv("./data/gasGiantDataComplete.csv")
+planets = pd.read_csv("./data/gasGiantComplete2.csv")
 planets = planets.loc[(pd.isna(planets["pl_bmassj"]) == False) & (pd.isna(planets["pl_orbsmax"]) == False) & (planets["pl_orbeccen"] > 0)]
-coldJupiters = planets.loc[(planets["pl_type"] == "WJ") | (planets["pl_type"] == "CJ")]
+coldJupiters = planets.loc[(planets["pl_type"] == "CJ")]
+warmJupiters = planets.loc[(planets["pl_type"] == "WJ")]
 hotJupiters = planets.loc[planets["pl_type"] == 'HJ']
+hotSubSaturns = planets.loc[planets["pl_type"] == "HS"]
+coldSubSaturns = planets.loc[planets["pl_type"] == "CS"]
+superEarths = planets.loc[planets["pl_type"] == "SE"]
 seCompanions = planets.loc[planets["companion_type"] %2 == 0]
-ssCompanions = planets.loc[(planets["companion_type"] % 3 == 0) | (planets["companion_type"] % 5 == 0)]
+hsCompanions = planets.loc[(planets["companion_type"] % 3 == 0)]
+csCompanions = planets.loc[planets["companion_type"] % 5 == 0]
 hjCompanions = planets.loc[planets["companion_type"] % 7 == 0]
-cjCompanions = planets.loc[(planets["companion_type"] % 11 == 0) | (planets["companion_type"] % 13 == 0)]
+wjCompanions = planets.loc[(planets["companion_type"] % 11 == 0)]
+cjCompanions = planets.loc[(planets["companion_type"] % 13 == 0)]
 
-planets = planets.sort_values(by="baseline", ascending=True)
-leastComplete = planets.iloc[0]
-mostComplete = planets.iloc[-1]
 
-hostnames = np.unique(np.array(leastComplete["hostname"]))
-masses = np.array(planets.loc[planets["hostname"] == hostnames[0]]["pl_bmassj"])
-smaxes = np.array(planets.loc[planets["hostname"] == hostnames[0]]["pl_orbsmax"])
+#planets = planets.sort_values(by="baseline", ascending=True)
+#leastComplete = planets.iloc[0]
+#mostComplete = planets.iloc[-1]
+
+hostnames = np.unique(np.array(planets["hostname"]))
+masses = np.array(planets["pl_bmassj"])
+smaxes = np.array(planets["pl_orbsmax"])
 complete_plots(hostnames, masses, smaxes)

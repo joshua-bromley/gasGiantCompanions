@@ -34,23 +34,30 @@ rcParams["xtick.minor.size"] = 5
 rcParams["xtick.major.width"] = 1
 rcParams["xtick.minor.width"] = 1
 
-planets = pd.read_csv("./data/gasGiantDataComplete.csv")
+planets = pd.read_csv("./data/gasGiantData2.csv")
 planets = planets.loc[(pd.isna(planets["pl_bmassj"]) == False) & (pd.isna(planets["pl_orbsmax"]) == False) & (planets["pl_orbeccen"] > 0)]
 
 nPlanets = len(planets)
 
-coldJupiters = planets.loc[(planets["pl_type"] == "WJ") | (planets["pl_type"] == "CJ")]
+coldJupiters = planets.loc[ (planets["pl_type"] == "CJ")]
+warmJupiters = planets.loc[(planets["pl_type"] == "WJ")]
 hotJupiters = planets.loc[planets["pl_type"] == "HJ"]
-seCompanions = planets.loc[planets["companion_type"] %2 == 0]
-ssCompanions = planets.loc[(planets["companion_type"] % 3 == 0) | (planets["companion_type"] % 5 == 0)]
-hjCompanions = planets.loc[planets["companion_type"] % 7 == 0]
-cjCompanions = planets.loc[(planets["companion_type"] % 11 == 0) | (planets["companion_type"] % 13 == 0)]
+superEarths = planets.loc[planets["pl_type"] == "SE"]
+hotSaturns = planets.loc[planets["pl_type"] == "HS"]
+coldSaturns = planets.loc[planets["pl_type"] == "CS"]
 
-gasGiantsList = [ hjCompanions, cjCompanions]
-hostSystemsList = [hotJupiters, coldJupiters]
-gasGiantLabels= [ "HJ Companions", "CJ Companions"]
-symbols = [ '*', "P"]
-colours = [ "tab:red", "tab:purple"]
+seCompanions = planets.loc[planets["companion_type"] %2 == 0]
+hsCompanions = planets.loc[(planets["companion_type"] % 3 == 0)]
+csCompanions = planets.loc[(planets["companion_type"] % 5 == 0)]
+hjCompanions = planets.loc[planets["companion_type"] % 7 == 0]
+wjCompanions = planets.loc[(planets["companion_type"] % 11 == 0)]
+cjCompanions = planets.loc[(planets["companion_type"] % 13 == 0)]
+
+gasGiantsList = [ hjCompanions, cjCompanions, seCompanions, wjCompanions, hsCompanions, csCompanions]
+hostSystemsList = [hotJupiters, coldJupiters, superEarths, warmJupiters, hotSaturns, coldSaturns]
+gasGiantLabels= [ "HJ Companions", "CJ Companions", "SE Companions", "WJ Companions", "HS Companions", "CS Companions"]
+symbols = [ '*', "P", "s", "x", "^", "D"]
+colours = [ "tab:red", "tab:purple", "tab:orange", "tab:pink", "tab:green", "tab:cyan"]
 #gasGiantsList = [hjCompanions]
 cmpltMapMassBins = np.logspace(np.log10(0.3), np.log10(30), 50)
 cmpltMapSmaxBins = np.logspace(np.log10(0.3), np.log10(30), 50)
@@ -196,36 +203,40 @@ ax.tick_params(axis = 'x', bottom = True, top = True, which = "major", direction
 ax.tick_params(axis = 'x', bottom = True, top = True, which = "minor", direction = "in", labelsize = tickLabelSize, pad = 10)
 ax.tick_params(axis = 'y', bottom = True, top = True, which = "major", direction = "in", labelsize = tickLabelSize, pad = 10)
 ax.tick_params(axis = 'y', bottom = True, top = True, which = "minor", direction = "in", labelsize = tickLabelSize, pad = 10)
+for i in range(6):
+    ax.axvline(massBins[i], color = "k")
 plt.tight_layout()
+
 #fig.savefig("./plots/compltCorrMassDist.png")
 #fig.savefig("./plots/compltCorrMassDist.pdf")
 plt.show()
 
 fig1, ax1 = plt.subplots(1,1, figsize = (6,5))
-for i in range(len(gasGiantsList)):
-    ax1.errorbar(smaxBinCentres, smaxDist[i][:,0]/logSmaxBinWidth, yerr = smaxDist[i][:,1:].T/logSmaxBinWidth, ls = "", marker = symbols[i], label = gasGiantLabels[i], alpha = 0.8, capsize = 5, color = colours[i])
+for i in (5,2,1,0):
+    ax1.errorbar(smaxBinCentres*(1+0.0*i), smaxDist[i][:,0]/logSmaxBinWidth, yerr = smaxDist[i][:,1:].T/logSmaxBinWidth, ls = "", marker = symbols[i], label = gasGiantLabels[i], alpha = 0.8, capsize = 5, color = colours[i])
     #ax1.errorbar(smaxBinCentres, unCorrSmaxDist[i][:,0], yerr = unCorrSmaxDist[i][:,1:].T, ls = "", marker = "o")
 
 
-#yTicks = [0,0.2,0.4,0.6,0.8,1.0,1.2,1.4,1.6, 1.8]
-
-#ax1.set_yticks(yTicks)
-#ax1.set_xlim(0.6,20)
-#ax1.set_ylim(0.0,1.8)
+yTicks = [0,0.1,0.2,0.3,0.4,0.5]
+ 
+ax1.set_yticks(yTicks)
+ax1.set_xlim(0.6,20)
+ax1.set_ylim(0.0,0.5)
 
 ax1.set_xscale("log")
 #ax1.set_yscale("log")
 ax1.set_xlabel("Semi Major Axis (AU)", fontsize = 16)
 ax1.set_ylabel("Occurrence", fontsize = 16)
-ax1.legend(frameon = False)
+ax1.legend(frameon = False, fontsize = 12, loc = "upper left")
 
 tickLabelSize = 12
 ax1.tick_params(axis = 'x', bottom = True, top = True, which = "major", direction = "in", labelsize = tickLabelSize, pad = 10)
 ax1.tick_params(axis = 'x', bottom = True, top = True, which = "minor", direction = "in", labelsize = tickLabelSize, pad = 10)
 ax1.tick_params(axis = 'y', bottom = True, top = True, which = "major", direction = "in", labelsize = tickLabelSize, pad = 10)
 ax1.tick_params(axis = 'y', bottom = True, top = True, which = "minor", direction = "in", labelsize = tickLabelSize, pad = 10)
+
 plt.tight_layout()
-#fig1.savefig("./plots/compltCorrSmaxDist.png")
+fig1.savefig("./plots/compltCorrSmaxDist.png")
 #fig1.savefig("./plots/compltCorrSmaxDist.pdf")
 plt.show()
     

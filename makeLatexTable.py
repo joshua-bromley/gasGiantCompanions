@@ -1,7 +1,8 @@
 import numpy as np
 import pandas as pd
 
-planets = pd.read_csv("./data/gasGiantDataTable.csv")
+planets = pd.read_csv("./data/gasGiantDataCompleteTable.csv")
+planets = planets.loc[(planets["st_mass"] > 0.6) & (planets["st_mass"] < 1.6)]
 references = np.unique(planets["pl_refname"])
 hostnames = np.unique(planets["hostname"])
 rows = []
@@ -27,7 +28,7 @@ for i in range(len(hostnames)):
                 planetTypes[0] += 1
             case "WJ":
                 if planetTypes[0] == 0:
-                    planetTypeStr += "CJ, "
+                    planetTypeStr += "WJ, "
                 planetTypes[0] += 1
             case "HJ":
                 if planetTypes[1] == 0:
@@ -35,11 +36,11 @@ for i in range(len(hostnames)):
                 planetTypes[1] += 1
             case "CS":
                 if planetTypes[2] == 0:
-                    planetTypeStr += "SS, "
+                    planetTypeStr += "CS, "
                 planetTypes[2] += 1
             case "HS":
                 if planetTypes[2] == 0:
-                    planetTypeStr += "SS, "
+                    planetTypeStr += "HS, "
                 planetTypes[2] += 1
             case "SE":
                 if planetTypes[3] == 0:
