@@ -94,118 +94,118 @@ HD187085, Accepted
 HD188015, Accepted
 HD188641, Rejected, data not easily available
 HD190228, Accepted
-HD190647
-HD191806
-HD192263
-HD192699
-HD194490
-HD195019
-HD196050
-HD196067
-HD199509
-HD200964
-HD202206
-HD2039
-HD205158
-HD20782
-HD208487
-HD210277
-HD213240
-HD214823
-HD21520
-HD216435
-HD216437
-HD216536
-HD216770
-HD217107
-HD217786
-HD217958
-HD218566
-HD219077
-HD220689
-HD220842
-HD221416
-HD221420
-HD222155
-HD222582
-HD224538
-HD22532
-HD22946
-HD23079
-HD23127
-HD23596
-HD25015
-HD25171
-HD25912
-HD26161
-HD27442
-HD27631
-HD28185
-HD28192
-HD28254
-HD290327
-HD29399
-HD29985
-HD30562
-HD33564
-HD34445
-HD38283
-HD38801
-HD40979
-HD4113
-HD4208
-HD43197
-HD44219
-HD45350
-HD45364
-HD45652
-HD457
-HD4760
-HD48265
-HD48948
-HD5608
-HD56957
-HD60532
-HD62364
-HD62549
-HD63433
-HD63765
-HD63935
-HD6434
-HD65216
-HD66428
-HD6718
-HD70573
-HD70642
-HD7199
-HD72892
-HD73267
-HD73344
-HD7449
-HD74698
-HD79498
-HD80869
-HD80883
-HD80913
-HD81040
-HD82943
-HD8326
-HD86065
-HD86264
-HD8673
-HD88072
-HD88986
-HD89307
-HD89345
-HD93083
-HD93351
-HD94771
-HD95089
-HD95544
-HD95872
-HD97037
-HD98649
-HD99109
+HD190647, Accepted
+HD191806, Accepted
+HD192263, Accepted
+HD192699, Accepted
+HD194490, Rejected, data not easily available
+HD195019, Accepted
+HD196050, Accepted
+HD196067, Rejected, data not easily available
+HD199509, Rejected, data not easily available
+HD200964, Accepted
+HD202206, Rejected, circumbinary
+HD2039, Accepted
+HD205158, Rejected, data not easily available
+HD20782, Accepted
+HD208487, Accepted
+HD210277, Accepted
+HD213240, Accepted
+HD214823, Accepted
+HD21520, Rejected, baseline too short
+HD216435, Accepted
+HD216437, Accepted
+HD216536, Accepted
+HD216770, Rejected, only 16 observations
+HD217107, Accepted
+HD217786, Rejected, only 17 observations
+HD217958, Rejected, data not easily available
+HD218566, Accepted
+HD219077, Rejected, data not easily available
+HD220689, Rejected, data not easily available
+HD220842, Accepted
+HD221416, Rejected, baseline too short
+HD221420, Accepted
+HD222155, Accepted
+HD222582, Accepted
+HD224538, Accepted
+HD22532, Accepted
+HD22946, Rejected, only 14 observations
+HD23079, Rejected, only 19 observations
+HD23127, Accepted
+HD23596, Accepted
+HD25015, Accepted
+HD25171, Accepted
+HD25912, Rejected, data not easily available
+HD26161, Accepted
+HD27442, Accepted
+HD27631, Rejected, data not easily available
+HD28185, Accepted
+HD28192, Rejected, data not easily available
+HD28254, Accepted
+HD290327, Rejected, only 18 observations
+HD29399, Accepted
+HD29985, Rejected, data not easily available
+HD30562, Accepted
+HD33564, Rejected, data not easily available
+HD34445, Accepted, planet b only, Vogt solution considerd incorrect
+HD38283, Accepted
+HD38801, Accepted
+HD40979, Accepted
+HD4113, Accepted
+HD4208, Accepted
+HD43197, Accepted, planet b only
+HD44219, Accepted
+HD45350, Accepted
+HD45364, Accepted
+HD45652, Accepted
+HD457, Rejected, data not easily available
+HD4760, Accepted
+HD48265, Accepted
+HD48948, Accepted
+HD5608, Accepted
+HD56957, Rejected, data not easily available
+HD60532, Accepted
+HD62364, Rejected, data not easily available
+HD62549, Rejected, data not easily available
+HD63433, Accepted
+HD63765, Rejected, data not easily available
+HD63935, Accepted
+HD6434, Accepted
+HD65216, Accepted
+HD66428, Accepted
+HD6718, Accepted
+HD70573, Rejected, data not easily available
+HD70642, Accepted
+HD7199, Accepted
+HD72892, Accepted
+HD73267, Accepted
+HD73344, Accepted
+HD7449, Accepted
+HD74698, Rejected, data not easily available
+HD79498, Accepted
+HD80869, Accepted
+HD80883, Rejected, data not easily available
+HD80913, Rejected, data not easily available
+HD81040, Accepted
+HD82943, Accepted
+HD8326, Rejected, only 16 observations
+HD86065, Rejected, data not easily available
+HD86264, Accepted
+HD8673, Accepted
+HD88072, Rejected, data not easily available
+HD88986, Accepted
+HD89307, Accepted
+HD89345, Rejected, baseline too short
+HD93083, Rejected, only 16 observations
+HD93351, Rejected, data not easily available
+HD94771, Rejected, data not easily available
+HD95089, Accepted
+HD95544, Accepted
+HD95872, Accepted
+HD97037, Rejected, data not easily available
+HD98649, Accepted
+HD99109, Accepted
 HIP12961
 HIP19976
 HIP34222
