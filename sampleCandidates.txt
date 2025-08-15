@@ -206,119 +206,118 @@ HD95872, Accepted
 HD97037, Rejected, data not easily available
 HD98649, Accepted
 HD99109, Accepted
-HIP12961
-HIP19976
-HIP34222
-HIP35965
-HIP5158
-HIP54597
-HIP55507
-HIP57274
-HIP5763
-HIP63242
-HIP66074
-HIP70849
-HIP71135
-HIP8152
-HIP948
-HIP97166
-HR 5183
-HR 810
-HR 858
-K210
-K2115
-K2139
-K2232
-K2233
-K224
-K2261
-K2285
-K2287
-K2290
-K2292
-K299
-KOI12
-KOI2513
-KOI351
-Kepler111
-Kepler117
-Kepler139
-Kepler1513
-Kepler1514
-Kepler16
-Kepler1654
-Kepler167
-Kepler1704
-Kepler39
-Kepler418
-Kepler419
-Kepler434
-Kepler553
-Kepler65
-Kepler849
-Kepler9
-NGTS11
-PH2
-TIC172900988A
-TIC237913194
-TIC241249530
-TIC393818343
-TOI1052
-TOI1136
-TOI1249
-TOI125
-TOI1260
-TOI1288
-TOI1294
-TOI1338A
-TOI1386
-TOI1410
-TOI1437
-TOI1439
-TOI1451
-TOI1669
-TOI1670
-TOI1691
-TOI1710
-TOI1723
-TOI1736
-TOI1742
-TOI1751
-TOI1758
-TOI178
-TOI1823
-TOI1824
-TOI1836
-TOI1898
-TOI2019
-TOI2128
-TOI2295
-TOI2373
-TOI2443
-TOI2447
-TOI2458
-TOI2525
-TOI2537
-TOI4010
-TOI4127
-TOI421
-TOI4504
-TOI4515
-TOI4562
-TOI4633
-TOI5076
-TOI5110
-TOI5542
-TOI558
-TOI5678
-TOI677
-TOI757
-TOI763
-V1298Tau
-WASP130
-epsIndA
-iotDra
-kapCrB
-nuOctA
-omiCrB
-psi1DraB
+HIP12961, Accepted
+HIP19976, Rejected, data not easily available
+HIP34222, Rejected, only 19 observations
+HIP35965, Rejected, data not easily available
+HIP5158, Accepted
+HIP54597, Rejected, data not easily available
+HIP55507, Rejected, data not easily available
+HIP57274, Rejected, data not easily available
+HIP5763, Rejected, only 19 observations
+HIP63242, Rejected, only 15 observations
+HIP6607, Rejected, baseline too short
+HIP70849, Rejected, data not easily available 
+HIP71135, Accepted
+HIP8152, Accepted
+HIP948, Rejected, data not easily available
+HIP97166, Rejected, baseline too short
+HR810, Accepted
+HR858, Rejected, baseline too short
+K210, Rejected, baseline too short
+K2115, Rejected, only 7 observations
+K2139, Rejected, baseline too short
+K2232, Rejected, baseline too short
+K2233, Rejected, baseline too short
+K224, Rejected, baseline too short
+K2261, Rejected, baseline too short
+K2285, Rejected, baseline too short
+K2287, Rejected, baseline too short
+K2290, Rejected, baseline too short
+K2292, Rejected, baseline too short
+K299, Accepted
+KOI12, Accepted
+KOI2513, Accepted
+KOI351, Accepted
+Kepler111, Rejected, only 6 observations
+Kepler117, Rejected, only 15 observations
+Kepler139, Accepted
+Kepler1513, Rejected, data not easily available
+Kepler1514, Rejected, only 11 observations
+Kepler16, Rejected, circumbinary (sufficient data is available if needed)
+Kepler1654, Rejected, only 18 observations
+Kepler167, Rejected, only 13 observations
+Kepler1704, Rejected, only 14 obsevations
+Kepler39, Rejected, only 13 observations
+Kepler418, Rejected, only 7 observations
+Kepler419, Accepted
+Kepler434, Rejected, only 11 observations
+Kepler553, Rejected, only 13 observations
+Kepler65, Accepted
+Kepler849, Rejected, only 17 observations
+Kepler9, Rejected, only 19 observations
+NGTS11, Rejected, only 18 observations
+PH2, Rejected, only 9 observations
+TIC172900988A, Rejected, circumbinary (sufficient data is available if needed)
+TIC237913194, Rejected, baseline too short
+TIC241249530, Accepted
+TIC393818343, Rejected, baseline too short
+TOI1052, Rejected, baseline too short
+TOI1136, Accepted
+TOI1249, Rejected, data not easily available
+TOI125, Rejected, baseline too short
+TOI1260, Rejected, baseline too short
+TOI1288, Accepted
+TOI1294, Rejected, data not easily available
+TOI1338A, Accepted
+TOI1386, Accepted
+TOI1410, Rejected, data not easily available
+TOI1437, Accepted
+TOI1439, Rejected, data not easily available
+TOI1451, Rejected, data not easily available
+TOI1669, Accepted
+TOI1670, Accepted
+TOI1691, Rejected, data not easily available
+TOI1710, Accepted
+TOI1723, Rejected, data not easily available 
+TOI1736, Accepted
+TOI1742, Rejected, data not easily available
+TOI1751, Accepted
+TOI1758, Rejected, data not easily available
+TOI178, Rejected, baseline too short
+TOI1823, Rejected, data not easily available
+TOI1824, Rejected, data not easily available
+TOI1836, Accepted
+TOI1898, Rejected, data not easily available
+TOI2019, Rejected, data not easily available
+TOI2128, Rejected, data not easily available
+TOI2295, Accepted
+TOI2373, Rejected, only 16 observations
+TOI2443, Accepted
+TOI2447, Rejected, data not easily available
+TOI2458, Accepted
+TOI2525, Rejected, only 11 observations
+TOI2537, Accepted
+TOI4010, Accepted
+TOI4127, Accepted
+TOI421, Accepted
+TOI4504, Accepted
+TOI4515, Accepted
+TOI4562, Rejected, baseline too short
+TOI4633, Accepted
+TOI5076, Accepted
+TOI5110, Accepted
+TOI5542, Rejected, baseline too short
+TOI558, Rejected, only 14 observations
+TOI5678, Rejected, baseline too short
+TOI677, Accepted
+TOI757, Accepted
+TOI763, Rejected, baseline too short
+V1298Tau, Rejected, T Tauri star 
+WASP130, Accepted
+epsIndA, Accepted
+iotDra, Accepted
+kapCrB, Accepted
+nuOctA, Accepted
+omiCrB, Accepted
+psi1DraB, Accepted

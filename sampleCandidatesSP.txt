@@ -1,0 +1,493 @@
+BD103166
+BD143065, Accepted 
+CoRoT1, Rejected, only 9 observations
+CoRoT11, Rejected, only 12 observations
+CoRoT13, Rejected, only 15 observations
+CoRoT14, Rejected, only 14 observations
+CoRoT17, Rejected, only 17 observations
+CoRoT18, Rejected, baseline too short
+CoRoT19, Rejected, baseline too short
+CoRoT2, Rejected, baseline too short
+CoRoT21, Rejected, only 19 observations
+CoRoT22, Accepted
+CoRoT23, Rejected, only 10 observations
+CoRoT27, Rejected, only 13 observations
+CoRoT3, Rejected, baseline too short
+CoRoT30, Rejected, only 18 observations
+CoRoT31, Rejected, only 17 observations
+CoRoT32, Accepted
+CoRoT35, Rejects, only 9 observations
+CoRoT36, Accepted
+CoRoT4, Rejected, baseline too short
+CoRoT5, Rejected, only 19 observations
+CoRoT6, Rejected, only 14 observations
+CoRoT7, Accepted
+CoRoT8, Rejected, on 19 observations
+DMPP2, Rejected, data not easily available
+EPIC201595106, Rejected, data not easily available
+EPIC246851721, Rejected, baseline too short
+GJ3222, Rejected, data not easily avaialble
+Gaia1, Rejected, only 11 observations
+Gaia2, Rejected, only 8 observations
+HATP19, Rejected, baseline too short
+HATP23, Rejected, only 13 observations
+HATP25, Rejected, only 8 observations
+HATP26, Accepted
+HATP27, Accepted
+HATP28, Rejected, only 17 observations
+HATP35, Rejected, only 12 observations
+HATP36, Rejected, only 12 observations
+HATP37, Rejected, only 12 observations
+HATP38, Rejected, only 14 observations
+HATP39, Accepted
+HATP4, Accepted
+HATP40, Rejected, only 13 observations
+HATP42, Rejected, only 14 observations
+HATP43, Rejected, only 6 observations
+HATP45, Rejected, only 14 observations
+HATP46, Rejected, only 13 observations
+HATP5, Rejected, only 8 observations
+HATP51, Rejected, baseline too short
+HATP52, Rejected, only 7 observations
+HATP53, Rejected, only 6 observations
+HATP54, Rejected, only 17 observations
+HATP55, Rejected, only 16 observations
+HATP56, Rejected, only 18 observations
+HATP58, Rejected, only 8 observations
+HATP59, Rejected, baseline too short
+HATP62, Rejected, only 15 observations
+HATP64, Rejected, only 15 observations
+HATP65, Rejected, only 14 observations
+HATP68, Rejected, only 14 observations
+HATP7, Accepted
+HATP8, Accepted
+HATP9, Rejected, only 19 observations
+HATS1, Rejected, baseline too short
+HATS10, Rejected, baseline too short
+HATS11, Rejected, only 19 observations
+HATS12, Rejected, baseline too short
+HATS13, Rejected, baseline too short
+HATS14, Rejected, only 17 observations
+HATS15, Rejected, only 16 observations
+HATS16, Rejected, only 16 observations
+HATS18, Rejected, only 6 observations
+HATS2, Rejected, only 14 observations
+HATS22, Rejected, only 15 observations
+HATS23, Rejected, only 10 observations
+HATS24, Rejected, baseline too short
+HATS25, Rejected, only 8 observations
+HATS26, Rejected, only 14 observations
+HATS28, Rejected, only 18 observations
+HATS29, Rejected, only 16 observations
+HATS3, Rejected, baseline too short
+HATS30, Rejected, only 13 observations
+HATS31, Rejected, only 6 observations
+HATS32, Rejected, only 8 observations
+HATS34, Rejected, only 7 observations
+HATS35, Rejected, only 17 observations
+HATS36, Rejected, only 16 observations
+HATS37, Rejected, only 14 observations
+HATS38, Rejected, baseline too short
+HATS39, Accepted
+HATS4, Rejected, baseline too short
+HATS40, Rejected, only 10 observations
+HATS42, Rejected, only 9 observations
+HATS43, Rejected, only 19 observations
+HATS44, Rejected, only 15 observations
+HATS45, Rejected, only 18 observations
+HATS47, Rejected, only 13 observations
+HATS48, Rejected, only 16 observations
+HATS49, Rejected, only 9 observations
+HATS5, Rejected, baseline too short
+HATS52, Rejected, only 14 observations
+HATS53, Rejected, only 13 observations
+HATS55, Rejected, only 6 observations
+HATS57, Rejected, only 15 observations
+HATS58, Rejected, baseline too short
+HATS60, Rejected, only 16 observations
+HATS61, Rejected, only 11 observations
+HATS63, Rejected, only 13 observations
+HATS65, Rejected, only 10 observations
+HATS66, Rejected, only 11 observations
+HATS67, Rejected, only 13 observations
+HATS69, Rejected, only 17 observations
+HATS7, Rejected, only 10 observations
+HATS74, Rejected, only 5 observations
+HATS75, Rejected, only 5 observations
+HATS76, Rejected, only 4 observations
+HATS77, Rejected, only 5 observations
+HATS8, Rejected, only 9 observations
+HATS9, Rejected, baseline too short
+HD102195, Accepted
+HD110113, Rejected, baseline too short
+HD115404, Rejected, data not easily available
+HD149026, Accepted
+HD168746, Accepted
+HD179949, Accepted
+HD20329, Rejected, baseline too short
+HD207496, Rejected, data not easily available
+HD212301, Accepted
+HD213519, Rejected, data not easily available
+HD219666, Rejected, baseline too short
+HD235088, Accepted
+HD25463, Accepted
+HD2638, Accetped
+HD2685, Rejected, baseline too short
+HD285507, Rejected, baseline too short
+HD49674, Accepted
+HD6061, Accepted
+HD75289, Accepted
+HD76700, Accepted
+HD77946, Accepted
+HD93963, Rejected, baseline too short 
+HIP65, Accepted
+HIP86221, Rejected, only 9 observations
+HIP91258, Rejected, baseline too short
+HIP94235, Rejected, baseline too short
+K2105, Rejected, data not easily available
+K2107, Rejected, only 8 observations
+K2108, Rejected, data not easily available
+K2113, Rejected, only 9 observations
+K2114, Rejected, only 5 observations
+K2132, Rejected, only 13 observations
+K2138, Rejected, baseline too short
+K2140, Rejected, baseline too short
+K2157, Accepted
+K2180, Rejected, only 17 observations
+K2182, Rejected, only 12 observations
+K2229, Rejected, baseline too short
+K2237, Rejected, data not easily available
+K2238, Rejected, only 17 observations
+K229, Rejected, baseline too short
+K2291, Rejected, baseline too short
+K2295, Rejected, only 7 observations
+K230, Rejected, only 14 observations
+K231, Rejected, only 17 observations
+K234, Rejected, baseline too short
+K239, Rejected, baseline too short
+K260, Rejected, only 8 observations
+K279, Accepted
+K297, Rejected, only 9 observations
+K298, Rejected, only 12 observations
+KELT10, Rejected, only 12 observations
+KELT11, Accepted
+KELT14, Rejected, only 17 observations
+KELT16, Rejected, baseline too short
+KELT18, Rejected, baseline too short
+KELT2, Rejected, only 17 observations
+KELT21, Accpeted
+KELT23, Rejected, baseline too short
+KELT4, Accepted
+KELT8, Rejected, only 12 observations
+KPS1, Rejected, only 10 observations
+Kepler12, Rejected, only 16 observations
+Kepler14, Rejected, only 14 observations
+Kepler15, Rejected, baseline too short
+Kepler17, Rejected, baseline too short
+Kepler4, Rejected, only 19 observations
+Kepler40, Rejected, only 11 observations
+Kepler41, Rejected, only 12 observations
+Kepler412, Rejected, only 6 observations
+Kepler422, Rejected, only 15 observations
+Kepler425, Rejected, only 10 observations
+Kepler426, Rejected, only 10 observations
+Kepler427, Rejected, only 9 observations
+Kepler428, Rejected, only 6 observations
+Kepler433, Rejected, only 12 observations
+Kepler435, Rejected, only 12 observations
+Kepler44, Rejected, only 7 observations
+Kepler5, Rejected, only 8 observations
+Kepler6, Rejected, only 9 observations
+Kepler63, Rejected, baseline too short
+Kepler7, Rejected, only 9 observations
+Kepler74, Rejected, only 17 observations
+Kepler75, Rejected, only 9 observations
+Kepler76, Rejected, only 18 observations
+Kepler8, Rejected, only 16 observations
+Kepler91, Rejected, only 9 observations
+L1689, Accepted
+LTT9779, Rejected, baseline too short
+NGTS1, Rejected, only 7 observations
+NGTS10, Rejected, only 10 observations
+NGTS12, Rejected, only 12 observations
+NGTS13, Rejected, only 13 observations
+NGTS14, Rejected, only 15 observations
+NGTS15, Rejected, only 14 observations
+NGTS16, Rejected, only 12 observations
+NGTS17, Rejected, baseline too short
+NGTS18, Rejected, only 15 observations
+NGTS21, Rejected, only 5 observations
+NGTS23, Rejected, only 18 observations
+NGTS24, Rejected, only 11 observations
+NGTS25, Rejected, only 14 observations
+NGTS26, Rejected, only 17 observations
+NGTS27, Rejected, only 18 observations
+NGTS4, Rejected, only 14 observations
+NGTS6, Rejected, baseline too short
+NGTS8, Rejected, only 14 observations
+NGTS9, Rejected, only 16 observations
+OGLE2TRL9, Rejected, only 8 observations
+OGLETR10, Rejected, only 16 observations
+OGLETR111, Rejected, only 8 observations
+OGLETR113, Rejected, only 14 observations
+OGLETR132, Rejected, only 4 observations
+OGLETR182, Accepted
+OGLETR211, Rejected, only 19 observations
+OGLETR56, Rejected, only 16 observations
+POTS1, Rejected, only 13 observations
+Pr0201, Rejected, baseline too short
+Qatar1, Rejected, only 15 observations
+Qatar10, Rejected, baseline too short
+Qatar3, Rejected, baseline too short
+Qatar4, Rejected, only 10 observations
+Qatar5, Rejected, baseline too short
+Qatar6, Rejected, baseline too short
+Qatar7, Rejected, only 15 observations
+Qatar8, Rejected, only 17 observations
+Qatar9, Rejected, only 9 observations
+TIC257060897, Rejected, only 11 observations
+TIC365102760, Accepted
+TOI1062, Rejected, baseline too short
+TOI1064, Rejected, baseline too short
+TOI1075, Rejected, baseline too short
+TOI1107, Rejected, baseline too short
+TOI1135, Rejected, baseline too short
+TOI1180, Rejected, data not easily available
+TOI1184, Rejected, data not easily available
+TOI1194, Accepted
+TOI1235, Rejected, baseline too short
+TOI1244, Rejected, data not easily available
+TOI1248, Rejected, data not easily available
+TOI1259, Rejected, only 19 observations
+TOI1269, Rejected, data not easily available
+TOI1272, Accpeted
+TOI1279, Rejected, data not easily available
+TOI1295, Rejected, baseline too short
+TOI1296, Rejected, baseline too short
+TOI1298, Rejected, baseline too short
+TOI132, Rejected, baseline too short
+TOI1333, Rejected, only 16 observations
+TOI1347, Accepted
+TOI1408, Accepted
+TOI1411, Rejected, data not easily available
+TOI1420, Rejected, baseline too short
+TOI1444, Rejected, baseline too short
+TOI1472, Rejected, data not easily available
+TOI1478, Accepted
+TOI150, Rejected, baseline too short
+TOI157, Rejected, baseline too short
+TOI1601, Rejected, only 17 observations
+TOI163, Rejected, baseline too short
+TOI169, Rejected only 16 observations
+TOI1694, Accepted
+TOI172, Rejected, baseline too short
+TOI1728, Rejected, baseline too short
+TOI1753, Rejected, data not easily available
+TOI1775, Rejected, data not easily available
+TOI1789, Rejected, baseline too short
+TOI1794, Rejected, data not easily available
+TOI1798, Rejected, data not easily available
+TOI1799, Rejected, data not easily available
+TOI1811, Rejected, only 12 observations
+TOI1820, Rejected, baseline too short
+TOI1855, Rejected, only 18 observations
+TOI1937, Rejected, only 13 observations
+TOI2025, Accepted
+TOI2109, Rejected, baseline too short
+TOI2152, Rejected, only 12 observations
+TOI2154, Rejected, only 11 observations
+TOI2158, Accepted
+TOI2193, Rejected, only 8 observations
+TOI2196, Rejected, baseline too short
+TOI220, Rejected, baseline too short
+TOI2207, Rejected, baseline too short
+TOI2236, Rejected, only 8 observations
+TOI2364, Rejected, only 10 observations
+TOI2374, Rejected, baseline too short
+TOI2379, Rejected, baseline too short
+TOI238, Accepted
+TOI2384, Rejected, only 7 observations
+TOI2416, Rejected, only 17 observations
+TOI2421, Rejected, baseline too short
+TOI2498, Rejected, only 16 observations
+TOI251, Rejected, only 10 observations
+TOI2524, Rejected, only 8 observations
+TOI2567, Rejected, only 8 observations
+TOI2570, Rejected, only 9 pservations
+TOI2580, Rejected, baseline too short
+TOI2583, Rejected, only 8 observations
+TOI2587, Rejected, only 12 observations
+TOI260, Accepted
+TOI2641, Accepted
+TOI2714, Rejected, only 8 observations
+TOI2796, Rejected, only 12 observations
+TOI2803, Rejected, only 9 observations
+TOI2818, Rejected, only 7 observations
+TOI2842, Rejected, only 8 observations
+TOI286, Accepted
+TOI2977, Rejected, only 6 observations
+TOI2981, Rejected, only 15 observations
+TOI3023, Rejected, only 6 observations
+TOI3071, Rejected, only 14 observations
+TOI3261, Rejected, baseline too short
+TOI329, Rejected, data not easily available
+TOI332, Rejected, only 16 observations
+TOI3321, Rejected, data not easily available
+TOI3331, Rejected, only 6 observations
+TOI3364, Rejected, only 6 observations
+TOI3540, Rejected, only 8 observations
+TOI3568, Rejected, baseline too short
+TOI3688, Rejected, only 9 observations
+TOI3693, Rejected, only 12 observations
+TOI3757, Rejected, baseline too short
+TOI3807, Rejected, only 7 observations
+TOI3819, Rejected, only 8 observations
+TOI3894, Rejected, baseline too short
+TOI3912, Rejected, only 9 observations
+TOI3919, Rejected, baseline too short
+TOI3976, Rejected, only 17 observations 
+TOI4087, Rejected, only 15 observations
+TOI4137, Rejected, only 8 observations
+TOI4145, Rejected, only 10 observations 
+TOI4153, Rejected, baseline too short
+TOI4201, Rejected, baseline too short
+TOI4377, Rejected, baseline too short
+TOI4463, Rejected, only 8 observations
+TOI4551, Accepted
+TOI4791. Rejected, only 8 observations
+TOI480, Rejected, data not easily avialable
+TOI4914, Rejected, only 17 observations
+TOI5005, Rejected, baseline too short
+TOI5218, Rejected, only 5 observations
+TOI5232, Rejected, only 17 observations
+TOI5301, Rejected, only 17 observations
+TOI532, Rejected, baseline too short
+TOI5344, Rejected, only 14 observations
+TOI559, Rejected, baseline too short
+TOI5616, Rejected, only 12 observations
+TOI564, Rejected, only 12 observations
+TOI6016, Rejected, baseline too short
+TOI6130, Rejected, baseline too short
+TOI628, Rejected, baseline too short
+TOI640, Rejected, baseline too short
+TOI6651, Rejected, baseline too short
+TOI669, Accepted
+TOI733, Rejected, baseline too short
+TOI824, Rejected, baseline too short
+TOI836, Rejected, baseline too short
+TOI837, Rejected, baseline too short
+TOI849, Rejected, baseline too short
+TOI858B, Accepted
+TOI892, Rejected, baseline too short
+TOI905, Rejected, only 18 observations
+TOI908, Rejected, baseline too short
+TOI942, Rejected, baseline too short
+TOI954, Rejected, baseline too short
+TAP26, Rejected, T Tauri Star
+TrES1, Rejected, data not easily available
+TrES3, Rejected, only 17 observations
+TrES5, Rejected, only 8 observations
+V1298Tau, Rejected, T Tauri Star
+V830Tau, Rejected, T Tauri Star
+WASP1
+WASP10
+WASP100
+WASP101
+WASP103
+WASP104
+WASP105
+WASP11
+WASP113
+WASP114
+WASP118
+WASP119
+WASP12
+WASP120
+WASP121
+WASP123
+WASP124
+WASP126
+WASP127
+WASP129
+WASP133
+WASP135
+WASP140
+WASP141
+WASP142
+WASP144
+WASP145 
+WASP15
+WASP151
+WASP157
+WASP158
+WASP159
+WASP160 B
+WASP161
+WASP162
+WASP163
+WASP164
+WASP165
+WASP169
+WASP170
+WASP171
+WASP173 
+WASP174
+WASP175
+WASP177
+WASP18
+WASP180 
+WASP183
+WASP184
+WASP185
+WASP186
+WASP187
+WASP19
+WASP190
+WASP192
+WASP2
+WASP23
+WASP25
+WASP28
+WASP29
+WASP31
+WASP33
+WASP35
+WASP36
+WASP37
+WASP39
+WASP44
+WASP45
+WASP46
+WASP52
+WASP55
+WASP56
+WASP57
+WASP58
+WASP59
+WASP64
+WASP65
+WASP67
+WASP70 
+WASP71
+WASP75
+WASP77 
+WASP79
+WASP82
+WASP84
+WASP87
+WASP90
+WASP91
+WASP92
+WASP93
+WASP94 B
+WASP95
+WASP97
+WASP98
+WASP99
+WTS-2
+Wendelstein1
+Wendelstein2
+XO1
+XO2N
+XO4
+XO6
