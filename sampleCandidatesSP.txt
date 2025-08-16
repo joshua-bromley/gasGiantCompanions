@@ -389,105 +389,104 @@ TrES3, Rejected, only 17 observations
 TrES5, Rejected, only 8 observations
 V1298Tau, Rejected, T Tauri Star
 V830Tau, Rejected, T Tauri Star
-WASP1
-WASP10
-WASP100
-WASP101
-WASP103
-WASP104
-WASP105
-WASP11
-WASP113
-WASP114
-WASP118
-WASP119
-WASP12
-WASP120
-WASP121
-WASP123
-WASP124
-WASP126
-WASP127
-WASP129
-WASP133
-WASP135
-WASP140
-WASP141
-WASP142
-WASP144
-WASP145 
-WASP15
-WASP151
-WASP157
-WASP158
-WASP159
-WASP160 B
-WASP161
-WASP162
-WASP163
-WASP164
-WASP165
-WASP169
-WASP170
-WASP171
-WASP173 
-WASP174
-WASP175
-WASP177
-WASP18
-WASP180 
-WASP183
-WASP184
-WASP185
-WASP186
-WASP187
-WASP19
-WASP190
-WASP192
-WASP2
-WASP23
-WASP25
-WASP28
-WASP29
-WASP31
-WASP33
-WASP35
-WASP36
-WASP37
-WASP39
-WASP44
-WASP45
-WASP46
-WASP52
-WASP55
-WASP56
-WASP57
-WASP58
-WASP59
-WASP64
-WASP65
-WASP67
-WASP70 
-WASP71
-WASP75
-WASP77 
-WASP79
-WASP82
-WASP84
-WASP87
-WASP90
-WASP91
-WASP92
-WASP93
-WASP94 B
-WASP95
-WASP97
-WASP98
-WASP99
-WTS-2
-Wendelstein1
-Wendelstein2
-XO1
-XO2N
-XO4
-XO6
+WASP1, Accepted
+WASP10, Accepted
+WASP100, Rejected, only 19 observations
+WASP101, Rejected, only 19 observations
+WASP103, Rejected, only 18 observations
+WASP104, Accepted
+WASP105, Rejected, data not easily available
+WASP11, Accepted
+WASP113, Rejected, baseline too short
+WASP114, Rejected, baseline too short
+WASP118, Rejected, data not easily available
+WASP119, Rejected, only 18 observations
+WASP12, Accepted
+WASP120, Accepted
+WASP121, Rejected, baseline too short
+WASP123, Rejected, baseline too short
+WASP124, Accetped
+WASP126, Rejected, baseline too short
+WASP127, Accepted
+WASP129, Rejected, only 9 observations
+WASP133, Rejected, only 12 observations
+WASP135, Rejected, baseline too short
+WASP140, Accepted
+WASP141, Rejected, only 18 observations
+WASP142, Rejected, only 16 observations
+WASP144, Rejected, only 16 observations
+WASP145, Rejected, only 19 observations
+WASP15, Accepted
+WASP151, Accepted
+WASP157, Rejected, only 12 observations
+WASP158, Accepted
+WASP159, Accepted
+WASP161, Accepted
+WASP162, Rejected, only 18 observations
+WASP163, Accepted
+WASP164, Accepted
+WASP165, Accepted
+WASP169, Accepted
+WASP170, Accepted
+WASP171, Accepted
+WASP173, Rejected, only 18 observations
+WASP174, Rejected, only 16 observations
+WASP175, Accepted
+WASP177, Accepted
+WASP18, Accepted
+WASP180, Accepted 
+WASP183, Accepted
+WASP184, Rejected, only 19 observations
+WASP185, Accepted
+WASP186, Accepted
+WASP187, Accepted
+WASP19, Accepted
+WASP190, Accepted
+WASP192, Rejected, only 12 observations
+WASP2, Rejected, data not easily available
+WASP23, Accepted
+WASP25, Rejected, baseline too short
+WASP28, Accepted
+WASP29, Rejected, only 13 observations
+WASP31, Accepted
+WASP33, Rejected, baseline too short
+WASP35, Rejected, only 19 observations
+WASP36, Rejected, only 19 observations
+WASP37, Rejected, only 13 observations
+WASP39, Rejected, only 17 observations
+WASP44, Rejected, only 15 observations
+WASP45, Rejected, onl7 13 observations
+WASP46, Rejected, only 16 observations
+WASP52, Accepted
+WASP55, Rejected, baseline too short
+WASP56, Rejected, only 13 observations
+WASP57, Rejected, baseline too short
+WASP58, Rejected, only 15 observations
+WASP59, Rejected, only 12 observations
+WASP64, Rejected, only 16 observations
+WASP65, Rejected, only 18 observations
+WASP67, Rejected, only 19 observations
+WASP70, Accepted
+WASP71, Rejected, baseline too short
+WASP75, Rejected, only 15 obserations
+WASP77, Rejected, only 19 observations
+WASP79, Accepted
+WASP82, Accepted
+WASP84, Rejected, baseline too short
+WASP87, Rejected, only 17 observations
+WASP90, Rejected, only 14 observations
+WASP91, Rejcted, only 12 observations
+WASP92, Rejected, only 9 observations
+WASP93, Rejected, data not easily available
+WASP94B, Accepted
+WASP95, Rejected, only 14 observations
+WASP97, Rejected, only 12 observations
+WASP98, Rejected, only 14 observations
+WASP99, Rejected, baseline too short
+WTS-2, Rejected, only 7 observations
+Wendelstein1, Rejected, only 9 observations
+Wendelstein2, Rejected, only 7 observations
+XO1, Rejected, only 18 observations
+XO2N, Accepted
+XO4, Accepted
+XO6, Accepted
