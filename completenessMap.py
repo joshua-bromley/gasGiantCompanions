@@ -18,18 +18,21 @@ from PyAstronomy.pyTiming import pyPeriod
  
 def complete_maps():
     
-    sys = np.array(["55cnc",'upsAnd',"gamLib", "XO2S", "WASP8", "WASP53", "WASP47", "WASP41", "TYC14226141", "TOI969", "Pr0211"])#(['LSPMJ21160234'])#(['HD285968'])#(['GJ3293'])#(['GJ251'])#(['GJ229A'])#(['Wolf1061','Wolf1069','YZCet'])#(['TOI1266','TOI1452','TOI1468','TOI1695','TOI2018'])#(['proxima_cen','Ross128','Ross508','TOI244','TOI663'])#(['L9859','L36338','LHS1140','LHS1815','LTT1445A'])#(['K2-25','K2-415','Kapteyn','K2-18','Kepler138'])#(['HIP22627','HIP54373','HIP83043','HNLib','K2-3'])#(['GJ4276','GJ9689','GJ9827','HD180617','HD238090'])#(['GJ3634','GJ3779','GJ3929','GJ3988','GJ3998'])#(['GJ3082','GJ3138','GJ3323','GJ3341','GJ3470'])#(['GJ1002','GJ1132','GJ1151','GJ1214','GJ1265'])#(['GJ724','GJ740','GJ806','GJ876','GJ887'])#(['GJ674','GJ685','GJ686','GJ687','GJ720A'])#(['GJ514','GJ536','GJ581','GJ625','GJ667C'])#(['GJ411','GJ422','GJ433','GJ480','GJ486'])#(['GJ338B','GJ357','GJ367','GJ378','GJ393'])#(['GJ15A','GJ27','GJ49','GJ163','GJ273'])#(['AUMic','BD-082823','CD_Cet','G264-012','GJ12'])
+    #sys = np.array(["55cnc",'upsAnd',"gamLib", "XO2S", "WASP8", "WASP53", "WASP47", "WASP41", "TYC14226141", "TOI969", "Pr0211"])#(['LSPMJ21160234'])#(['HD285968'])#(['GJ3293'])#(['GJ251'])#(['GJ229A'])#(['Wolf1061','Wolf1069','YZCet'])#(['TOI1266','TOI1452','TOI1468','TOI1695','TOI2018'])#(['proxima_cen','Ross128','Ross508','TOI244','TOI663'])#(['L9859','L36338','LHS1140','LHS1815','LTT1445A'])#(['K2-25','K2-415','Kapteyn','K2-18','Kepler138'])#(['HIP22627','HIP54373','HIP83043','HNLib','K2-3'])#(['GJ4276','GJ9689','GJ9827','HD180617','HD238090'])#(['GJ3634','GJ3779','GJ3929','GJ3988','GJ3998'])#(['GJ3082','GJ3138','GJ3323','GJ3341','GJ3470'])#(['GJ1002','GJ1132','GJ1151','GJ1214','GJ1265'])#(['GJ724','GJ740','GJ806','GJ876','GJ887'])#(['GJ674','GJ685','GJ686','GJ687','GJ720A'])#(['GJ514','GJ536','GJ581','GJ625','GJ667C'])#(['GJ411','GJ422','GJ433','GJ480','GJ486'])#(['GJ338B','GJ357','GJ367','GJ378','GJ393'])#(['GJ15A','GJ27','GJ49','GJ163','GJ273'])#(['AUMic','BD-082823','CD_Cet','G264-012','GJ12'])
    
-    mass_star = np.array([0.91,1.3,1.78,0.98,1.34,0.84,1.06, 0.81, 1.15, 0.73 ])#([0.43])#([0.5])#([0.42])#([0.36])#([0.509])#([0.294,0.167,0.142])#([0.431,0.249,0.339,0.54,0.57])#([0.1221,0.168,0.1774,0.428,0.514])#([0.273,0.21,0.179,0.502,0.257])#([0.2634,0.1635,0.281,0.359,0.535])#([0.393,0.57,0.52,0.291,0.549])#([0.406,0.59,0.62,0.484,0.578])#([0.45,0.27,0.313,0.184,0.50])#([0.47,0.68,0.164,0.47,0.539])#([0.12,0.181,0.164,0.182,0.178])#([0.527,0.58,0.413,0.370,0.489])#([0.35,0.55,0.426,0.40,0.57])#([0.51,0.52,0.311,0.3,0.33])#([0.39,0.35,0.48,0.45,0.323])#([0.64,0.342,0.455,0.56,0.426])#([0.38,0.53,0.515,0.38,0.29])#([0.51,0.50,0.161,0.297,0.241])
+    #mass_star = np.array([0.91,1.3,1.78,0.98,1.34,0.84,1.06, 0.81, 1.15, 0.73 ])#([0.43])#([0.5])#([0.42])#([0.36])#([0.509])#([0.294,0.167,0.142])#([0.431,0.249,0.339,0.54,0.57])#([0.1221,0.168,0.1774,0.428,0.514])#([0.273,0.21,0.179,0.502,0.257])#([0.2634,0.1635,0.281,0.359,0.535])#([0.393,0.57,0.52,0.291,0.549])#([0.406,0.59,0.62,0.484,0.578])#([0.45,0.27,0.313,0.184,0.50])#([0.47,0.68,0.164,0.47,0.539])#([0.12,0.181,0.164,0.182,0.178])#([0.527,0.58,0.413,0.370,0.489])#([0.35,0.55,0.426,0.40,0.57])#([0.51,0.52,0.311,0.3,0.33])#([0.39,0.35,0.48,0.45,0.323])#([0.64,0.342,0.455,0.56,0.426])#([0.38,0.53,0.515,0.38,0.29])#([0.51,0.50,0.161,0.297,0.241])
     #mass_star = np.array([0.84])
     systemData = pd.read_csv("./RVData/rvData.txt")
-    sys = systemData["hostname"].values
-    mass_star = systemData["st_mass"].values
+    #sys = systemData["hostname"].values
+    #mass_star = systemData["st_mass"].values
 
+    ##TKS Systems
+    sys = ["HD6061", "HD63433", "HD63935", "HD77946", "HD93963", "HIP8152", "HIP9618", "HIP97166", "TOI1180", "TOI1184", "TOI1194", "TOI1249", "TOI1272", "TOI1279", "TOI1288", "TOI1294", "TOI1296", "TOI1298", "TOI1386", "TOI1410", "TOI1439", "TOI1443", "TOI1444", "TOI1451", "TOI1472", "TOI1601", "TOI1691", "TOI1710", "TOI1723", "TOI1736", "TOI1742", "TOI1751", "TOI1794", "TOI1798", "TOI1799", "TOI1807", "TOI1823", "TOI1824", "TOI1842", "TOI1898", "TOI2019", "TOI2076", "TOI2128", "TOI329", "TOI480", "TOI669", "WASP156"]
+    mass_star = [1.0269, 0.9883, 0.9406, 1.1973, 1.0844, 0.9373, 0.9420, 0.9342, 0.7795, 0.7271, 0.9835, 1.0062, 0.8772, 0.8784, 0.9552, 1.1578, 1.1576, 1.2187, 1.0363, 0.7941, 1.2313, 0.7663, 0.9513, 1.0022, 0.9154, 1.5055, 0.9581, 1.0258, 1.0378, 1.0373, 1.0861, 0.9382, 0.9698, 0.8543, 0.9406, 0.8048, 0.8414, 0.8801, 1.4643, 1.2484, 1.1832, 0.8557, 1.0251, 1.0678, 1.2793, 0.9245, 0.8712]
     #sys = ["TIC279401253"]
     #mass_star = [1.13]
     
-    for x in range(775,len(sys)):
+    for x in range(len(sys)):
         print(sys[x])
         plname = sys[x]
         n_inject = 50
@@ -87,7 +90,7 @@ def complete_maps():
         if plname == 'GJ49' or plname == 'GJ338B' or plname == 'GJ422' or plname == 'GJ433' or plname == 'GJ514' or plname == 'GJ536' or plname == 'GJ625' or plname == 'GJ1002' or plname == 'GJ1214' or plname == 'GJ3082' or plname == 'GJ3998' or plname == 'K2-3' or plname == 'K2-18' or plname == 'L36338' or plname == 'Ross508' or plname == 'TOI1266' or plname == 'GJ229A':
             time,rv,err = np.loadtxt('RV_datasets_mstar/RVs_standard/'+plname+'_rvs_std.csv',delimiter=',',unpack=True)
         '''
-        
+        '''
         #csv, Time in JD - 2400000, rv, err in m/s
         # 55 Cnc, TYC 1422-614-1
         if plname == "55cnc" or plname == "TYC14226141" or plname == "Kepler56" or plname == "HIP67851" or plname == "HD9278" or plname == "HD75898" or plname == "HD73526" or plname == "HD50499" or plname == "HD33844" or plname == "HD154857" or plname == "HD142" or plname == "HD137496" or plname == "HD11506" or plname == "GJ849" or plname == "GJ328" or plname == "BD202457" or plname == "gamCep" or plname == "WASP76" or plname == "TYC366712801" or plname == "TYC3318013331" or plname == "TOI2529" or plname == "TIC4672985" or plname == "HIP109600" or plname == "HIP109384" or plname == "HD89744" or plname == "HD86950" or plname == "HD5583" or plname == "HD240210" or plname == "HD238914" or plname == "HD233604" or plname == "HD222076" or plname == "HD219415" or plname == "HD19994" or plname == "BD490828" or plname == "BD480740" or plname == 'BD480738' or plname == "BD200274" or plname == "BD152940" or plname == "BD152375" or plname == "BD032562" or plname == "rhoCrB" or plname == "TOI622" or plname == "TOI615" or plname == "TOI5398" or plname == "HD99492" or plname == "HD147379" or plname == "GJ649" or plname == "HD18143" or plname == "HD216536" or plname == "HD22532" or plname == "HD25015" or plname == "HD8673" or plname == "HD88986" or plname == "HD98649" or plname == "TOI2641" or planme == "TOI858B":
@@ -106,7 +109,7 @@ def complete_maps():
         if plname == "K266" or plname == "K2329" or plname == "K227" or plname == "K225" or plname == "HD95338" or plname == "HD46375" or plname == "HD21411" or plname == "HD210193" or plname == "HD206255" or plname == "HD184010" or plname == "HD183579" or plname == "HD134606" or plname == "HD133131A" or plname == "HD117618" or plname == "HD10975" or plname == "HD108147" or plname == "GJ414A" or plname == "GJ3512" or plname == "GJ143" or plname == "GJ1148" or plname == "51Peg" or plname == "61Vir" or plname == "HD102117" or plname == "HD102843" or plname == "HD106252" or plname == "HD10647" or plname == "HD133131B" or plname == 'HD135694' or plname == "HD143361" or plname == "HD152079" or plname == "HD154672" or plname == "HD188015" or plname == "HD190228" or plname == "HD2039" or plname == "HD208487" or plname == "HD216435" or plname == "HD221420" or plname == "HD224538" or plname == "HD23596" or plname == "HD27442" or plname == "HD48265" or plname == "HD5608" or plname == "HD63935" or plname == "HD70642" or plname == "HD72892" or plname == "HD73267" or plname == "HD73344" or plname == "HD95872" or plname == "HIP71135" or plname == "HIP8152" or plname == "HR810" or plname == "KOI2513" or plname == "TIC241249530" or plname == "TOI1136" or plname == "TOI1288" or plname == "TOI1386" or plname == "TOI1437" or plname == "TOI1669" or plname == "TOI1670" or plname == "TO1736" or plname == 'TOI2458' or plname == "TOI4127" or plname == "TOI4504" or plname == "epsIndA" or plname == "iotDra":
             time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
             time = time - 2450000
-        if plname == "kapCrb" or plname == "omiCrB" or plname == "psi1DraB" or plname == "BD143065" or plname == "HATP26" or plname == "HATS39" or plname == "HD179949" or plname == "HD25463" or plname == "HD6061" or plname == "HD75289" or plname == "HD76700" or plname == "HD77946" or plname == "K2157" or plname == "KELT4" or plname == "TOI1194" or plname == "TOI1272" or plname == "TOI1347" or plname == "TOI1408" or plname == "TOI1478" or plname == "TOI1694" or plname == "TOI2025" or plname == "TOI2158" or plname == "TOI669":
+        if plname == "kapCrb" or plname == "omiCrB" or plname == "psi1DraB" or plname == "BD143065" or plname == "HATP26" or plname == "HATS39" or plname == "HD179949" or plname == "HD25463" or plname == "HD6061" or plname == "HD75289" or plname == "HD76700" or plname == "HD77946" or plname == "K2157" or plname == "KELT4" or plname == "TOI1194" or plname == "TOI1272" or plname == "TOI1347" or plname == "TOI1408" or plname == "TOI1478" or plname == "TOI1694" or plname == "TOI2025" or plname == "TOI2158" or plname == "TOI669" or plname == "WASP10" or plname == "XO4":
             time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
             time = time - 2450000
         
@@ -117,7 +120,7 @@ def complete_maps():
             time = time - 2450000
             rv = rv*1000
 
-        #Time in JD, rv in km/s, err in m/s
+        #Time in JD-2450000, rv in km/s, err in m/s
         if plname == "nuOctA":
             time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
             rv = rv*1000
@@ -129,7 +132,7 @@ def complete_maps():
             time = time - 2450000
             rv = rv*1000
             err = err*1000
-        if plname == "HD44219" or plname == "HD45364" or plname == "HD456252" or plname == "HD60532" or plname == "HD63433" or plname == "HD65216" or plname == "HD6718" or plname == "HD7199" or plname == "HD7449" or plname == "HD89307" or plname == "HIP12961" or plname == "HIP5158" or plname == "TOI421" or plname == "TOI677" or plname == "CoRoT32" or plname == "CoRoT7" or plname == "KELT21":
+        if plname == "HD44219" or plname == "HD45364" or plname == "HD456252" or plname == "HD60532" or plname == "HD63433" or plname == "HD65216" or plname == "HD6718" or plname == "HD7199" or plname == "HD7449" or plname == "HD89307" or plname == "HIP12961" or plname == "HIP5158" or plname == "TOI421" or plname == "TOI677" or plname == "CoRoT32" or plname == "CoRoT7" or plname == "KELT21" or plname == "WASP1" or plname == "WASP127" or plname == "WASP161" or plname == "WASP163" or plname == 'WASP170' or plname == "WASP18" or plname == "WASP19" or plname == "WASP23" or plname == "WASP31" or plname == "WASP79":
             time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
             time = time - 2450000
             rv = rv*1000
@@ -142,7 +145,7 @@ def complete_maps():
             time = time-50000
             rv = rv*1000
             err = err*1000
-        if plname == "HD80869" or plname == "HD81040" or plname == "HD95544" or plname == "KOI12" or plname == "TOI1338A" or plname == "TOI1836" or plname == "TOI2295" or plname == "TOI2537" or plname == "TOI5067" or plname == "TOI5110" or plname == "WASP130" or plname == "CoRoT22" or plname == "HD212301" or plname == "HD2638":
+        if plname == "HD80869" or plname == "HD81040" or plname == "HD95544" or plname == "KOI12" or plname == "TOI1338A" or plname == "TOI1836" or plname == "TOI2295" or plname == "TOI2537" or plname == "TOI5067" or plname == "TOI5110" or plname == "WASP130" or plname == "CoRoT22" or plname == "HD212301" or plname == "HD2638" or plname == "XO6" or plname == "WASP124" or plname == "WASP140" or plname == "WASP15" or plname == "WASP158" or planme == "WASP159" or plname == "WASP169" or plname == "WASP171" or plname == "WASP175" or plname == "WASP185" or plname == "WASP52" or plname ==  "WASP82":
             time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
             time = time-50000
             rv = rv*1000
@@ -165,7 +168,7 @@ def complete_maps():
         
         #csv, Time in JD-2450000, rv,err in km/s
         #WASP-41, gam Lib
-        if plname == "WASP41" or plname == "HD204313" or plname == "HD159243" or plname == "HD13908" or plname == "GJ876" or plname == "WASP73" or plname == "WASP70" or plname == "WASP68" or plname == "WASP50" or plname == "WASP4" or plname == "WASP38" or plname == "WASP32" or plname =="WASP24" or plname == "WASP106" or plname == "TOI2485" or plname == "TOI2420" or plname == "KOI3680" or plname == "CoRoT20" or plname == "HATS54" or plname == "HATP3" or plname == "HATP21" or plname == "HATP20" or plname == "HATP14" or plname == "CoRoT9" or plname == "WASP94" or plname == "WASP88" or plname == "WASP69" or plname == "WASP20" or plname == "WASP193" or plname == "WASP181" or plname == "WASP160" or plname == "WASP156" or plname == "WASP153" or plname == "WASP148" or plname == "WASP147" or plname == "WASP117" or plname == "TOI544" or plname == "NGTS5" or plname == "NGC2682YBP401" or plname == "K2100" or plname == "K299" or plname == "CoRoT36" or plname == "HATP27" or plname == "OGLETR182":
+        if plname == "WASP41" or plname == "HD204313" or plname == "HD159243" or plname == "HD13908" or plname == "GJ876" or plname == "WASP73" or plname == "WASP70" or plname == "WASP68" or plname == "WASP50" or plname == "WASP4" or plname == "WASP38" or plname == "WASP32" or plname =="WASP24" or plname == "WASP106" or plname == "TOI2485" or plname == "TOI2420" or plname == "KOI3680" or plname == "CoRoT20" or plname == "HATS54" or plname == "HATP3" or plname == "HATP21" or plname == "HATP20" or plname == "HATP14" or plname == "CoRoT9" or plname == "WASP94" or plname == "WASP88" or plname == "WASP69" or plname == "WASP20" or plname == "WASP193" or plname == "WASP181" or plname == "WASP160" or plname == "WASP156" or plname == "WASP153" or plname == "WASP148" or plname == "WASP147" or plname == "WASP117" or plname == "TOI544" or plname == "NGTS5" or plname == "NGC2682YBP401" or plname == "K2100" or plname == "K299" or plname == "CoRoT36" or plname == "HATP27" or plname == "OGLETR182" or plname == "WASP104" or plname == "WASP11" or plname == "WASP12" or plname == "WASP120" or plname == "WASP151" or plname == "WASP164" or plname == "WASP165" or plname == "WASP177" or plname == "WASP180" or plname == "WASP183" or plname == "WASP190" or plname == "WASP28" or plname ==  "WASP94B" or plname == "XO2N":
             time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
             rv = rv*1000
             err = err*1000
@@ -177,7 +180,7 @@ def complete_maps():
         
         if plname == "Kepler93" or plname == "Kepler94" or plname == "Kepler68" or plname == "Kepler48" or plname == "Kepler454" or plname == "Kepler407" or plname == "KELT6" or plname == "HIP8541" or plname == "HD80653" or plname == "HD67087" or plname == "HD155358" or plname == "HD134987" or plname == "HATS59" or plname == "HATP2" or plname == "75Cet" or plname == "tauBoo" or plname == "HIP75092" or plname == "HIP74890" or plname == "HIP114933" or plname == "HD158996" or plname == "HD110014" or plname == "HATS68" or plname == "HATS64" or plname == "HATS62" or plname == "HATS27" or plname == "HATP66" or plname == "HATP63" or plname == "HATP61" or plname == "HATP60" or plname == "HATP22" or plname == "HATP1" or plname == "91Aqr" or plname == "Kepler103" or plname == 'Kepler100' or plname == "HD86226" or plname == "HD18599" or plname == "HATS72" or plname == "GJ9066" or plname == "8UMi" or plname == "GJ86" or plname == "HD12648" or plname == "HD38283" or plname == "KOI351" or plname == "Kepler65" or plname == "HATP7" or plname == "HD102195":
             time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
-        if plname == "HIP65" or plname == "K279":
+        if plname == "HIP65" or plname == "K279" or planme == "WASP186" or plname == "WASP187":
             time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
 
         #time in JD-2450000, rv, err in m/s, cols 0,1,8
@@ -291,7 +294,15 @@ def complete_maps():
             time = time - 50000
             rv = rv*1000
             err = err*1000
- 
+        '''
+        ##TKS Systems
+         
+        if plname == "HD6061" or plname == "HD63433" or plname == "HD63935" or plname == "HD77946" or plname == "HD93963" or plname == "HIP8152" or plname == "HIP9618" or plname == "HIP97166" or plname == "TOI1180" or plname == "TOI1184" or plname == "TOI1194" or plname == "TOI1272" or plname == "TOI1279" or plname == "TOI1288" or plname == "TOI1294" or plname == "TOI1298" or plname == "TOI1386" or plname == "TOI1410" or plname == "TOI1439" or plname == "TOI1443" or plname == "TOI1444" or plname == "TOI1451" or plname == "TOI1472" or plname == "TOI1601" or plname == "TOI1691":
+            time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (2,3,4)).T
+            time = time - 2450000
+        if plname == "TOI1710" or plname == "TOI1723" or plname == "TOI1736" or plname == "TOI1742" or plname == "TOI1751" or plname == "TOI1794" or plname == "TOI1798" or plname == "TOI1799" or planme == "TOI1807" or plname == "TOI1823" or plname == "TOI1824" or plname == "TOI1842" or plname == "TOI1898" or plname == "TOI2019" or plname == "TOI2076" or plname == "TOI2128" or plname == "TOI329" or plname == "TOI480" or plname == "TOI669" or plname == "WASP156":
+            time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (2,3,4)).T
+            time = time - 2450000
         #------------------------------------
         jitter = 0.
         mstar = mass_star[x]

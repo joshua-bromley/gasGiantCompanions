@@ -139,7 +139,7 @@ HD6061, Accepted
 HD75289, Accepted
 HD76700, Accepted
 HD77946, Accepted
-HD93963, Rejected, baseline too short 
+HD93963, Accepted
 HIP65, Accepted
 HIP86221, Rejected, only 9 observations
 HIP91258, Rejected, baseline too short
@@ -252,42 +252,42 @@ TOI1064, Rejected, baseline too short
 TOI1075, Rejected, baseline too short
 TOI1107, Rejected, baseline too short
 TOI1135, Rejected, baseline too short
-TOI1180, Rejected, data not easily available
+TOI1180, Accepted
 TOI1184, Rejected, data not easily available
 TOI1194, Accepted
 TOI1235, Rejected, baseline too short
-TOI1244, Rejected, data not easily available
-TOI1248, Rejected, data not easily available
+TOI1244, Rejected, only 19 observations
+TOI1248, Rejected, only 19 observations
 TOI1259, Rejected, only 19 observations
-TOI1269, Rejected, data not easily available
+TOI1269, Rejected, only 18 observations
 TOI1272, Accpeted
 TOI1279, Rejected, data not easily available
 TOI1295, Rejected, baseline too short
-TOI1296, Rejected, baseline too short
-TOI1298, Rejected, baseline too short
+TOI1296, Accepted
+TOI1298, Accepted
 TOI132, Rejected, baseline too short
 TOI1333, Rejected, only 16 observations
 TOI1347, Accepted
 TOI1408, Accepted
 TOI1411, Rejected, data not easily available
 TOI1420, Rejected, baseline too short
-TOI1444, Rejected, baseline too short
-TOI1472, Rejected, data not easily available
+TOI1444, Accepted
+TOI1472, Accepted
 TOI1478, Accepted
 TOI150, Rejected, baseline too short
 TOI157, Rejected, baseline too short
-TOI1601, Rejected, only 17 observations
+TOI1601, Accepted
 TOI163, Rejected, baseline too short
 TOI169, Rejected only 16 observations
 TOI1694, Accepted
 TOI172, Rejected, baseline too short
 TOI1728, Rejected, baseline too short
-TOI1753, Rejected, data not easily available
-TOI1775, Rejected, data not easily available
+TOI1753, Rejected, only 19 observations
+TOI1775, Rejected, only 14 observations
 TOI1789, Rejected, baseline too short
-TOI1794, Rejected, data not easily available
-TOI1798, Rejected, data not easily available
-TOI1799, Rejected, data not easily available
+TOI1794, Accepted
+TOI1798, Accepted
+TOI1799, Accepted
 TOI1811, Rejected, only 12 observations
 TOI1820, Rejected, baseline too short
 TOI1855, Rejected, only 18 observations
@@ -330,7 +330,7 @@ TOI2981, Rejected, only 15 observations
 TOI3023, Rejected, only 6 observations
 TOI3071, Rejected, only 14 observations
 TOI3261, Rejected, baseline too short
-TOI329, Rejected, data not easily available
+TOI329, Accepted
 TOI332, Rejected, only 16 observations
 TOI3321, Rejected, data not easily available
 TOI3331, Rejected, only 6 observations
@@ -355,7 +355,7 @@ TOI4377, Rejected, baseline too short
 TOI4463, Rejected, only 8 observations
 TOI4551, Accepted
 TOI4791. Rejected, only 8 observations
-TOI480, Rejected, data not easily avialable
+TOI480, Accepted
 TOI4914, Rejected, only 17 observations
 TOI5005, Rejected, baseline too short
 TOI5218, Rejected, only 5 observations

@@ -264,33 +264,33 @@ TIC241249530, Accepted
 TIC393818343, Rejected, baseline too short
 TOI1052, Rejected, baseline too short
 TOI1136, Accepted
-TOI1249, Rejected, data not easily available
+TOI1249, Accepted
 TOI125, Rejected, baseline too short
 TOI1260, Rejected, baseline too short
 TOI1288, Accepted
-TOI1294, Rejected, data not easily available
+TOI1294, Accepted
 TOI1338A, Accepted
 TOI1386, Accepted
-TOI1410, Rejected, data not easily available
+TOI1410, Accepted
 TOI1437, Accepted
-TOI1439, Rejected, data not easily available
+TOI1439, Accepted
 TOI1451, Rejected, data not easily available
 TOI1669, Accepted
 TOI1670, Accepted
-TOI1691, Rejected, data not easily available
+TOI1691, Accepted
 TOI1710, Accepted
-TOI1723, Rejected, data not easily available 
+TOI1723, Accepted
 TOI1736, Accepted
-TOI1742, Rejected, data not easily available
+TOI1742, Accepted
 TOI1751, Accepted
-TOI1758, Rejected, data not easily available
+TOI1758, Rejected, only 19 observations
 TOI178, Rejected, baseline too short
-TOI1823, Rejected, data not easily available
-TOI1824, Rejected, data not easily available
+TOI1823, Accepted
+TOI1824, Accepted
 TOI1836, Accepted
-TOI1898, Rejected, data not easily available
-TOI2019, Rejected, data not easily available
-TOI2128, Rejected, data not easily available
+TOI1898, Accepted
+TOI2019, Accepted
+TOI2128, Accepted
 TOI2295, Accepted
 TOI2373, Rejected, only 16 observations
 TOI2443, Accepted
