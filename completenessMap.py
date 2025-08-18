@@ -29,7 +29,7 @@ def complete_maps():
     #sys = ["TIC279401253"]
     #mass_star = [1.13]
     
-    for x in range(820,len(sys)):
+    for x in range(869,len(sys)):
         print(sys[x])
         plname = sys[x]
         n_inject = 50
@@ -142,7 +142,7 @@ def complete_maps():
             time = time-50000
             rv = rv*1000
             err = err*1000
-        if plname == "HD80869" or plname == "HD81040" or plname == "HD95544" or plname == "KOI12" or plname == "TOI1338A" or plname == "TOI1836" or plname == "TOI2295" or plname == "TOI2537" or plname == "TOI5067" or plname == "TOI5110" or plname == "WASP130" or plname == "CoRoT22" or plname == "HD212301" or plname == "HD2638":
+        if plname == "HD80869" or plname == "HD81040" or plname == "HD95544" or plname == "KOI12" or plname == "TOI1338A" or plname == "TOI1836" or plname == "TOI2295" or plname == "TOI2537" or plname == "TOI5067" or plname == "TOI5110" or plname == "WASP130" or plname == "CoRoT22" or plname == "HD212301" or plname == "HD2638" or plname == "XO6":
             time, rv, err = np.loadtxt(f"./RVData/rv{plname}.txt", delimiter=",", usecols = (0,1,2)).T
             time = time-50000
             rv = rv*1000
