@@ -252,7 +252,7 @@ TOI1064, Rejected, baseline too short
 TOI1075, Rejected, baseline too short
 TOI1107, Rejected, baseline too short
 TOI1135, Rejected, baseline too short
-TOI1180, Accepted
+TOI1180, Rejected, only 19 observations
 TOI1184, Rejected, data not easily available
 TOI1194, Accepted
 TOI1235, Rejected, baseline too short

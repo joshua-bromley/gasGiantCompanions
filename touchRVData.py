@@ -4,6 +4,8 @@ import pickle as pk
 
 systemData = pd.read_csv("./RVData/rvData.txt")
 systems = systemData["hostname"].values
+systems = ["HD6061", "HD63433", "HD63935", "HD77946", "HD93963", "HIP8152", "HIP9618", "HIP97166", "TOI1180", "TOI1184", "TOI1194", "TOI1249", "TOI1272", "TOI1279", "TOI1288", "TOI1294", "TOI1296", "TOI1298", "TOI1386", "TOI1410", "TOI1439", "TOI1443", "TOI1444", "TOI1451", "TOI1472", "TOI1601", "TOI1691", "TOI1710", "TOI1723", "TOI1736", "TOI1742", "TOI1751", "TOI1794", "TOI1798", "TOI1799", "TOI1807", "TOI1823", "TOI1824", "TOI1842", "TOI1898", "TOI2019", "TOI2076", "TOI2128", "TOI329", "TOI480", "TOI669", "WASP156"]
+
 
 for sys in systems:
     try:
@@ -17,6 +19,12 @@ for sys in systems:
             time = time - 2450000
         elif sys == "TOI238":
              time, rv, err = np.loadtxt(f"./RVData/rv{sys}.txt", delimiter=",", usecols = (0,1,8)).T
+        elif sys == "HD6061" or sys == "HD63433" or sys == "HD63935" or sys == "HD77946" or sys == "HD93963" or sys == "HIP8152" or sys == "HIP9618" or sys == "HIP97166" or sys == "TOI1180" or sys == "TOI1184" or sys == "TOI1194" or sys == "TOI1249" or sys == "TOI1296" or sys == "TOI1272" or sys == "TOI1279" or sys == "TOI1288" or sys == "TOI1294" or sys == "TOI1298" or sys == "TOI1386" or sys == "TOI1410" or sys == "TOI1439" or sys == "TOI1443" or sys == "TOI1444" or sys == "TOI1451" or sys == "TOI1472" or sys == "TOI1601" or sys == "TOI1691":
+            time, rv, err = np.loadtxt(f"./RVData/rv{sys}.txt", delimiter=",", usecols = (2,3,4)).T
+            time = time - 2450000
+        elif sys == "TOI1710" or sys == "TOI1723" or sys == "TOI1736" or sys == "TOI1742" or sys == "TOI1751" or sys == "TOI1794" or sys == "TOI1798" or sys == "TOI1799" or sys == "TOI1807" or sys == "TOI1823" or sys == "TOI1824" or sys == "TOI1842" or sys == "TOI1898" or sys == "TOI2019" or sys == "TOI2076" or sys == "TOI2128" or sys == "TOI329" or sys == "TOI480" or sys == "TOI669" or sys == "WASP156":
+            time, rv, err = np.loadtxt(f"./RVData/rv{sys}.txt", delimiter=",", usecols = (2,3,4)).T
+            time = time - 2450000
         else:
             time, rv, err = np.loadtxt(f"./RVData/rv{sys}.txt", delimiter=",", usecols = (0,1,2)).T
     except ValueError as e:
