@@ -20,10 +20,12 @@ for sys in systems:
         else:
             time, rv, err = np.loadtxt(f"./RVData/rv{sys}.txt", delimiter=",", usecols = (0,1,2)).T
     except ValueError as e:
-        print("Bad Data for system " + sys)
-        print(e)
+        #print("Bad Data for system " + sys)
+        #print(e)
+        a = 1
     except FileNotFoundError as e:
-        print("No RV data for system " + sys)
+        # print("No RV data for system " + sys)
+        a = 1
     try:
         compProb = pk.load(open(f"./completenessMaps/{sys}.p", "rb"))
     except FileNotFoundError:
