@@ -32,7 +32,7 @@ def complete_maps():
     sys = ["BD103166", "WASP132", "HD24563", "HD187085", "WASP160B", "16CygB", "HD93963A", "8UMi"]
     mass_star = [0.999,0.789, 1.25, 1.22,0.87,0.983,1.0844, 1.8]
     
-    for x in range(1, len(sys)):
+    for x in range(0, 1):
         print(sys[x])
         plname = sys[x]
         n_inject = 50
