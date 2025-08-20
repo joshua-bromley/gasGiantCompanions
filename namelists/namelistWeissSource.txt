@@ -20,3 +20,6 @@ Kepler96
 Kepler97
 Kepler98
 Kepler99
+KOI351
+Kepler139
+Kepler65

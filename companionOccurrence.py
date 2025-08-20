@@ -64,25 +64,25 @@ companionLabels = ["CJ", "WJ", "HJ", "CS", "HS", "SE"]
 
 for i in range(4):
     if i == 0:
-        massCut = planets.loc[(planets["st_mass"] > 0.6) & (planets["st_mass"] < 1.6)]
-        clsMassCut = clsPlanets.loc[(clsPlanets["st_mass"] > 0.6) & (clsPlanets["st_mass"] < 1.6)]
-        clsStarMassCut = clsStars.loc[(clsStars["mass"] > 0.6) & (clsStars["mass"] < 1.6)]
+        massCut = planets.loc[(planets["st_mass"] > 0.55) & (planets["st_mass"] < 1.6)]
+        clsMassCut = clsPlanets.loc[(clsPlanets["st_mass"] > 0.55) & (clsPlanets["st_mass"] < 1.6)]
+        clsStarMassCut = clsStars.loc[(clsStars["mass"] > 0.55) & (clsStars["mass"] < 1.6)]
     elif i == 1:
         #massCut = planets.loc[planets["st_mass"] < 0.55]
-        massCut = planets.loc[(planets["st_mass"] > 0.6) & (planets["st_mass"] < 0.9)]
-        clsMassCut = clsPlanets.loc[(clsPlanets["st_mass"] > 0.6) & (clsPlanets["st_mass"] < 0.9)]
-        clsStarMassCut = clsStars.loc[(clsStars["mass"] > 0.6) & (clsStars["mass"] < 0.9)]
+        massCut = planets.loc[(planets["st_mass"] > 0.55) & (planets["st_mass"] < 0.8)]
+        clsMassCut = clsPlanets.loc[(clsPlanets["st_mass"] > 0.55) & (clsPlanets["st_mass"] < 0.8)]
+        clsStarMassCut = clsStars.loc[(clsStars["mass"] > 0.55) & (clsStars["mass"] < 0.8)]
     #elif i == 2: 
         #massCut = planets.loc[(planets["st_mass"] >= 0.55) & (planets["st_mass"] < 0.8)]
         #massCut = planets.loc[planets["st_mass"] >= 1]
     elif i == 2:
-        massCut = planets.loc[(planets["st_mass"] >= 0.9) & (planets["st_mass"] < 1.1)]
-        clsMassCut = clsPlanets.loc[(clsPlanets["st_mass"] >= 0.9) & (clsPlanets["st_mass"] < 1.1)]
+        massCut = planets.loc[(planets["st_mass"] >= 0.8) & (planets["st_mass"] < 1.05)]
+        clsMassCut = clsPlanets.loc[(clsPlanets["st_mass"] >= 0.9) & (clsPlanets["st_mass"] < 1.05)]
         clsStarMassCut = clsStars.loc[(clsStars["mass"] >= 0.9) & (clsStars["mass"] < 1.1)]
     elif i == 3:
-        massCut = planets.loc[(planets["st_mass"] >= 1.1) & (planets["st_mass"] < 1.6)]
-        clsMassCut = clsPlanets.loc[(clsPlanets["st_mass"] >= 1.1) & (clsPlanets["st_mass"] < 1.6)]
-        clsStarMassCut = clsStars.loc[(clsStars["mass"] >= 1.1) & (clsStars["mass"] < 1.6)]
+        massCut = planets.loc[(planets["st_mass"] >= 1.05) & (planets["st_mass"] < 1.6)]
+        clsMassCut = clsPlanets.loc[(clsPlanets["st_mass"] >= 1.05) & (clsPlanets["st_mass"] < 1.6)]
+        clsStarMassCut = clsStars.loc[(clsStars["mass"] >= 1.05) & (clsStars["mass"] < 1.6)]
     
     for j in range(4):
         if j == 0:
