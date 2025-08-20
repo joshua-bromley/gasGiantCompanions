@@ -2,23 +2,27 @@ import numpy as np
 import pandas as pd
 mJ = 317.8
 
-planets = pd.read_csv("./data/gasGiantDataMissingRaw.csv")
+planets = pd.read_csv("./data/finalSampleRaw.csv")
 metallicities = pd.read_csv("./data/metallicities.csv")
 
-columns = ["pl_name", "hostname","pl_type", "sy_snum", "sy_pnum", "pl_orbper", "pl_orbsmax","pl_rade","pl_radj", "pl_bmasse", "pl_bmassj", "pl_orbeccen", "pl_orbeccenerr1", "pl_orbeccenerr2", "st_spectype", "st_teff", "st_rad", "st_mass", "st_met", "discoverymethod", "pl_refname"]
+columns = ["pl_name", "hostname","pl_type", "sy_snum", "sy_pnum", "pl_orbper", "pl_orbsmax","pl_rade","pl_radj", "pl_bmasse", "pl_bmassj", "pl_orbeccen", "pl_orbeccenerr1", "pl_orbeccenerr2", "st_mass", "st_met", "discoverymethod"]
 planetTypes = np.empty_like(planets["pl_name"])
 companionType = np.ones_like(planets["pl_bmasse"])
 suspiciousData = np.zeros_like(planets["pl_bmasse"])
 
 for i in range(len(planets)):
     planetName = planets.iloc[i]["pl_name"]
+    hostname = planets.iloc[i]["hostname"]
     if pd.isnull(planets.iloc[i]["pl_orbsmax"]):
         smax = (planets.iloc[i]["st_mass"]*(planets.iloc[i]["pl_orbper"]/365)**2)**(1/3)
         planets.at[i, "pl_orbsmax"] = smax
     
     if pd.isnull(planets.iloc[i]["st_met"]):
-        met = np.asarray(metallicities.loc[metallicities["pl_name"] == planetName]["st_met"])[0]
-        planets.at[i, "st_met"] = met
+        try:
+            met = np.asarray(metallicities.loc[metallicities["hostname"] == hostname]["st_met"])[0]
+            planets.at[i, "st_met"] = met
+        except IndexError:
+            print("No Metallicity for " + planetName)
     
     
 
@@ -30,8 +34,10 @@ for i in range(len(planets)):
         planets.at[i, "pl_orbeccenerr1"] = 0.1
         planets.at[i, "pl_orbeccenerr2"] = -0.1
 
-    if not pd.isnull(planets.iloc[i]["pl_bmasse"]):  
-        if not pd.isnull(planets.iloc[i]["pl_orbsmax"]):  
+    if not pd.isnull(planets.iloc[i]["pl_bmasse"]): 
+        if planets.iloc[i]["pl_bmasse"] > 20*mJ:
+            planetTypes[i] = "BD" 
+        elif not pd.isnull(planets.iloc[i]["pl_orbsmax"]):  
             if planets.iloc[i]["pl_bmasse"] < 20:
                 planetTypes[i] = "SE"
             elif planets.iloc[i]["pl_bmasse"] < 0.5*mJ and planets.iloc[i]["pl_orbsmax"] < 0.1:
@@ -42,8 +48,10 @@ for i in range(len(planets)):
                 planetTypes[i] = "HJ"
             elif planets.iloc[i]["pl_bmasse"] >= 0.5*mJ and planets.iloc[i]["pl_orbsmax"] < 1:
                 planetTypes[i] = "WJ"
-            elif planets.iloc[i]["pl_bmasse"] >= 0.5*mJ and planets.iloc[i]["pl_orbsmax"] >= 1:
+            elif planets.iloc[i]["pl_bmasse"] >= 0.5*mJ and planets.iloc[i]["pl_orbsmax"] >= 1 and planets.iloc[i]["pl_orbsmax"] < 10:
                 planetTypes[i] = "CJ"
+            else:
+                planetTypes[i] = "DG"
         elif not pd.isnull(planets.iloc[i]["pl_orbper"]):
             if planets.iloc[i]["pl_bmasse"] < 20:
                 planetTypes[i] = "SE"
@@ -55,8 +63,10 @@ for i in range(len(planets)):
                 planetTypes[i] = "HJ"
             elif planets.iloc[i]["pl_bmasse"] >= 0.5*mJ and planets.iloc[i]["pl_orbper"] < 300:
                 planetTypes[i] = "WJ"
-            elif planets.iloc[i]["pl_bmasse"] >= 0.5*mJ and planets.iloc[i]["pl_orbper"] >= 300:
+            elif planets.iloc[i]["pl_bmasse"] >= 0.5*mJ and planets.iloc[i]["pl_orbper"] >= 300 and planets.iloc[i]["pl_orbper"] < 10000:
                 planetTypes[i] = "CJ"
+            else:
+                planetTypes[i] = "DG"
         else:
             planetTypes[i] = "NA"
     elif not pd.isnull(planets.iloc[i]["pl_rade"]):
@@ -94,7 +104,7 @@ for i in range(len(planets)):
 planets.insert(4, "pl_type", planetTypes)
 
 for i in range(len(planets)):
-    if planets.iloc[i]["pl_bmasse"] >= 0.5*mJ and planets.iloc[i]["sy_pnum"] > 1:
+    if planets.iloc[i]["sy_pnum"] > 1:
         hostname = planets.iloc[i]["hostname"]
         companions = planets.loc[planets["hostname"] == hostname]
         for j in range(len(companions)):
@@ -114,6 +124,9 @@ for i in range(len(planets)):
 
 """
 Companion Type is a product of primes so that I can identify the categories a companion belongs to with a single number
+
+Note that all planets with inner companions are now classified under this scheme. For gas giant companions, first filter by gas giant, then filter by companion
+
 2: Super Earths
 3: Hot Saturns
 5: Cold Saturns
@@ -123,11 +136,11 @@ Companion Type is a product of primes so that I can identify the categories a co
 """
 
 planets = planets[columns]
-planets.insert(19, "companion_type", companionType)
-planets.insert(20, "pl_sus_data", suspiciousData)
+planets.insert(5, "companion_type", companionType)
+#planets.insert(20, "pl_sus_data", suspiciousData)
 
 
-planets.to_csv("./data/gasGiantDataMissing.csv")
+planets.to_csv("./data/finalSample.csv")
 
 print(np.sum(suspiciousData)/len(suspiciousData))
     
