@@ -110,22 +110,22 @@ for i in range(4):
         for k in range(6):
             if k == 0:
                 hostPopulation = metCut.loc[metCut["pl_type"] == "CJ"]
-                targetPopulation = metCut.loc[metCut["companion_type"] % 13 == 0]
+                targetPopulation = metCut.loc[(metCut["pl_type"] == "CJ") & (metCut["companion_type"] % 13 == 0)]
             if k == 1:
                 hostPopulation = metCut.loc[metCut["pl_type"] == "WJ"]
-                targetPopulation = metCut.loc[metCut["companion_type"] % 11 == 0]
+                targetPopulation = metCut.loc[(metCut["pl_type"] == "CJ") & (metCut["companion_type"] % 11 == 0)]
             if k == 2:
                 hostPopulation = metCut.loc[metCut["pl_type"] == "HJ"]
-                targetPopulation = metCut.loc[metCut["companion_type"] % 7 == 0]
+                targetPopulation = metCut.loc[(metCut["pl_type"] == "CJ") & (metCut["companion_type"] % 7 == 0)]
             if k == 3:
                 hostPopulation = metCut.loc[metCut["pl_type"] == "CS"]
-                targetPopulation = metCut.loc[metCut["companion_type"] % 5 == 0]
+                targetPopulation = metCut.loc[(metCut["pl_type"] == "CJ") & (metCut["companion_type"] % 5 == 0)]
             if k == 4:
                 hostPopulation = metCut.loc[metCut["pl_type"] == "HS"]
-                targetPopulation = metCut.loc[metCut["companion_type"] % 3 == 0]
+                targetPopulation = metCut.loc[(metCut["pl_type"] == "CJ") & (metCut["companion_type"] % 3 == 0)]
             if k == 5:
                 hostPopulation = metCut.loc[metCut["pl_type"] == "SE"]
-                targetPopulation = metCut.loc[metCut["companion_type"] % 2 == 0]
+                targetPopulation = metCut.loc[(metCut["pl_type"] == "CJ") & (metCut["companion_type"] % 2 == 0)]
             print(companionLabels[k], massBinLabels[i], metBinLabels[j])
             occurrenceRates[i,j,k], rawOccurrence[i,j,k] = occurrenceRate(targetPopulation, hostPopulation, minMassIdx, maxMassIdx, minSmaxIdx, maxSmaxIdx)
 

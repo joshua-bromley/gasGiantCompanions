@@ -4,7 +4,7 @@ import pickle as pk
 
 systemData = pd.read_csv("./RVData/rvData.txt")
 systems = systemData["hostname"].values
-systems = ["HD6061", "HD63433", "HD63935", "HD77946", "HD93963", "HIP8152", "HIP9618", "HIP97166", "TOI1180", "TOI1184", "TOI1194", "TOI1249", "TOI1272", "TOI1279", "TOI1288", "TOI1294", "TOI1296", "TOI1298", "TOI1386", "TOI1410", "TOI1439", "TOI1443", "TOI1444", "TOI1451", "TOI1472", "TOI1601", "TOI1691", "TOI1710", "TOI1723", "TOI1736", "TOI1742", "TOI1751", "TOI1794", "TOI1798", "TOI1799", "TOI1807", "TOI1823", "TOI1824", "TOI1842", "TOI1898", "TOI2019", "TOI2076", "TOI2128", "TOI329", "TOI480", "TOI669", "WASP156"]
+#systems = ["HD6061", "HD63433", "HD63935", "HD77946", "HD93963", "HIP8152", "HIP9618", "HIP97166", "TOI1180", "TOI1184", "TOI1194", "TOI1249", "TOI1272", "TOI1279", "TOI1288", "TOI1294", "TOI1296", "TOI1298", "TOI1386", "TOI1410", "TOI1439", "TOI1443", "TOI1444", "TOI1451", "TOI1472", "TOI1601", "TOI1691", "TOI1710", "TOI1723", "TOI1736", "TOI1742", "TOI1751", "TOI1794", "TOI1798", "TOI1799", "TOI1807", "TOI1823", "TOI1824", "TOI1842", "TOI1898", "TOI2019", "TOI2076", "TOI2128", "TOI329", "TOI480", "TOI669", "WASP156"]
 
 
 for sys in systems:
@@ -32,8 +32,7 @@ for sys in systems:
         #print(e)
         a = 1
     except FileNotFoundError as e:
-        # print("No RV data for system " + sys)
-        a = 1
+        print("No RV data for system " + sys)
     try:
         compProb = pk.load(open(f"./completenessMaps/{sys}.p", "rb"))
     except FileNotFoundError:

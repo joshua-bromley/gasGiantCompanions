@@ -236,7 +236,7 @@ K2287, Rejected, baseline too short
 K2290, Rejected, baseline too short
 K2292, Rejected, baseline too short
 K299, Accepted
-KOI12, Accepted
+KOI12, Accepted, inner planet only, outer discovered by TTVs
 KOI2513, Accepted
 KOI351, Accepted
 Kepler111, Rejected, only 6 observations
